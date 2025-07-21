@@ -1,24 +1,11 @@
-import Link from "next/link";
 import Hero from "@/components/hero";
+import Header from "@/components/header";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-blue-600 text-white">
-        <nav className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <div className="text-xl font-bold">Laboratorium Lingkungan PJT</div>
-            <div className="space-x-4">
-              <Link href="/" className="hover:underline">Home</Link>
-              <Link href="/about" className="hover:underline">About</Link>
-              <Link href="/services" className="hover:underline">Services</Link>
-              <Link href="/competence" className="hover:underline">Competence</Link>
-              <Link href="/contact" className="hover:underline">Contact</Link>
-            </div>
-          </div>
-        </nav>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <Hero />

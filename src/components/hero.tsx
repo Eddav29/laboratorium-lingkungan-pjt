@@ -3,14 +3,18 @@ import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center">
-      {/* Background Image Overlay */}
+    <section className="relative min-h-screen flex items-center">
+      {/* Background Image with Darkening Overlay */}
+    <div className="absolute inset-0">
       <div 
-        className="absolute inset-0 bg-cover bg-center opacity-20"
+        className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`
+        backgroundImage: `url(/assets/images/kolase.jpg)`, 
         }}
       />
+      {/* Dark overlay to make text more readable */}
+      <div className="absolute inset-0 bg-black opacity-70"></div>
+    </div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
@@ -20,15 +24,15 @@ const Hero = () => {
             Professional • Ethic • OHS
           </div>
 
-          {/* Main Heading */}
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+          {/* Main Heading - Changed text color to white for better visibility against dark background */}
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
             Laboratorium Lingkungan
             <br />
-            <span className="text-blue-600">Perum Jasa Tirta I</span>
+            <span className="text-blue-300">Perum Jasa Tirta I</span>
           </h1>
 
-          {/* Credentials */}
-          <div className="space-y-2 mb-8 text-gray-700">
+          {/* Credentials - Lightened text color */}
+          <div className="space-y-2 mb-8 text-gray-100">
             <p className="text-lg font-medium">
               AKREDITASI ISO 17025/2017 OLEH KAN (LP-1646-IDN)
             </p>
@@ -54,7 +58,7 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-3 rounded-lg text-lg font-medium transition-all duration-200"
+                className="border-2 border-blue-600 bg-transparent text-white hover:bg-blue-600 hover:text-white px-8 py-3 rounded-lg text-lg font-medium transition-all duration-200"
               >
                 Cek Layanan
               </Button>
