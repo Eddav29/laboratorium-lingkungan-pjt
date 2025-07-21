@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Hero from "@/components/hero";
 
 export default function Home() {
   return (
@@ -20,19 +21,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gray-50 py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">
-            Selamat Datang di Laboratorium Lingkungan PJT
-          </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            Hello World - Placeholder untuk deskripsi singkat perusahaan
-          </p>
-          <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700">
-            Pelajari Lebih Lanjut
-          </button>
-        </div>
-      </section>
+      <Hero />
 
       {/* Services Preview */}
       <section className="py-16">
