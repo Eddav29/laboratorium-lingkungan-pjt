@@ -57,18 +57,44 @@ const Services = () => {
           {services.map((service, index) => (
             <Card 
               key={index}
-              className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:bg-blue-600 hover:text-white bg-white border border-gray-200 ${
+              className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 bg-white hover:bg-blue-600 border border-gray-200 overflow-hidden cursor-pointer ${
                 index === 6 ? 'md:col-start-2 lg:col-start-2' : ''
               }`}
             >
-              <CardContent className="p-8">
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900 group-hover:text-white transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 group-hover:text-blue-100 transition-colors">
-                  {service.description}
-                </p>
+              <CardContent className="p-8 relative">
+                {/* Konten utama - hilang saat hover */}
+                <div className="transition-opacity duration-300 group-hover:opacity-0">
+                  <div className="text-4xl mb-4">
+                    {service.icon}
+                  </div>
+                  
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600">
+                    {service.description}
+                  </p>
+                </div>
+
+                {/* Tombol "Lihat Selengkapnya" - muncul saat hover, di tengah card */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="text-white text-center">
+                    <div className="text-4xl mb-4">
+                      {service.icon}
+                    </div>
+                    <div className="font-semibold text-lg mb-4 flex items-center">
+                      <span>Lihat Selengkapnya</span>
+                      <svg 
+                        className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           ))}
