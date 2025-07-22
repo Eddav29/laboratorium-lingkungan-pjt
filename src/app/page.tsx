@@ -1,6 +1,7 @@
 import Hero from "@/components/home/hero";
 import Services from "@/components/home/services";
 import Reason from "@/components/home/reason";
+import Statistics from "@/components/home/statistics";
 import Header from "@/components/header";
 
 export default function Home() {
@@ -18,28 +19,8 @@ export default function Home() {
       {/* Reason Section - Why Choose Us */}
       <Reason />
 
-      {/* Services Preview - You might want to remove this since we now have the full Services section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
-            Layanan Kami
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-4">Analisis Air</h3>
-              <p className="text-gray-600">Placeholder untuk deskripsi layanan analisis air</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-4">Analisis Udara</h3>
-              <p className="text-gray-600">Placeholder untuk deskripsi layanan analisis udara</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-4">Layanan Lainnya</h3>
-              <p className="text-gray-600">Placeholder untuk deskripsi layanan lainnya</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Statistics Section */}
+      <Statistics />
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-8">
