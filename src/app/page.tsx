@@ -1,4 +1,6 @@
-import Hero from "@/components/hero";
+import Hero from "@/components/home/hero";
+import Services from "@/components/home/services";
+import Reason from "@/components/home/reason";
 import Header from "@/components/header";
 
 export default function Home() {
@@ -10,8 +12,14 @@ export default function Home() {
       {/* Hero Section */}
       <Hero />
 
-      {/* Services Preview */}
-      <section className="py-16">
+      {/* Services Section */}
+      <Services />
+
+      {/* Reason Section - Why Choose Us */}
+      <Reason />
+
+      {/* Services Preview - You might want to remove this since we now have the full Services section */}
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
             Layanan Kami
