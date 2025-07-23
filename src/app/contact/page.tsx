@@ -135,19 +135,19 @@ export default function ContactPage() {
                 </div>
                 
                 {/* Hero Content */}
-                <div className="relative z-10 h-full flex items-end justify-start px-50 pb-32">
+                <div className="relative z-10 h-full flex items-end justify-start px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24 lg:pb-32">
                     <motion.div 
-                        className="text-left text-white"
+                        className="text-left text-white max-w-4xl"
                         initial="hidden"
                         animate="visible"
                         variants={fadeInUp}
                         transition={{ delay: 0.5, duration: 0.8 }}
                     >
-                        <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+                        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
                             Hubungi Kami,<br />
                             <span className="text-blue-300">Solusi Analisis Lingkungan</span>
                         </h1>
-                        <p className="text-lg md:text-xl mb-6 max-w-2xl">
+                        <p className="text-base sm:text-lg md:text-xl mb-6 max-w-2xl">
                             Siap melayani kebutuhan analisis lingkungan Anda dengan standar kualitas terbaik
                         </p>
                     </motion.div>
@@ -155,7 +155,7 @@ export default function ContactPage() {
             </motion.section>
 
             {/* Branch Selection Section */}
-            <section className="py-16 bg-white">
+            <section className="py-8 sm:py-12 lg:py-16 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial="hidden"
@@ -163,18 +163,18 @@ export default function ContactPage() {
                         viewport={{ once: true }}
                         variants={fadeInUp}
                         transition={{ duration: 0.6 }}
-                        className="text-center mb-12"
+                        className="text-center mb-8 sm:mb-12"
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                             Cabang Laboratorium Kami
                         </h2>
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                        <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
                             Pilih cabang laboratorium untuk melihat informasi kontak lengkap
                         </p>
                     </motion.div>
 
                     {/* Branch Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-16">
                         {Object.entries(branches).map(([key, branch], index) => (
                             <motion.div
                                 key={key}
@@ -191,7 +191,7 @@ export default function ContactPage() {
                                 onClick={() => setSelectedBranch(key as "malang" | "mojokerto" | "solo")}
                             >
                                 <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                                    <div className="relative h-48 overflow-hidden">
+                                    <div className="relative h-36 sm:h-40 lg:h-48 overflow-hidden">
                                         <Image
                                             src={branch.image}
                                             alt={branch.name}
@@ -200,27 +200,27 @@ export default function ContactPage() {
                                             unoptimized
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                                        <div className="absolute bottom-4 left-4 text-white">
+                                        <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">
                                             <BuildingOfficeIcon />
                                         </div>
                                     </div>
-                                    <div className="p-6">
-                                        <h3 className="text-xl font-bold text-gray-900 mb-2">
+                                    <div className="p-4 sm:p-6">
+                                        <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
                                             {branch.name}
                                         </h3>
-                                        <p className="text-gray-600 mb-3 flex items-center">
+                                        <p className="text-sm sm:text-base text-gray-600 mb-3 flex items-center">
                                             <MapPinIcon />
                                             <span className="ml-2">{branch.shortAddress}</span>
                                         </p>
-                                        <p className="text-blue-600 font-medium flex items-center">
+                                        <p className="text-xs sm:text-sm text-blue-600 font-medium flex items-center break-all">
                                             <EnvelopeIcon />
                                             <span className="ml-2">{branch.email}</span>
                                         </p>
-                                        <p className="text-sm text-gray-500 mt-3">
+                                        <p className="text-xs sm:text-sm text-gray-500 mt-3">
                                             {branch.description}
                                         </p>
                                         {selectedBranch === key && (
-                                            <div className="mt-4 px-3 py-2 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium text-center">
+                                            <div className="mt-4 px-3 py-2 bg-blue-100 text-blue-800 rounded-lg text-xs sm:text-sm font-medium text-center">
                                                 ✓ Cabang Terpilih
                                             </div>
                                         )}
@@ -238,11 +238,11 @@ export default function ContactPage() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.5 }}
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
                         >
                             {/* Address Card */}
                             <motion.div 
-                                className="group relative bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer"
+                                className="group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer"
                                 whileHover={{ y: -5 }}
                                 onClick={() => {
                                     if (selectedBranch === 'malang') {
@@ -256,53 +256,53 @@ export default function ContactPage() {
                             >
                                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
                                 <div className="flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                                         <div className="text-blue-600">
                                             <MapPinIcon />
                                         </div>
                                     </div>
-                                    <h4 className="text-lg font-bold text-gray-800 mb-3">
+                                    <h4 className="text-base sm:text-lg font-bold text-gray-800 mb-2 sm:mb-3">
                                         Alamat Kantor
                                     </h4>
-                                    <p className="text-sm text-gray-600 leading-relaxed">
+                                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                                         {branches[selectedBranch].fullAddress}
                                     </p>
-                                    <div className="mt-3 flex items-center text-xs text-gray-500">
+                                    <div className="mt-2 sm:mt-3 flex items-center text-xs text-gray-500">
                                         <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></span>
                                         Klik untuk buka Google Maps
                                     </div>
                                 </div>
-                                <div className="absolute bottom-0 right-0 w-20 h-20 bg-blue-50 rounded-full -mr-10 -mb-10 opacity-20"></div>
+                                <div className="absolute bottom-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-blue-50 rounded-full -mr-8 sm:-mr-10 -mb-8 sm:-mb-10 opacity-20"></div>
                             </motion.div>
 
                             {/* Working Hours Card */}
                             <motion.div 
-                                className="group relative bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden"
+                                className="group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden"
                                 whileHover={{ y: -5 }}
                             >
                                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-emerald-600"></div>
                                 <div className="flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                                         <div className="text-emerald-600">
                                             <ClockIcon />
                                         </div>
                                     </div>
-                                    <h4 className="text-lg font-bold text-gray-800 mb-3">
+                                    <h4 className="text-base sm:text-lg font-bold text-gray-800 mb-2 sm:mb-3">
                                         Jam Kerja
                                     </h4>
-                                    <p className="text-sm text-gray-600 leading-relaxed">
+                                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                                         {branches[selectedBranch].workingHours}
                                     </p>
-                                    <div className="mt-3 px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-medium">
+                                    <div className="mt-2 sm:mt-3 px-2 sm:px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-medium">
                                         Buka Sekarang
                                     </div>
                                 </div>
-                                <div className="absolute bottom-0 right-0 w-20 h-20 bg-emerald-50 rounded-full -mr-10 -mb-10 opacity-20"></div>
+                                <div className="absolute bottom-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-emerald-50 rounded-full -mr-8 sm:-mr-10 -mb-8 sm:-mb-10 opacity-20"></div>
                             </motion.div>
 
                             {/* Email Card */}
                             <motion.div 
-                                className="group relative bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer"
+                                className="group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer"
                                 whileHover={{ y: -5 }}
                                 onClick={() => {
                                     window.open(`https://mail.google.com/mail/?view=cm&to=${branches[selectedBranch].email}`, '_blank');
@@ -310,28 +310,28 @@ export default function ContactPage() {
                             >
                                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-purple-600"></div>
                                 <div className="flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                                         <div className="text-purple-600">
                                             <EnvelopeIcon />
                                         </div>
                                     </div>
-                                    <h4 className="text-lg font-bold text-gray-800 mb-3">
+                                    <h4 className="text-base sm:text-lg font-bold text-gray-800 mb-2 sm:mb-3">
                                         Email Address
                                     </h4>
-                                    <p className="text-sm text-purple-600 font-medium hover:text-purple-800 transition-colors duration-200 break-all">
+                                    <p className="text-xs sm:text-sm text-purple-600 font-medium hover:text-purple-800 transition-colors duration-200 break-all">
                                         {branches[selectedBranch].email}
                                     </p>
-                                    <div className="mt-3 flex items-center text-xs text-gray-500">
+                                    <div className="mt-2 sm:mt-3 flex items-center text-xs text-gray-500">
                                         <span className="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></span>
                                         Klik untuk buka Gmail
                                     </div>
                                 </div>
-                                <div className="absolute bottom-0 right-0 w-20 h-20 bg-purple-50 rounded-full -mr-10 -mb-10 opacity-20"></div>
+                                <div className="absolute bottom-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-purple-50 rounded-full -mr-8 sm:-mr-10 -mb-8 sm:-mb-10 opacity-20"></div>
                             </motion.div>
 
                             {/* WhatsApp Card */}
                             <motion.div 
-                                className="group relative bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer"
+                                className="group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer"
                                 whileHover={{ y: -5 }}
                                 onClick={() => {
                                     const phoneNumber = branches[selectedBranch].phone.replace(/\D/g, '');
@@ -341,23 +341,23 @@ export default function ContactPage() {
                             >
                                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-green-600"></div>
                                 <div className="flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                                         <div className="text-green-600">
                                             <WhatsAppIcon />
                                         </div>
                                     </div>
-                                    <h4 className="text-lg font-bold text-gray-800 mb-3">
+                                    <h4 className="text-base sm:text-lg font-bold text-gray-800 mb-2 sm:mb-3">
                                         WhatsApp
                                     </h4>
-                                    <p className="text-sm text-green-600 font-medium hover:text-green-800 transition-colors duration-200">
+                                    <p className="text-xs sm:text-sm text-green-600 font-medium hover:text-green-800 transition-colors duration-200">
                                         {branches[selectedBranch].phone}
                                     </p>
-                                    <div className="mt-3 flex items-center text-xs text-gray-500">
+                                    <div className="mt-2 sm:mt-3 flex items-center text-xs text-gray-500">
                                         <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
                                         Klik untuk chat WhatsApp
                                     </div>
                                 </div>
-                                <div className="absolute bottom-0 right-0 w-20 h-20 bg-green-50 rounded-full -mr-10 -mb-10 opacity-20"></div>
+                                <div className="absolute bottom-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-green-50 rounded-full -mr-8 sm:-mr-10 -mb-8 sm:-mb-10 opacity-20"></div>
                             </motion.div>
                         </motion.div>
                     </AnimatePresence>
@@ -365,7 +365,7 @@ export default function ContactPage() {
             </section>
 
             {/* Contact Form Section */}
-            <section className="py-16 bg-gray-50">
+            <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial="hidden"
@@ -373,10 +373,10 @@ export default function ContactPage() {
                         viewport={{ once: true }}
                         variants={fadeInUp}
                         transition={{ duration: 0.6 }}
-                        className="text-center mb-12"
+                        className="text-center mb-8 sm:mb-12"
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Kirim Pesan</h2>
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">Kirim Pesan</h2>
+                        <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto mb-4 sm:mb-6">
                             Silakan hubungi kami melalui formulir di bawah ini atau melalui email di{" "}
                             <a 
                                 href="#" 
@@ -391,7 +391,7 @@ export default function ContactPage() {
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                         {/* Contact Form */}
                         <motion.div
                             initial="hidden"
@@ -400,30 +400,30 @@ export default function ContactPage() {
                             variants={fadeInUp}
                             transition={{ duration: 0.6, delay: 0.2 }}
                         >
-                            <form className="space-y-6 bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <form className="space-y-4 sm:space-y-6 bg-white rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg border border-gray-100">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                                     <div>
-                                        <label htmlFor="name" className="block font-semibold mb-2 text-gray-700">
+                                        <label htmlFor="name" className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
                                             Nama Lengkap
                                         </label>
                                         <input
                                             type="text"
                                             id="name"
                                             name="name"
-                                            className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                                            className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                                             placeholder="Masukkan nama lengkap Anda"
                                             required
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor="email" className="block font-semibold mb-2 text-gray-700">
+                                        <label htmlFor="email" className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
                                             Email Address
                                         </label>
                                         <input
                                             type="email"
                                             id="email"
                                             name="email"
-                                            className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                                            className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                                             placeholder="Masukkan email Anda"
                                             required
                                         />
@@ -431,21 +431,21 @@ export default function ContactPage() {
                                 </div>
                                 
                                 <div>
-                                    <label htmlFor="subject" className="block font-semibold mb-2 text-gray-700">
+                                    <label htmlFor="subject" className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
                                         Subjek
                                     </label>
                                     <input
                                         type="text"
                                         id="subject"
                                         name="subject"
-                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                                        className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                                         placeholder="Subjek pesan Anda"
                                         required
                                     />
                                 </div>
                                 
                                 <div>
-                                    <label htmlFor="branch" className="block font-semibold mb-2 text-gray-700">
+                                    <label htmlFor="branch" className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
                                         Cabang Tujuan
                                     </label>
                                     <select
@@ -453,7 +453,7 @@ export default function ContactPage() {
                                         name="branch"
                                         value={selectedBranch}
                                         onChange={(e) => setSelectedBranch(e.target.value as "malang" | "mojokerto" | "solo")}
-                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                                        className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                                     >
                                         <option value="malang">Lab. Malang</option>
                                         <option value="mojokerto">Lab. Mojokerto</option>
@@ -462,14 +462,14 @@ export default function ContactPage() {
                                 </div>
                                 
                                 <div>
-                                    <label htmlFor="message" className="block font-semibold mb-2 text-gray-700">
+                                    <label htmlFor="message" className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
                                         Pesan
                                     </label>
                                     <textarea
                                         id="message"
                                         name="message"
-                                        className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                                        rows={6}
+                                        className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
+                                        rows={5}
                                         placeholder="Tulis pesan Anda di sini..."
                                         required
                                     />
@@ -477,7 +477,7 @@ export default function ContactPage() {
                                 
                                 <motion.button
                                     type="submit"
-                                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transform transition-all duration-200 hover:scale-[1.02] focus:ring-4 focus:ring-blue-300 shadow-lg"
+                                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transform transition-all duration-200 hover:scale-[1.02] focus:ring-4 focus:ring-blue-300 shadow-lg text-sm sm:text-base"
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                 >
@@ -494,12 +494,12 @@ export default function ContactPage() {
                             variants={fadeInUp}
                             transition={{ duration: 0.6, delay: 0.4 }}
                         >
-                            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 h-full">
-                                <div className="mb-6">
-                                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100 h-full">
+                                <div className="mb-4 sm:mb-6">
+                                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
                                         Lokasi {branches[selectedBranch].name}
                                     </h3>
-                                    <p className="text-gray-600 text-sm">
+                                    <p className="text-gray-600 text-xs sm:text-sm">
                                         {branches[selectedBranch].fullAddress}
                                     </p>
                                 </div>
@@ -511,7 +511,7 @@ export default function ContactPage() {
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.95 }}
                                         transition={{ duration: 0.3 }}
-                                        className="w-full h-96 rounded-xl overflow-hidden shadow-md"
+                                        className="w-full h-64 sm:h-80 lg:h-96 rounded-xl overflow-hidden shadow-md"
                                     >
                                         <iframe
                                             src={branches[selectedBranch].mapEmbed}
@@ -526,8 +526,8 @@ export default function ContactPage() {
                                     </motion.div>
                                 </AnimatePresence>
                                 
-                                <div className="mt-6 flex justify-between items-center">
-                                    <div className="text-sm text-gray-600">
+                                <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
+                                    <div className="text-xs sm:text-sm text-gray-600">
                                         <p className="font-medium">Jam Operasional:</p>
                                         <p>{branches[selectedBranch].workingHours}</p>
                                     </div>
@@ -541,7 +541,7 @@ export default function ContactPage() {
                                                 window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta+1+WS+Bengawan+Solo/@-7.562734,110.7642472,918m/data=!3m1!1e3!4m15!1m8!3m7!1s0x2e7a1450e9214cdb:0xc2c8e1c39fe06a0c!2sJl.+Proyek+Bengawan+Solo,+Banaran,+Pabelan,+Kec.+Kartasura,+Kabupaten+Sukoharjo,+Jawa+Tengah+57169!3b1!8m2!3d-7.562336!4d110.7676792!16s%2Fg%2F11bx2czjxq!3m5!1s0x2e7a145a80b90669:0x23a18381da5ee613!8m2!3d-7.5602571!4d110.7687605!16s%2Fg%2F1pzq1l1dc?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D', '_blank');
                                             }
                                         }}
-                                        className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center gap-2"
+                                        className="px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg text-xs sm:text-sm font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center gap-1 sm:gap-2 w-full sm:w-auto justify-center"
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                     >

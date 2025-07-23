@@ -1,170 +1,360 @@
-import Link from "next/link";
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 }
+};
+
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0 }
+};
+
+const fadeInRight = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0 }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
 
 export default function Competence() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-blue-600 text-white">
-        <nav className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <div className="text-xl font-bold">Laboratorium Lingkungan PJT</div>
-            <div className="space-x-4">
-              <Link href="/" className="hover:underline">Home</Link>
-              <Link href="/about" className="hover:underline">About</Link>
-              <Link href="/services" className="hover:underline">Services</Link>
-              <Link href="/competence" className="hover:underline font-bold">Competence</Link>
-              <Link href="/contact" className="hover:underline">Contact</Link>
-            </div>
+      <Header />
+
+      {/* Hero Section */}
+      <motion.section 
+        className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 pt-20 pb-16"
+        initial="hidden"
+        animate="visible"
+        variants={fadeInUp}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="relative container mx-auto px-4 py-16">
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <motion.h1 
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+              variants={fadeInUp}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              Kompetensi & Keahlian
+            </motion.h1>
+            <motion.p 
+              className="text-lg sm:text-xl md:text-2xl mb-8 text-blue-100"
+              variants={fadeInUp}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
+              Pengalaman Puluhan Tahun dalam Pemantauan dan Analisis Lingkungan
+            </motion.p>
+            <motion.div 
+              className="w-24 h-1 bg-blue-300 mx-auto"
+              variants={fadeInUp}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            ></motion.div>
           </div>
-        </nav>
-      </header>
+        </div>
+      </motion.section>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">
-            Kompetensi & Sertifikasi
-          </h1>
-          <p className="text-xl text-gray-600 text-center mb-12">
-            Hello World - Placeholder untuk deskripsi kompetensi dan sertifikasi perusahaan
-          </p>
-
-          {/* Certifications */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Sertifikasi</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-blue-50 p-8 rounded-lg shadow-md">
-                <div className="text-blue-600 text-4xl mb-4 text-center">📋</div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">Akreditasi KAN</h3>
-                <p className="text-gray-600 text-center mb-4">
-                  Hello World - Placeholder untuk deskripsi akreditasi dari KAN (Komite Akreditasi Nasional)
+      <div className="relative">
+        {/* Kompetensi Bidang Air */}
+        <motion.section 
+          className="py-16 bg-white"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={staggerContainer}
+        >
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              <motion.div 
+                className="text-center mb-12"
+                variants={fadeInUp}
+              >
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                  Kompetensi Bidang Air
+                </h2>
+                <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Lebih dari 30 tahun pengalaman dalam pemantauan dan analisis kualitas air
                 </p>
-                <div className="text-center">
-                  <span className="text-blue-600 font-medium">Nomor: PLACEHOLDER-123-2025</span>
-                </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-green-50 p-8 rounded-lg shadow-md">
-                <div className="text-green-600 text-4xl mb-4 text-center">🏛️</div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">Registrasi KLHK</h3>
-                <p className="text-gray-600 text-center mb-4">
-                  Hello World - Placeholder untuk deskripsi registrasi dari KLHK (Kementerian Lingkungan Hidup dan Kehutanan)
-                </p>
-                <div className="text-center">
-                  <span className="text-green-600 font-medium">Nomor: PLACEHOLDER-456-2025</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Scope of Testing */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Ruang Lingkup Pengujian</h2>
-            <div className="bg-gray-50 p-8 rounded-lg">
-              <div className="grid md:grid-cols-3 gap-8">
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-700 mb-4 flex items-center">
-                    <span className="text-blue-600 mr-2">💧</span>
-                    Analisis Air
-                  </h4>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• Hello World - Parameter Air 1</li>
-                    <li>• Hello World - Parameter Air 2</li>
-                    <li>• Hello World - Parameter Air 3</li>
-                    <li>• Hello World - Parameter Air 4</li>
-                    <li>• Hello World - Dan lainnya</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-700 mb-4 flex items-center">
-                    <span className="text-green-600 mr-2">🌬️</span>
-                    Analisis Udara
-                  </h4>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• Hello World - Parameter Udara 1</li>
-                    <li>• Hello World - Parameter Udara 2</li>
-                    <li>• Hello World - Parameter Udara 3</li>
-                    <li>• Hello World - Parameter Udara 4</li>
-                    <li>• Hello World - Dan lainnya</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-700 mb-4 flex items-center">
-                    <span className="text-purple-600 mr-2">🔬</span>
-                    Analisis Lainnya
-                  </h4>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• Hello World - Parameter Tanah</li>
-                    <li>• Hello World - Parameter Limbah</li>
-                    <li>• Hello World - Parameter Kebisingan</li>
-                    <li>• Hello World - Parameter Lainnya</li>
-                    <li>• Hello World - Dan sebagainya</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Team Competency */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Kompetensi Tim</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <div className="text-4xl mb-4">👨‍🔬</div>
-                <h4 className="font-semibold text-gray-700 mb-2">Analis Berpengalaman</h4>
-                <p className="text-gray-600 text-sm">Hello World - Tim analis dengan pengalaman bertahun-tahun</p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <div className="text-4xl mb-4">🎓</div>
-                <h4 className="font-semibold text-gray-700 mb-2">Tenaga Ahli Tersertifikasi</h4>
-                <p className="text-gray-600 text-sm">Hello World - Tenaga ahli dengan sertifikasi kompetensi</p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <div className="text-4xl mb-4">⚙️</div>
-                <h4 className="font-semibold text-gray-700 mb-2">Teknisi Terlatih</h4>
-                <p className="text-gray-600 text-sm">Hello World - Teknisi yang terlatih dan berpengalaman</p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <div className="text-4xl mb-4">📊</div>
-                <h4 className="font-semibold text-gray-700 mb-2">Quality Assurance</h4>
-                <p className="text-gray-600 text-sm">Hello World - Tim QA untuk menjamin kualitas hasil</p>
-              </div>
-            </div>
-          </section>
-
-          {/* Equipment & Technology */}
-          <section>
-            <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
-              Peralatan & Teknologi
-            </h2>
-            <div className="bg-gray-50 p-8 rounded-lg">
-              <p className="text-gray-600 text-center mb-8">
-                Hello World - Placeholder untuk deskripsi peralatan dan teknologi terkini yang digunakan
-              </p>
-              <div className="text-center">
-                <Link 
-                  href="/about/peralatan" 
-                  className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 inline-block"
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                {/* Image */}
+                <motion.div 
+                  className="relative h-64 sm:h-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1"
+                  variants={fadeInLeft}
+                  transition={{ duration: 0.8 }}
                 >
-                  Lihat Detail Peralatan
-                </Link>
+                  <Image
+                    src="/assets/images/lab.png"
+                    alt="Laboratorium Analisis Air"
+                    fill
+                    className="object-cover"
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent"></div>
+                </motion.div>
+
+                {/* Content */}
+                <motion.div 
+                  className="space-y-6 order-1 lg:order-2"
+                  variants={fadeInRight}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-3 h-3 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">Pengambilan Sampel Terpercaya</h3>
+                        <p className="text-gray-600 leading-relaxed">
+                          Metode pengambilan sampel yang mengikuti standar nasional dan internasional untuk memastikan representativitas dan validitas data.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="w-3 h-3 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">Analisis Laboratorium Komprehensif</h3>
+                        <p className="text-gray-600 leading-relaxed">
+                          Analisis parameter fisika, kimia, dan biologi air dengan menggunakan peralatan canggih dan metode terakreditasi.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="w-3 h-3 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">Cakupan Wilayah Strategis</h3>
+                        <p className="text-gray-600 leading-relaxed">
+                          Pemantauan rutin di 65 titik sampling meliputi WS Brantas dan WS Bengawan Solo dengan frekuensi bulanan yang konsisten.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-600">
+                    <h4 className="font-semibold text-blue-800 mb-2">Parameter Unggulan</h4>
+                    <p className="text-blue-700 text-sm">
+                      pH, DO, BOD, COD, TSS, Nitrat, Nitrit, Amoniak, Fosfat, Logam Berat, Pestisida, dan Parameter Mikrobiologi
+                    </p>
+                  </div>
+                </motion.div>
               </div>
             </div>
-          </section>
-        </div>
+          </div>
+        </motion.section>
+
+        {/* Kompetensi di Luar WS Brantas */}
+        <motion.section 
+          className="py-16 bg-gray-50"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={staggerContainer}
+        >
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              <motion.div 
+                className="text-center mb-12"
+                variants={fadeInUp}
+              >
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                  Kompetensi di Luar WS Brantas
+                </h2>
+                <div className="w-20 h-1 bg-green-600 mx-auto mb-6"></div>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Ekspansi layanan pemantauan air di berbagai wilayah strategis Indonesia
+                </p>
+              </motion.div>
+
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                {/* Content */}
+                <motion.div 
+                  className="space-y-6"
+                  variants={fadeInLeft}
+                  transition={{ duration: 0.8 }}
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-3 h-3 bg-green-600 rounded-full mt-2 flex-shrink-0"></div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">Jangkauan Nasional</h3>
+                        <p className="text-gray-600 leading-relaxed">
+                          Melayani pemantauan kualitas air di berbagai provinsi di Indonesia dengan standar kualitas yang sama tingginya.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="w-3 h-3 bg-green-600 rounded-full mt-2 flex-shrink-0"></div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">Adaptasi Lokasi</h3>
+                        <p className="text-gray-600 leading-relaxed">
+                          Kemampuan adaptasi terhadap karakteristik geografis dan kondisi lingkungan yang berbeda di setiap wilayah.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="w-3 h-3 bg-green-600 rounded-full mt-2 flex-shrink-0"></div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">Kemitraan Strategis</h3>
+                        <p className="text-gray-600 leading-relaxed">
+                          Kolaborasi dengan berbagai instansi pemerintah dan swasta untuk pemantauan lingkungan yang komprehensif.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-600">
+                    <h4 className="font-semibold text-green-800 mb-2">Cakupan Wilayah</h4>
+                    <p className="text-green-700 text-sm">
+                      Jawa Timur, Jawa Tengah, DI Yogyakarta, Jawa Barat, DKI Jakarta, dan wilayah strategis lainnya
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Image */}
+                <motion.div 
+                  className="relative h-64 sm:h-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl"
+                  variants={fadeInRight}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                >
+                  <Image
+                    src="/assets/images/kolase.jpg"
+                    alt="Pemantauan Air di Berbagai Wilayah"
+                    fill
+                    className="object-cover"
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-green-900/40 to-transparent"></div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Kompetensi Bidang Non-Air */}
+        <motion.section 
+          className="py-16 bg-white"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={staggerContainer}
+        >
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              <motion.div 
+                className="text-center mb-12"
+                variants={fadeInUp}
+              >
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                  Kompetensi Bidang Non-Air
+                </h2>
+                <div className="w-20 h-1 bg-purple-600 mx-auto mb-6"></div>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Lebih dari 10 tahun keahlian dalam monitoring kualitas udara dan lingkungan kerja
+                </p>
+              </motion.div>
+
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                {/* Image */}
+                <motion.div 
+                  className="relative h-64 sm:h-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1"
+                  variants={fadeInLeft}
+                  transition={{ duration: 0.8 }}
+                >
+                  <Image
+                    src="/assets/images/analis.jpg"
+                    alt="Monitoring Kualitas Udara"
+                    fill
+                    className="object-cover"
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 to-transparent"></div>
+                </motion.div>
+
+                {/* Content */}
+                <motion.div 
+                  className="space-y-6 order-1 lg:order-2"
+                  variants={fadeInRight}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-3 h-3 bg-purple-600 rounded-full mt-2 flex-shrink-0"></div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">Monitoring Udara Ambient</h3>
+                        <p className="text-gray-600 leading-relaxed">
+                          Pemantauan kualitas udara ambient untuk mendeteksi polutan seperti PM2.5, PM10, SO2, NO2, CO, dan Ozon.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="w-3 h-3 bg-purple-600 rounded-full mt-2 flex-shrink-0"></div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">Analisis Lingkungan Kerja</h3>
+                        <p className="text-gray-600 leading-relaxed">
+                          Evaluasi kondisi lingkungan kerja termasuk kualitas udara, kebisingan, pencahayaan, dan faktor ergonomi.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="w-3 h-3 bg-purple-600 rounded-full mt-2 flex-shrink-0"></div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">Sampling & Instrumentasi</h3>
+                        <p className="text-gray-600 leading-relaxed">
+                          Penggunaan peralatan sampling dan instrumentasi canggih untuk pengukuran real-time dan sampling manual.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-purple-50 p-6 rounded-xl border-l-4 border-purple-600">
+                    <h4 className="font-semibold text-purple-800 mb-2">Parameter Monitoring</h4>
+                    <p className="text-purple-700 text-sm">
+                      PM2.5, PM10, SO2, NO2, CO, O3, H2S, NH3, Kebisingan, Getaran, Pencahayaan, Iklim Kerja
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </motion.section>
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2025 Laboratorium Lingkungan PJT. Hello World Footer.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
