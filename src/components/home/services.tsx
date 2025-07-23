@@ -63,7 +63,7 @@ const Services = () => {
           </div>
 
                     <div className="text-center">
-            <Link href="/water-services">
+            <Link href="/services">
               <Button 
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg mr-4"
               >
