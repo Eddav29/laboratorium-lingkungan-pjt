@@ -302,18 +302,19 @@ export default function PeralatanPage() {
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       className="object-cover transition-transform duration-300 group-hover:scale-110"
+                      loading='lazy'
                     />
                     
-                    {/* Dark Overlay on Hover */}
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300" />
-                    
+                    {/* Dark overlay with blur effect */}
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-[2px]" />
+            
                     {/* Equipment Name on Hover */}
                     <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                       <div className="text-center text-white px-4">
-                        <h3 className="text-lg font-bold mb-2 transform Qtranslate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 className="text-lg font-bold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 drop-shadow-lg">
                           {equipment.name}
                         </h3>
-                        <span className="text-sm bg-blue-500 px-3 py-1 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">
+                        <span className="text-sm bg-blue-500/90 px-3 py-1 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100 backdrop-blur-sm">
                           {equipment.category}
                         </span>
                       </div>

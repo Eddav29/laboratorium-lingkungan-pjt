@@ -22,20 +22,14 @@ export default function Footer() {
                 </div>
                 <div className="flex-1">
                   <p className="text-gray-400 text-xs font-medium uppercase tracking-wide mb-1">Alamat</p>
-                  <p className="text-gray-200 text-xs font-medium">Jalan Surabaya 2A, Malang</p>
-                </div>
-              </div>
-
-              {/* Telp */}
-              <div className="flex items-start space-x-3">
-                <div className="w-8 h-8 rounded-full border-2 border-gray-500 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                  </svg>
-                </div>
-                <div className="flex-1">
-                  <p className="text-gray-400 text-xs font-medium uppercase tracking-wide mb-1">Telp</p>
-                  <p className="text-gray-200 text-xs font-medium">578-393-4937</p>
+                  <a 
+                    href="https://www.google.com/maps/place/Perum+Jasa+Tirta+I/@-7.9655562,112.6162775,17z/data=!3m1!4b1!4m6!3m5!1s0x2e788281b93990df:0xd788d8a4e1d290d8!8m2!3d-7.9655562!4d112.6188524!16s%2Fg%2F1hm3y8t5g?authuser=0&entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-200 text-xs font-medium hover:text-white transition-colors duration-300"
+                  >
+                    Jalan Surabaya 2A, Malang
+                  </a>
                 </div>
               </div>
 
@@ -48,7 +42,34 @@ export default function Footer() {
                 </div>
                 <div className="flex-1">
                   <p className="text-gray-400 text-xs font-medium uppercase tracking-wide mb-1">WhatsApp</p>
-                  <p className="text-gray-200 text-xs font-medium">081230738591</p>
+                  <a 
+                    href="https://wa.me/6281230738591"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-200 text-xs font-medium hover:text-white transition-colors duration-300"
+                  >
+                    +62 812-3073-8591
+                  </a>
+                </div>
+              </div>
+
+              {/* Instagram */}
+              <div className="flex items-start space-x-3">
+                <div className="w-8 h-8 rounded-full border-2 border-gray-500 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <p className="text-gray-400 text-xs font-medium uppercase tracking-wide mb-1">Instagram</p>
+                  <a 
+                    href="https://www.instagram.com/laboratorium.jasatirta1/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-200 text-xs font-medium hover:text-white transition-colors duration-300"
+                  >
+                    @laboratorium.jasatirta1
+                  </a>
                 </div>
               </div>
             </div>
@@ -58,16 +79,84 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-lg font-bold text-white mb-4">About Us</h3>
             <div className="space-y-2">
-              <a href="#" className="block text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-300 text-xs">
+              <a 
+                href="#company-info" 
+                className="block text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-300 text-xs"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('company-info');
+                  if (element) {
+                    const headerOffset = 80; // Offset untuk header
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: 'smooth'
+                    });
+                  }
+                }}
+              >
                 Tentang Kami
               </a>
-              <a href="#" className="block text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-300 text-xs">
+              <a 
+                href="#vision-duties" 
+                className="block text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-300 text-xs"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('vision-duties');
+                  if (element) {
+                    const headerOffset = 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: 'smooth'
+                    });
+                  }
+                }}
+              >
                 Visi dan Tanggung Jawab
               </a>
-              <a href="#" className="block text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-300 text-xs">
+              <a 
+                href="#journey" 
+                className="block text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-300 text-xs"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('journey');
+                  if (element) {
+                    const headerOffset = 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: 'smooth'
+                    });
+                  }
+                }}
+              >
                 Road Map
               </a>
-              <a href="#" className="block text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-300 text-xs">
+              <a 
+                href="#certification" 
+                className="block text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-300 text-xs"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('certification');
+                  if (element) {
+                    const headerOffset = 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: 'smooth'
+                    });
+                  }
+                }}
+              >
                 Perizinan
               </a>
             </div>
