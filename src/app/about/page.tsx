@@ -9,6 +9,8 @@ import { motion, useInView } from "framer-motion";
 export default function About() {
   const [activeYear, setActiveYear] = useState<string | null>(null);
   const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
+  const [currentPartnerIndex, setCurrentPartnerIndex] = useState(0);
+  const [isPartnerHovered, setIsPartnerHovered] = useState(false);
 
   // Handle scroll to section on page load
   useEffect(() => {
@@ -41,6 +43,20 @@ export default function About() {
       window.removeEventListener('hashchange', handleScrollToSection);
     };
   }, []);
+
+  // Auto-rotate partner logos with fade animation (3 logos at a time)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isPartnerHovered) {
+        setCurrentPartnerIndex((prevIndex) => {
+          const nextIndex = prevIndex + 3;
+          return nextIndex >= partnerLogos.length ? 0 : nextIndex;
+        });
+      }
+    }, 2000); // Change every 2 seconds for faster transitions
+
+    return () => clearInterval(interval);
+  }, [isPartnerHovered]);
 
   // Partner logos data
   const partnerLogos = [
@@ -724,61 +740,58 @@ export default function About() {
                 </p>
               </motion.div>
 
-              {/* Logo Carousel Container */}
+              {/* Logo Display Container - 3 Logos at once */}
               <motion.div 
-                className="relative overflow-hidden"
+                className="relative h-32 sm:h-40 lg:h-48 flex items-center justify-center"
                 variants={fadeInUp}
                 transition={{ delay: 0.6, duration: 0.8 }}
+                onMouseEnter={() => setIsPartnerHovered(true)}
+                onMouseLeave={() => setIsPartnerHovered(false)}
               >
-                {/* Auto-scrolling carousel */}
-                <div className="flex animate-scroll">
-                  {/* First set of logos */}
-                  {[...partnerLogos, ...partnerLogos].map((partner, index) => (
-                    <motion.div
-                      key={index}
-                      className="flex-shrink-0 group mx-3 sm:mx-4 lg:mx-6"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className="w-24 sm:w-28 lg:w-32 h-16 sm:h-20 lg:h-24 bg-white rounded-xl shadow-md border border-gray-100 flex items-center justify-center p-2 sm:p-3 lg:p-4 group-hover:shadow-lg transition-all duration-300">
-                        <Image
-                          src={partner.src}
-                          alt={`${partner.name} Logo`}
-                          width={120}
-                          height={80}
-                          className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                          unoptimized
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Gradient overlays for smooth edge effect */}
-                <div className="absolute left-0 top-0 w-12 sm:w-16 lg:w-20 h-full bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
-                <div className="absolute right-0 top-0 w-12 sm:w-16 lg:w-20 h-full bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
-              </motion.div>
-
-              {/* Partnership Message */}
-              <motion.div 
-                className="text-center mt-8 sm:mt-12"
-                variants={fadeInUp}
-                transition={{ delay: 0.8, duration: 0.8 }}
-              >
-                <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-lg border border-gray-100 max-w-4xl mx-auto">
-                  <div className="flex items-center justify-center mb-3 sm:mb-4">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                    <p className="text-base sm:text-lg font-semibold text-gray-800 text-center">
-                      Kemitraan Strategis untuk Masa Depan Lingkungan yang Berkelanjutan
-                    </p>
-                    <div className="w-2 h-2 bg-blue-600 rounded-full ml-3"></div>
-                  </div>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                    Melalui kolaborasi dengan mitra-mitra terpercaya, kami terus mengembangkan 
-                    standar kualitas analisis lingkungan dan memberikan kontribusi nyata 
-                    bagi perlindungan ekosistem Indonesia.
-                  </p>
-                </div>
+                {/* Current 3 Partner Logos */}
+                <motion.div
+                  key={currentPartnerIndex}
+                  className="flex items-center justify-center gap-6 sm:gap-8 lg:gap-12"
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    ease: "easeInOut",
+                    opacity: { duration: 0.7 }
+                  }}
+                >
+                  {/* Display 3 logos starting from currentPartnerIndex */}
+                  {[0, 1, 2].map((offset) => {
+                    const logoIndex = (currentPartnerIndex + offset) % partnerLogos.length;
+                    const partner = partnerLogos[logoIndex];
+                    
+                    return (
+                      <motion.div
+                        key={`${currentPartnerIndex}-${offset}`}
+                        className="group"
+                        initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+                        animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                        transition={{ 
+                          duration: 0.5, 
+                          delay: offset * 0.1,
+                          ease: "easeOut"
+                        }}
+                      >
+                        <div className="w-24 sm:w-32 lg:w-40 h-16 sm:h-24 lg:h-28 bg-white rounded-2xl shadow-xl border border-gray-100 flex items-center justify-center p-3 sm:p-4 lg:p-6 hover:shadow-2xl transition-all duration-500 group-hover:scale-110">
+                          <Image
+                            src={partner.src}
+                            alt={`${partner.name} Logo`}
+                            width={120}
+                            height={80}
+                            className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                            unoptimized
+                          />
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </motion.div>
               </motion.div>
             </div>
           </div>
@@ -787,7 +800,7 @@ export default function About() {
         {/* PDF Modal Viewer */}
         {selectedDocument && (
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-1 sm:p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -795,7 +808,7 @@ export default function About() {
             onClick={() => setSelectedDocument(null)}
           >
             <motion.div
-              className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
+              className="relative bg-white rounded-lg sm:rounded-2xl shadow-2xl w-full h-full sm:w-[95vw] sm:h-[95vh] sm:max-w-6xl overflow-hidden flex flex-col"
               initial={{ scale: 0.8, y: 50 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.8, y: 50 }}
@@ -803,12 +816,12 @@ export default function About() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gray-50">
-                <div>
-                  <h3 className="text-xl font-bold text-gray-800">
+              <div className="flex items-center justify-between p-3 sm:p-4 border-b border-gray-200 bg-gray-50 flex-shrink-0">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-base sm:text-xl font-bold text-gray-800 truncate">
                     {selectedDocument === 'akreditasi' ? 'Sertifikat Akreditasi KAN' : 'Registrasi KLHK'}
                   </h3>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-xs sm:text-sm text-gray-600 mt-1 truncate">
                     {selectedDocument === 'akreditasi' 
                       ? 'Laboratorium Penguji LP-1646-IDN' 
                       : 'Kementerian Lingkungan Hidup dan Kehutanan'
@@ -817,47 +830,60 @@ export default function About() {
                 </div>
                 <button
                   onClick={() => setSelectedDocument(null)}
-                  className="p-2 rounded-full hover:bg-gray-200 transition-colors"
+                  className="p-2 rounded-full hover:bg-gray-200 transition-colors ml-2 flex-shrink-0"
                 >
-                  <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
 
               {/* PDF Viewer Container */}
-              <div className="h-[calc(90vh-120px)] overflow-auto bg-gray-100">
-                <div className="flex items-center justify-center h-full p-8">
-                  <iframe
-                    src={`/assets/certificate/${selectedDocument}.pdf`}
-                    className="w-full h-full border-0 rounded-lg shadow-lg"
-                    title={selectedDocument === 'akreditasi' ? 'Sertifikat Akreditasi' : 'Registrasi KLHK'}
-                  />
+              <div className="flex-1 bg-gray-100 overflow-hidden">
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="w-full h-full max-w-full">
+                    <iframe
+                      src={`/assets/certificate/${selectedDocument}.pdf#toolbar=0&navpanes=0&scrollbar=1&page=1&view=FitH&zoom=page-width`}
+                      className="w-full h-full border-0"
+                      title={selectedDocument === 'akreditasi' ? 'Sertifikat Akreditasi' : 'Registrasi KLHK'}
+                      style={{ 
+                        minHeight: '100%',
+                        backgroundColor: '#f3f4f6',
+                        pointerEvents: 'auto'
+                      }}
+                      loading="lazy"
+                      onContextMenu={(e) => e.preventDefault()}
+                      onLoad={(e) => {
+                        // Disable right-click and text selection in iframe
+                        try {
+                          const iframe = e.target as HTMLIFrameElement;
+                          if (iframe.contentDocument) {
+                            iframe.contentDocument.addEventListener('contextmenu', (event) => event.preventDefault());
+                            iframe.contentDocument.addEventListener('selectstart', (event) => event.preventDefault());
+                          }
+                        } catch (error) {
+                          // Ignore cross-origin errors
+                        }
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
 
-              {/* Modal Footer */}
-              <div className="flex items-center justify-between p-6 border-t border-gray-200 bg-gray-50">
-                <div className="flex items-center space-x-4">
-                  <span className="text-sm text-gray-600">
-                    Dokumen resmi Laboratorium Perum Jasa Tirta I
-                  </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <a
-                    href={`/assets/certificate/${selectedDocument}.pdf`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
-                  >
+              {/* Modal Footer - View Only */}
+              <div className="flex items-center justify-center p-3 sm:p-4 border-t border-gray-200 bg-gray-50 flex-shrink-0">
+                <div className="flex items-center justify-center space-x-3">
+                  <div className="flex items-center text-gray-600">
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     </svg>
-                    Download PDF
-                  </a>
+                    <span className="text-xs sm:text-sm">Dokumen hanya untuk dilihat</span>
+                  </div>
+                  <span className="text-gray-300">|</span>
                   <button
                     onClick={() => setSelectedDocument(null)}
-                    className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors text-sm font-medium"
+                    className="px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-xs sm:text-sm font-medium"
                   >
                     Tutup
                   </button>

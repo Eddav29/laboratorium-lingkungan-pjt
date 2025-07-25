@@ -46,7 +46,19 @@ const BuildingOfficeIcon = () => (
 
 export default function ContactPage() {
     // State for selected branch
-    const [selectedBranch, setSelectedBranch] = useState<"malang" | "mojokerto" | "solo">("malang");
+    const [selectedBranch, setSelectedBranch] = useState<"malang" | "mojokerto" | "solo" | "parapat">("malang");
+    
+    // Anti-spam states
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [lastSubmissionTime, setLastSubmissionTime] = useState<number>(0);
+    const [submissionCount, setSubmissionCount] = useState(0);
+    const [honeypot, setHoneypot] = useState("");
+    const [formStartTime, setFormStartTime] = useState<number>(0);
+    
+    // Initialize form start time when component mounts
+    React.useEffect(() => {
+        setFormStartTime(Date.now());
+    }, []);
 
     // Branch data
     const branches = {
@@ -56,7 +68,7 @@ export default function ContactPage() {
             shortAddress: "Malang, Jawa Timur",
             email: "lablingkunganpjt1@gmail.com",
             fullAddress: "Jl. Surabaya No.2A, Sumbersari, Kec. Lowokwaru, Kota Malang, Jawa Timur 65145",
-            workingHours: "Senin - Jumat: 08:00 - 16:00 WIB",
+            workingHours: "Senin - Jumat: 07:00 - 16:00 WIB",
             phone: "+62 812-3073-8591",
             description: "Pusat laboratorium utama dengan fasilitas lengkap",
             coordinates: { lat: -7.9655562, lng: 112.6188524 },
@@ -68,7 +80,7 @@ export default function ContactPage() {
             shortAddress: "Mojokerto, Jawa Timur",
             email: "llmjkt22@gmail.com",
             fullAddress: "Jl. Raya Lengkong, Jatiwetan, Kec. Mojoanyar Mojokerto Jawa Timur Indonesia 61364",
-            workingHours: "Senin - Jumat: 08:00 - 16:00 WIB",
+            workingHours: "Senin - Jumat: 07:00 - 16:00 WIB",
             phone: "+62 851-7224-7241",
             description: "Cabang strategis dengan teknologi modern",
             coordinates: { lat: -7.4459199, lng: 112.4652101 },
@@ -80,11 +92,23 @@ export default function ContactPage() {
             shortAddress: "Solo, Jawa Tengah",
             email: "lablingsolo28@gmail.com",
             fullAddress: "Jalan Raya Kartasura No.KM.7, Banaran, Pabelan, Surakarta, Kabupaten Sukoharjo, Jawa Tengah 57102",
-            workingHours: "Senin - Jumat: 08:00 - 16:00 WIB",
+            workingHours: "Senin - Jumat: 07:00 - 16:00 WIB",
             phone: "+62 813-2888-3992",
             description: "Laboratorium terdepan di Jawa Tengah",
             coordinates: { lat: -7.5602571, lng: 110.7687605 },
             mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.4567!2d110.7661858!3d-7.5602571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a145a80b90669%3A0x23a18381da5ee613!2sPerum%20Jasa%20Tirta%201%20WS%20Bengawan%20Solo!5e0!3m2!1sen!2sid!4v1644444444444!5m2!1sen!2sid"
+        },
+        parapat: {
+            name: "Lab. Parapat",
+            image: "/assets/images/lab.png",
+            shortAddress: "Parapat, Sumatera Utara",
+            email: "lablingkunganparapat@gmail.com",
+            fullAddress: "Jl. Pemandian No.45, Tiga Raja, Kec. Girsang Sipangan Bolon, Kabupaten Simalungun, Sumatera Utara 21174",
+            workingHours: "Senin - Jumat: 07:00 - 16:00 WIB",
+            phone: "+62 815-9988-7766",
+            description: "Cabang terbaru dengan fasilitas modern di Danau Toba",
+            coordinates: { lat: 2.6690234, lng: 98.9367891 },
+            mapEmbed: "coming-soon"
         }
     };
 
@@ -174,7 +198,7 @@ export default function ContactPage() {
                     </motion.div>
 
                     {/* Branch Cards */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-16">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16">
                         {Object.entries(branches).map(([key, branch], index) => (
                             <motion.div
                                 key={key}
@@ -182,16 +206,16 @@ export default function ContactPage() {
                                 whileInView="visible"
                                 viewport={{ once: true }}
                                 variants={slideIn}
-                                transition={{ duration: 0.6, delay: index * 0.2 }}
+                                transition={{ duration: 0.6, delay: index * 0.15 }}
                                 className={`cursor-pointer transform transition-all duration-300 hover:scale-105 ${
                                     selectedBranch === key 
                                         ? 'ring-4 ring-blue-500 shadow-2xl' 
                                         : 'hover:shadow-xl'
                                 }`}
-                                onClick={() => setSelectedBranch(key as "malang" | "mojokerto" | "solo")}
+                                onClick={() => setSelectedBranch(key as "malang" | "mojokerto" | "solo" | "parapat")}
                             >
-                                <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                                    <div className="relative h-36 sm:h-40 lg:h-48 overflow-hidden">
+                                <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 h-full">
+                                    <div className="relative h-32 sm:h-36 lg:h-40 overflow-hidden">
                                         <Image
                                             src={branch.image}
                                             alt={branch.name}
@@ -200,30 +224,17 @@ export default function ContactPage() {
                                             unoptimized
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                                        <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">
+                                        <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 text-white">
                                             <BuildingOfficeIcon />
                                         </div>
                                     </div>
-                                    <div className="p-4 sm:p-6">
-                                        <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                                            {branch.name}
-                                        </h3>
-                                        <p className="text-sm sm:text-base text-gray-600 mb-3 flex items-center">
+                                    <div className="p-3 sm:p-4 lg:p-5">
+                                        <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2">{branch.name}</h3>
+                                        <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3">{branch.shortAddress}</p>
+                                        <div className="flex items-center text-xs sm:text-sm text-blue-600">
                                             <MapPinIcon />
-                                            <span className="ml-2">{branch.shortAddress}</span>
-                                        </p>
-                                        <p className="text-xs sm:text-sm text-blue-600 font-medium flex items-center break-all">
-                                            <EnvelopeIcon />
-                                            <span className="ml-2">{branch.email}</span>
-                                        </p>
-                                        <p className="text-xs sm:text-sm text-gray-500 mt-3">
-                                            {branch.description}
-                                        </p>
-                                        {selectedBranch === key && (
-                                            <div className="mt-4 px-3 py-2 bg-blue-100 text-blue-800 rounded-lg text-xs sm:text-sm font-medium text-center">
-                                                ✓ Cabang Terpilih
-                                            </div>
-                                        )}
+                                            <span className="ml-1 sm:ml-2">Lihat Detail</span>
+                                        </div>
                                     </div>
                                 </div>
                             </motion.div>
@@ -242,7 +253,9 @@ export default function ContactPage() {
                         >
                             {/* Address Card */}
                             <motion.div 
-                                className="group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer"
+                                className={`group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden ${
+                                    selectedBranch !== 'parapat' ? 'cursor-pointer' : ''
+                                }`}
                                 whileHover={{ y: -5 }}
                                 onClick={() => {
                                     if (selectedBranch === 'malang') {
@@ -252,6 +265,7 @@ export default function ContactPage() {
                                     } else if (selectedBranch === 'solo') {
                                         window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta+1+WS+Bengawan+Solo/@-7.562734,110.7642472,918m/data=!3m1!1e3!4m15!1m8!3m7!1s0x2e7a1450e9214cdb:0xc2c8e1c39fe06a0c!2sJl.+Proyek+Bengawan+Solo,+Banaran,+Pabelan,+Kec.+Kartasura,+Kabupaten+Sukoharjo,+Jawa+Tengah+57169!3b1!8m2!3d-7.562336!4d110.7676792!16s%2Fg%2F11bx2czjxq!3m5!1s0x2e7a145a80b90669:0x23a18381da5ee613!8m2!3d-7.5602571!4d110.7687605!16s%2Fg%2F1pzq1l1dc?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D', '_blank');
                                     }
+                                    // Tidak ada action untuk parapat
                                 }}
                             >
                                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
@@ -269,7 +283,7 @@ export default function ContactPage() {
                                     </p>
                                     <div className="mt-2 sm:mt-3 flex items-center text-xs text-gray-500">
                                         <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></span>
-                                        Klik untuk buka Google Maps
+                                        {selectedBranch === 'parapat' ? 'Peta akan segera tersedia' : 'Klik untuk buka Google Maps'}
                                     </div>
                                 </div>
                                 <div className="absolute bottom-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-blue-50 rounded-full -mr-8 sm:-mr-10 -mb-8 sm:-mb-10 opacity-20"></div>
@@ -302,10 +316,14 @@ export default function ContactPage() {
 
                             {/* Email Card */}
                             <motion.div 
-                                className="group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer"
+                                className={`group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden ${
+                                    selectedBranch !== 'parapat' ? 'cursor-pointer' : ''
+                                }`}
                                 whileHover={{ y: -5 }}
                                 onClick={() => {
-                                    window.open(`https://mail.google.com/mail/?view=cm&to=${branches[selectedBranch].email}`, '_blank');
+                                    if (selectedBranch !== 'parapat') {
+                                        window.open(`https://mail.google.com/mail/?view=cm&to=${branches[selectedBranch].email}`, '_blank');
+                                    }
                                 }}
                             >
                                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-purple-600"></div>
@@ -318,25 +336,43 @@ export default function ContactPage() {
                                     <h4 className="text-base sm:text-lg font-bold text-gray-800 mb-2 sm:mb-3">
                                         Email Address
                                     </h4>
-                                    <p className="text-xs sm:text-sm text-purple-600 font-medium hover:text-purple-800 transition-colors duration-200 break-all">
-                                        {branches[selectedBranch].email}
-                                    </p>
-                                    <div className="mt-2 sm:mt-3 flex items-center text-xs text-gray-500">
-                                        <span className="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></span>
-                                        Klik untuk buka Gmail
-                                    </div>
+                                    {selectedBranch === 'parapat' ? (
+                                        <>
+                                            <p className="text-xs sm:text-sm text-gray-600 font-medium mb-2">
+                                                Coming Soon
+                                            </p>
+                                            <div className="mt-2 sm:mt-3 flex items-center text-xs text-gray-500">
+                                                <span className="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></span>
+                                                Email akan segera tersedia
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <p className="text-xs sm:text-sm text-purple-600 font-medium hover:text-purple-800 transition-colors duration-200 break-all">
+                                                {branches[selectedBranch].email}
+                                            </p>
+                                            <div className="mt-2 sm:mt-3 flex items-center text-xs text-gray-500">
+                                                <span className="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></span>
+                                                Klik untuk buka Gmail
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                                 <div className="absolute bottom-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-purple-50 rounded-full -mr-8 sm:-mr-10 -mb-8 sm:-mb-10 opacity-20"></div>
                             </motion.div>
 
                             {/* WhatsApp Card */}
                             <motion.div 
-                                className="group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden cursor-pointer"
+                                className={`group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden ${
+                                    selectedBranch !== 'parapat' ? 'cursor-pointer' : ''
+                                }`}
                                 whileHover={{ y: -5 }}
                                 onClick={() => {
-                                    const phoneNumber = branches[selectedBranch].phone.replace(/\D/g, '');
-                                    const message = `Halo ${branches[selectedBranch].name}, saya ingin berkonsultasi mengenai layanan laboratorium.`;
-                                    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+                                    if (selectedBranch !== 'parapat') {
+                                        const phoneNumber = branches[selectedBranch].phone.replace(/\D/g, '');
+                                        const message = `Halo ${branches[selectedBranch].name}, saya ingin berkonsultasi mengenai layanan laboratorium.`;
+                                        window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+                                    }
                                 }}
                             >
                                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-green-600"></div>
@@ -349,13 +385,27 @@ export default function ContactPage() {
                                     <h4 className="text-base sm:text-lg font-bold text-gray-800 mb-2 sm:mb-3">
                                         WhatsApp
                                     </h4>
-                                    <p className="text-xs sm:text-sm text-green-600 font-medium hover:text-green-800 transition-colors duration-200">
-                                        {branches[selectedBranch].phone}
-                                    </p>
-                                    <div className="mt-2 sm:mt-3 flex items-center text-xs text-gray-500">
-                                        <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
-                                        Klik untuk chat WhatsApp
-                                    </div>
+                                    {selectedBranch === 'parapat' ? (
+                                        <>
+                                            <p className="text-xs sm:text-sm text-gray-600 font-medium mb-2">
+                                                Coming Soon
+                                            </p>
+                                            <div className="mt-2 sm:mt-3 flex items-center text-xs text-gray-500">
+                                                <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                                                WhatsApp akan segera tersedia
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <p className="text-xs sm:text-sm text-green-600 font-medium hover:text-green-800 transition-colors duration-200">
+                                                {branches[selectedBranch].phone}
+                                            </p>
+                                            <div className="mt-2 sm:mt-3 flex items-center text-xs text-gray-500">
+                                                <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                                                Klik untuk chat WhatsApp
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                                 <div className="absolute bottom-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-green-50 rounded-full -mr-8 sm:-mr-10 -mb-8 sm:-mb-10 opacity-20"></div>
                             </motion.div>
@@ -377,17 +427,12 @@ export default function ContactPage() {
                     >
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">Kirim Pesan</h2>
                         <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto mb-4 sm:mb-6">
-                            Silakan hubungi kami melalui formulir di bawah ini atau melalui email di{" "}
-                            <a 
-                                href="#" 
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    window.open(`https://mail.google.com/mail/?view=cm&to=${branches[selectedBranch].email}`, '_blank');
-                                }}
-                                className="underline transition-colors duration-200 text-blue-600 hover:text-blue-800 cursor-pointer"
-                            >
-                                {branches[selectedBranch].email}
-                            </a>
+                            Silakan hubungi kami melalui formulir di bawah ini{selectedBranch !== 'parapat' ? ' atau melalui email di ' : ''}
+                            {selectedBranch !== 'parapat' && (
+                                <span className="text-blue-600 font-medium">
+                                    {branches[selectedBranch].email}
+                                </span>
+                            )}
                         </p>
                     </motion.div>
 
@@ -400,34 +445,147 @@ export default function ContactPage() {
                             variants={fadeInUp}
                             transition={{ duration: 0.6, delay: 0.2 }}
                         >
-                            <form className="space-y-4 sm:space-y-6 bg-white rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg border border-gray-100">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                                    <div>
-                                        <label htmlFor="name" className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
-                                            Nama Lengkap
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="name"
-                                            name="name"
-                                            className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
-                                            placeholder="Masukkan nama lengkap Anda"
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="email" className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
-                                            Email Address
-                                        </label>
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            name="email"
-                                            className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
-                                            placeholder="Masukkan email Anda"
-                                            required
-                                        />
-                                    </div>
+                            <form 
+                                className="space-y-4 sm:space-y-6 bg-white rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg border border-gray-100"
+                                onSubmit={(e) => {
+                                    e.preventDefault();
+                                    
+                                    // Anti-spam validations
+                                    const currentTime = Date.now();
+                                    
+                                    // 1. Check if honeypot field is filled (bot detection)
+                                    if (honeypot.trim() !== "") {
+                                        console.log("Spam detected: Honeypot field filled");
+                                        return;
+                                    }
+                                    
+                                    // 2. Check minimum time spent on form (too fast = bot)
+                                    const timeSpent = currentTime - formStartTime;
+                                    if (timeSpent < 5000) { // Less than 5 seconds
+                                        alert("Mohon luangkan waktu untuk mengisi formulir dengan benar.");
+                                        return;
+                                    }
+                                    
+                                    // 3. Rate limiting - prevent rapid submissions
+                                    if (currentTime - lastSubmissionTime < 30000) { // 30 seconds cooldown
+                                        alert("Harap tunggu 30 detik sebelum mengirim pesan lagi.");
+                                        return;
+                                    }
+                                    
+                                    // 4. Check submission count per session
+                                    if (submissionCount >= 3) {
+                                        alert("Anda telah mencapai batas maksimum pengiriman pesan. Silakan refresh halaman untuk melanjutkan.");
+                                        return;
+                                    }
+                                    
+                                    // 5. Prevent double submission
+                                    if (isSubmitting) {
+                                        return;
+                                    }
+                                    
+                                    setIsSubmitting(true);
+                                    
+                                    const formData = new FormData(e.target as HTMLFormElement);
+                                    const name = formData.get('name') as string;
+                                    const subject = formData.get('subject') as string;
+                                    const message = formData.get('message') as string;
+                                    const branch = formData.get('branch') as string;
+                                    
+                                    // 6. Content validation - basic spam detection
+                                    const spamKeywords = ['viagra', 'casino', 'lottery', 'winner', 'congratulations', 'click here', 'free money', 'urgent', 'limited time'];
+                                    const fullText = `${name} ${subject} ${message}`.toLowerCase();
+                                    const hasSpamContent = spamKeywords.some(keyword => fullText.includes(keyword));
+                                    
+                                    if (hasSpamContent) {
+                                        alert("Pesan Anda terdeteksi mengandung konten yang tidak diperbolehkan.");
+                                        setIsSubmitting(false);
+                                        return;
+                                    }
+                                    
+                                    // 7. Check for excessive URLs or special characters
+                                    const urlCount = (message.match(/https?:\/\//g) || []).length;
+                                    if (urlCount > 2) {
+                                        alert("Pesan tidak boleh mengandung lebih dari 2 URL.");
+                                        setIsSubmitting(false);
+                                        return;
+                                    }
+                                    
+                                    // 8. Basic length validation
+                                    if (message.length < 250) {
+                                        alert("Pesan terlalu pendek. Minimal 250 karakter.");
+                                        setIsSubmitting(false);
+                                        return;
+                                    }
+                                    
+                                    if (message.length > 2000) {
+                                        alert("Pesan terlalu panjang. Maksimal 2000 karakter.");
+                                        setIsSubmitting(false);
+                                        return;
+                                    }
+                                    
+                                    // Get recipient email based on selected branch
+                                    const recipientEmail = branches[selectedBranch].email;
+                                    
+                                    // Create email template
+                                    const emailBody = `Halo ${branches[selectedBranch].name},
+
+Saya ${name} ingin menghubungi Anda terkait layanan laboratorium.
+
+${message}
+
+Terima kasih atas perhatiannya.
+
+Salam hormat,
+${name}`;
+                                    
+                                    // Construct Gmail URL
+                                    const gmailUrl = `https://mail.google.com/mail/?view=cm&to=${recipientEmail}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+                                    
+                                    // Update anti-spam tracking
+                                    setLastSubmissionTime(currentTime);
+                                    setSubmissionCount(prev => prev + 1);
+                                    
+                                    // Open Gmail in new tab
+                                    window.open(gmailUrl, '_blank');
+                                    
+                                    // Reset form after successful submission
+                                    setTimeout(() => {
+                                        setIsSubmitting(false);
+                                        (e.target as HTMLFormElement).reset();
+                                        setFormStartTime(Date.now()); // Reset form timing
+                                    }, 1000);
+                                }}
+                            >
+                                <div>
+                                    <label htmlFor="name" className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
+                                        Nama Lengkap
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
+                                        placeholder="Masukkan nama lengkap Anda"
+                                        minLength={2}
+                                        maxLength={100}
+                                        pattern="^[a-zA-Z\s]+$"
+                                        title="Nama hanya boleh mengandung huruf dan spasi"
+                                        required
+                                    />
+                                </div>
+                                
+                                {/* Honeypot field - hidden from users but visible to bots */}
+                                <div style={{ display: 'none' }}>
+                                    <label htmlFor="website">Website (Leave blank):</label>
+                                    <input
+                                        type="text"
+                                        id="website"
+                                        name="website"
+                                        value={honeypot}
+                                        onChange={(e) => setHoneypot(e.target.value)}
+                                        tabIndex={-1}
+                                        autoComplete="off"
+                                    />
                                 </div>
                                 
                                 <div>
@@ -440,8 +598,13 @@ export default function ContactPage() {
                                         name="subject"
                                         className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                                         placeholder="Subjek pesan Anda"
+                                        minLength={10}
+                                        maxLength={200}
                                         required
                                     />
+                                    <div className="text-xs text-gray-500 mt-1">
+                                        Minimal 10 karakter, maksimal 200 karakter
+                                    </div>
                                 </div>
                                 
                                 <div>
@@ -452,12 +615,13 @@ export default function ContactPage() {
                                         id="branch"
                                         name="branch"
                                         value={selectedBranch}
-                                        onChange={(e) => setSelectedBranch(e.target.value as "malang" | "mojokerto" | "solo")}
+                                        onChange={(e) => setSelectedBranch(e.target.value as "malang" | "mojokerto" | "solo" | "parapat")}
                                         className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                                     >
                                         <option value="malang">Lab. Malang</option>
                                         <option value="mojokerto">Lab. Mojokerto</option>
                                         <option value="solo">Lab. Solo</option>
+                                        <option value="parapat">Lab. Parapat</option>
                                     </select>
                                 </div>
                                 
@@ -471,17 +635,34 @@ export default function ContactPage() {
                                         className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                                         rows={5}
                                         placeholder="Tulis pesan Anda di sini..."
+                                        minLength={250}
+                                        maxLength={2000}
                                         required
                                     />
+                                    <div className="text-xs text-gray-500 mt-1">
+                                        Minimal 250 karakter, maksimal 2000 karakter
+                                    </div>
                                 </div>
                                 
                                 <motion.button
                                     type="submit"
-                                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transform transition-all duration-200 hover:scale-[1.02] focus:ring-4 focus:ring-blue-300 shadow-lg text-sm sm:text-base"
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
+                                    disabled={isSubmitting}
+                                    className={`w-full px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold transform transition-all duration-200 focus:ring-4 focus:ring-blue-300 shadow-lg text-sm sm:text-base ${
+                                        isSubmitting 
+                                            ? 'bg-gray-400 text-gray-600 cursor-not-allowed' 
+                                            : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 hover:scale-[1.02]'
+                                    }`}
+                                    whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                                    whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                                 >
-                                    Kirim Pesan
+                                    {isSubmitting ? (
+                                        <div className="flex items-center justify-center gap-2">
+                                            <div className="w-4 h-4 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
+                                            Mengirim...
+                                        </div>
+                                    ) : (
+                                        'Kirim Pesan'
+                                    )}
                                 </motion.button>
                             </form>
                         </motion.div>
@@ -513,16 +694,31 @@ export default function ContactPage() {
                                         transition={{ duration: 0.3 }}
                                         className="w-full h-64 sm:h-80 lg:h-96 rounded-xl overflow-hidden shadow-md"
                                     >
-                                        <iframe
-                                            src={branches[selectedBranch].mapEmbed}
-                                            width="100%"
-                                            height="100%"
-                                            style={{ border: 0 }}
-                                            allowFullScreen
-                                            loading="lazy"
-                                            referrerPolicy="no-referrer-when-downgrade"
-                                            className="rounded-xl"
-                                        />
+                                        {branches[selectedBranch].mapEmbed === "coming-soon" ? (
+                                            <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center rounded-xl">
+                                                <div className="text-center p-6">
+                                                    <div className="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
+                                                        <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                        </svg>
+                                                    </div>
+                                                    <h4 className="text-xl font-bold text-gray-800 mb-2">Coming Soon</h4>
+                                                    <p className="text-gray-600 text-sm">Peta lokasi akan segera tersedia</p>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <iframe
+                                                src={branches[selectedBranch].mapEmbed}
+                                                width="100%"
+                                                height="100%"
+                                                style={{ border: 0 }}
+                                                allowFullScreen
+                                                loading="lazy"
+                                                referrerPolicy="no-referrer-when-downgrade"
+                                                className="rounded-xl"
+                                            />
+                                        )}
                                     </motion.div>
                                 </AnimatePresence>
                                 
@@ -539,14 +735,21 @@ export default function ContactPage() {
                                                 window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta+I/@-7.4459199,112.4652101,918m/data=!3m2!1e3!4b1!4m6!3m5!1s0x2e780dd77cebd423:0x50fbc33142b54443!8m2!3d-7.4459199!4d112.4652101!16s%2Fg%2F11b6qd3128?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D', '_blank');
                                             } else if (selectedBranch === 'solo') {
                                                 window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta+1+WS+Bengawan+Solo/@-7.562734,110.7642472,918m/data=!3m1!1e3!4m15!1m8!3m7!1s0x2e7a1450e9214cdb:0xc2c8e1c39fe06a0c!2sJl.+Proyek+Bengawan+Solo,+Banaran,+Pabelan,+Kec.+Kartasura,+Kabupaten+Sukoharjo,+Jawa+Tengah+57169!3b1!8m2!3d-7.562336!4d110.7676792!16s%2Fg%2F11bx2czjxq!3m5!1s0x2e7a145a80b90669:0x23a18381da5ee613!8m2!3d-7.5602571!4d110.7687605!16s%2Fg%2F1pzq1l1dc?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D', '_blank');
+                                            } else if (selectedBranch === 'parapat') {
+                                                window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta/@2.6659177,98.9477068,925m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3031ed004d79578f:0xb093f3a92d83ab33!8m2!3d2.6659177!4d98.9477068!16s%2Fg%2F11vkb4ytz1?entry=ttu&g_ep=EgoyMDI1MDcyMS4wIKXMDSoASAFQAw%3D%3D', '_blank');
                                             }
                                         }}
-                                        className="px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg text-xs sm:text-sm font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center gap-1 sm:gap-2 w-full sm:w-auto justify-center"
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
+                                        disabled={selectedBranch === 'parapat'}
+                                        className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors duration-200 flex items-center gap-1 sm:gap-2 w-full sm:w-auto justify-center ${
+                                            selectedBranch === 'parapat' 
+                                                ? 'bg-gray-400 text-gray-600 cursor-not-allowed' 
+                                                : 'bg-blue-600 text-white hover:bg-blue-700'
+                                        }`}
+                                        whileHover={selectedBranch !== 'parapat' ? { scale: 1.05 } : {}}
+                                        whileTap={selectedBranch !== 'parapat' ? { scale: 0.95 } : {}}
                                     >
                                         <MapPinIcon />
-                                        Buka di Google Maps
+                                        {selectedBranch === 'parapat' ? 'Segera Hadir' : 'Buka di Google Maps'}
                                     </motion.button>
                                 </div>
                             </div>
