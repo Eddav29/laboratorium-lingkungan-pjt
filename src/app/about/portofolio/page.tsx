@@ -9,9 +9,24 @@ import { Filter, Calendar, Users, MapPin, ChevronRight, ArrowRight } from "lucid
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
+interface ProjectType {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+  client: string;
+  date: string;
+  location: string;
+  team: number;
+  tags: string[];
+  results: string[];
+  gallery: string[];
+}
+
 export default function Portofolio() {
   const [selectedCategory, setSelectedCategory] = useState<string>("semua");
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
