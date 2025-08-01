@@ -1,8 +1,12 @@
+"use client";
+
 import Hero from "@/components/home/hero";
 import Services from "@/components/home/services";
 import Reason from "@/components/home/reason";
 import Statistics from "@/components/home/statistics";
+import FAQ from "@/components/home/faq";
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
@@ -22,12 +26,11 @@ export default function Home() {
       {/* Statistics Section */}
       <Statistics />
 
+      {/* FAQ Section */}
+      <FAQ />
+
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2025 Laboratorium Lingkungan PJT. Hello World Footer.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

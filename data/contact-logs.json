@@ -1,0 +1,26 @@
+[
+  {
+    "timestamp": "2025-07-25T02:40:31.221Z",
+    "ip": "::1",
+    "name": "sdsa",
+    "subject": "sdas",
+    "branch": "malang",
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-07-25T02:43:29.880Z",
+    "ip": "::1",
+    "name": "testemail",
+    "subject": "testingemailforwebsite",
+    "branch": "malang",
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-07-25T02:45:02.772Z",
+    "ip": "::1",
+    "name": "testemail",
+    "subject": "testingemailforwebsite",
+    "branch": "malang",
+    "status": "success"
+  }
+]
