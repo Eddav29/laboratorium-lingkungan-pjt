@@ -263,7 +263,7 @@ export default function About() {
                     </h2>
                     <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-3 sm:p-4 rounded-xl border-l-4 border-blue-600">
                       <p className="text-base sm:text-lg lg:text-xl font-medium text-gray-800 leading-relaxed italic">
-                        "Menjadi Perusahaan Pengelola Sumber Daya Air Nasional Kelas Dunia"
+                        &ldquo;Menjadi Perusahaan Pengelola Sumber Daya Air Nasional Kelas Dunia&rdquo;
                       </p>
                     </div>
                   </motion.div>
@@ -338,7 +338,7 @@ export default function About() {
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
                 <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                  "Roadmap Laboratorium kami mencerminkan perjalanan panjang dan komitmen kami dalam pengembangan kompetensi serta layanan analisis lingkungan sejak tahun 1986."
+                  &ldquo;Roadmap Laboratorium kami mencerminkan perjalanan panjang dan komitmen kami dalam pengembangan kompetensi serta layanan analisis lingkungan sejak tahun 1986.&rdquo;
                 </p>
               </motion.div>
 
