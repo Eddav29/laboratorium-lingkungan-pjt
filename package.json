@@ -6,7 +6,14 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker:build": "docker build -t laboratorium-pjt .",
+    "docker:run": "docker run -d --name laboratorium-pjt-app -p 3000:3000 --env-file .env laboratorium-pjt",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:up-build": "docker-compose up -d --build",
+    "docker:logs": "docker-compose logs -f",
+    "docker:clean": "docker stop laboratorium-pjt-app && docker rm laboratorium-pjt-app && docker rmi laboratorium-pjt"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",

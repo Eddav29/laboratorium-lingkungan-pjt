@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  // Enable standalone output for Docker
+  output: 'standalone',
+  
   typescript: {
     // Allow production builds to pass even if there are type errors
     // Remove this line after fixing all TypeScript issues
