@@ -1,4 +1,4 @@
-~// SEO Audit utility functions
+// SEO Audit utility functions
 export function auditPageSEO() {
   // Check if running in browser environment
   if (typeof window === 'undefined' || typeof document === 'undefined') {
