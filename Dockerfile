@@ -1,10 +1,17 @@
-# Use the official Node.js runtime as base image
-FROM node:20-alpine AS base
+# Use the official Node.js runtime as base image with latest security updates
+FROM node:20.18.0-alpine3.20 AS base
+
+# Add security updates and create non-root user
+RUN apk update && apk upgrade && \
+    apk add --no-cache dumb-init && \
+    addgroup -g 1001 -S nodejs && \
+    adduser -S nextjs -u 1001
 
 # Install dependencies only when needed
 FROM base AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat && \
+    apk upgrade --no-cache
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager

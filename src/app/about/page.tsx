@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function About() {
   const [activeYear, setActiveYear] = useState<string | null>(null);
@@ -44,6 +44,16 @@ export default function About() {
     };
   }, []);
 
+  // Partner logos data
+  const partnerLogos = [
+    { name: "BUMN", src: "/assets/company_logos/logo_bumn.png" },
+    { name: "ELHKPN", src: "/assets/company_logos/logo_elhkpn.png" },
+    { name: "JTE", src: "/assets/company_logos/logo_jte.png" },
+    { name: "KNIBB", src: "/assets/company_logos/logo_knibb.webp" },
+    { name: "PUPR", src: "/assets/company_logos/logo_pupr.png" },
+    { name: "Himpunan", src: "/assets/company_logos/logo-himpunan.png" }
+  ];
+
   // Auto-rotate partner logos with fade animation (3 logos at a time)
   useEffect(() => {
     const interval = setInterval(() => {
@@ -56,17 +66,7 @@ export default function About() {
     }, 2000); // Change every 2 seconds for faster transitions
 
     return () => clearInterval(interval);
-  }, [isPartnerHovered]);
-
-  // Partner logos data
-  const partnerLogos = [
-    { name: "BUMN", src: "/assets/company_logos/logo_bumn.png" },
-    { name: "ELHKPN", src: "/assets/company_logos/logo_elhkpn.png" },
-    { name: "JTE", src: "/assets/company_logos/logo_jte.png" },
-    { name: "KNIBB", src: "/assets/company_logos/logo_knibb.webp" },
-    { name: "PUPR", src: "/assets/company_logos/logo_pupr.png" },
-    { name: "Himpunan", src: "/assets/company_logos/logo-himpunan.png" }
-  ];
+  }, [isPartnerHovered, partnerLogos.length]);
 
   // Timeline data
   const timelineData = {
@@ -861,7 +861,7 @@ export default function About() {
                             iframe.contentDocument.addEventListener('contextmenu', (event) => event.preventDefault());
                             iframe.contentDocument.addEventListener('selectstart', (event) => event.preventDefault());
                           }
-                        } catch (error) {
+                        } catch {
                           // Ignore cross-origin errors
                         }
                       }}

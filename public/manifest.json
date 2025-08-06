@@ -1,0 +1,26 @@
+{
+  "name": "Laboratorium Lingkungan PJT",
+  "short_name": "Lab PJT",
+  "description": "Laboratorium Lingkungan PJT - Jasa Uji Lingkungan Terpercaya",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity"],
+  "lang": "id",
+  "icons": [
+    {
+      "src": "/assets/logo/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/logo/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
