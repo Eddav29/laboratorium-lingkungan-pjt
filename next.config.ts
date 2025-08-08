@@ -16,10 +16,15 @@ const nextConfig: NextConfig = {
     '127.0.0.1'
   ],
   
-  // Enable experimental features for better SEO
+  // Disable experimental CSS optimization to avoid critters issue
   experimental: {
-    optimizeCss: true,
+    // Remove optimizeCss to prevent critters dependency issue
+    esmExternals: true,
   },
+  
+  // Alternative CSS optimization without critters
+  swcMinify: true,
+  optimizeFonts: true,
   
   typescript: {
     // Allow production builds to pass even if there are type errors
