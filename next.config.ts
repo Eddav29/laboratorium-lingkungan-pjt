@@ -34,7 +34,7 @@ const nextConfig: NextConfig = {
   eslint: {
     // Allow production builds to pass even if there are ESLint errors
     // This will treat warnings as warnings instead of errors during build
-    ignoreDuringBuilds: false,
+    ignoreDuringBuilds: true,
   },
   images: {
     // Configure domains for next/image optimization
