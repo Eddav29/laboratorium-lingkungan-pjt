@@ -138,23 +138,6 @@ const Hero = () => {
 
                    
                 </div>
-                 {/* Optional: Floating scroll indicator - dipindah ke paling bawah */}
-                    <motion.div
-                        className="fixed left-1/2 bottom-6 transform -translate-x-1/2 z-20"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1, y: [10, 30, 10] }}
-                        transition={{ 
-                            opacity: { delay: 3, duration: 1 },
-                            y: { delay: 3.5, duration: 2, repeat: Infinity, ease: "easeInOut" }
-                        }}
-                    >
-                        <div className="flex flex-col items-center text-white/70 cursor-pointer hover:text-white transition-colors duration-200">
-                            <span className="text-sm mb-2">Scroll Down</span>
-                            <svg className="w-4 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                            </svg>
-                        </div>
-                    </motion.div>
             </div>
         </section>
     );

@@ -4,27 +4,38 @@ import Link from "next/link";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { SEOBreadcrumb } from "@/components/seo-breadcrumb";
+
+// This would be better as a server component for SEO, but keeping client for now
+// export const metadata: Metadata = generateSEOMetadata({
+//   title: 'Layanan Uji Lingkungan',
+//   description: 'Layanan lengkap uji kualitas air, udara ambient, udara emisi, kebisingan, pencahayaan, dan mikrobiologi. Terakreditasi dan berpengalaman.',
+//   keywords: ['layanan uji lingkungan', 'jasa testing lingkungan', 'laboratorium terakreditasi'],
+//   url: '/services'
+// });
 
 export default function Services() {
   const services = [
     {
       icon: '💧',
       title: 'Pengambilan Sampel Air untuk Uji Fisika, Kimia, dan Mikrobiologi',
-      description: 'Layanan pengambilan dan analisis sampel air dengan standar internasional',
-      link: '/services/air'
+      description: 'Layanan pengambilan dan analisis sampel air dengan standar internasional untuk air minum, air limbah, dan air lingkungan',
+      link: '/services/air',
+      keywords: ['uji kualitas air', 'analisis air', 'pengujian air minum', 'uji air limbah']
     },
     {
       icon: '🌬️',
       title: 'Pengambilan Sampel Udara Ambient',
-      description: 'Monitoring kualitas udara ambient dengan teknologi terdepan',
-      link: '/services/udara-ambient'
+      description: 'Monitoring kualitas udara ambient dengan teknologi terdepan untuk pemantauan lingkungan',
+      link: '/services/udara-ambient',
+      keywords: ['udara ambient', 'kualitas udara', 'monitoring udara', 'pencemaran udara']
     },
     {
       icon: '🏭',
       title: 'Pengambilan Sampel Udara Emisi',
-      description: 'Pengujian emisi industri sesuai regulasi lingkungan',
-      link: '/services/udara-emisi'
+      description: 'Pengujian emisi industri sesuai regulasi lingkungan dan standar KLHK',
+      link: '/services/udara-emisi',
+      keywords: ['udara emisi', 'emisi industri', 'pengujian emisi', 'cerobong asap']
     },
     {
       icon: '📢',
@@ -47,13 +58,39 @@ export default function Services() {
     {
       icon: '☀️',
       title: 'Pengambilan Sample Pencahayaan',
-      description: 'Pengukuran intensitas cahaya di lingkungan kerja',
-      link: '/services/pencahayaan'
+      description: 'Pengukuran intensitas cahaya di lingkungan kerja untuk keselamatan dan kesehatan kerja',
+      link: '/services/pencahayaan',
+      keywords: ['pengukuran pencahayaan', 'intensitas cahaya', 'K3', 'lingkungan kerja']
     }
   ];
 
+  // Structured data for services
+  const servicesStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Laboratorium Lingkungan PJT',
+    url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://laboratorium-pjt.com'}/services`,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Layanan Uji Lingkungan',
+      itemListElement: services.map((service) => ({
+        '@type': 'Offer',
+        name: service.title,
+        description: service.description,
+        url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://laboratorium-pjt.com'}${service.link}`,
+        category: 'Environmental Testing Services'
+      }))
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesStructuredData) }}
+      />
+      
       {/* Header */}
       <Header />
 
@@ -61,6 +98,11 @@ export default function Services() {
       <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 pt-20">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative container mx-auto px-4 py-20">
+          {/* Breadcrumb */}
+          <div className="mb-8">
+            <SEOBreadcrumb className="text-blue-100" />
+          </div>
+          
           <div className="max-w-4xl mx-auto text-center text-white">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
               Layanan{" "}

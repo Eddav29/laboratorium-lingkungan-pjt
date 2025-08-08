@@ -4,13 +4,29 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function About() {
   const [activeYear, setActiveYear] = useState<string | null>(null);
   const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
   const [currentPartnerIndex, setCurrentPartnerIndex] = useState(0);
   const [isPartnerHovered, setIsPartnerHovered] = useState(false);
+
+  // Partner logos data
+  const partnerLogos = [
+    { name: "BUMN", src: "/assets/company_logos/logo_bumn.png" },
+    { name: "ELHKPN", src: "/assets/company_logos/logo_elhkpn.png" },
+    { name: "JTE", src: "/assets/company_logos/logo_jte.png" },
+    { name: "KNIBB", src: "/assets/company_logos/logo_knibb.webp" },
+    { name: "PUPR", src: "/assets/company_logos/logo_pupr.png" },
+    { name: "Himpunan", src: "/assets/company_logos/logo-himpunan.png" },
+    { name: "Ajinomoto", src: "/assets/company_logos/logo_ajinomoto.png" },
+    { name: "Greenfield", src: "/assets/company_logos/logo_greenfield.png" },
+    { name: "Gudang Garam", src: "/assets/company_logos/logo_gudang_garam.png" },
+    { name: "Indofood", src: "/assets/company_logos/logo_indofood.png" },
+    { name: "Kabupaten Pasuruan", src: "/assets/company_logos/logo_kabupaten_pasuruan.png" },
+    { name: "Kota Batu", src: "/assets/company_logos/logo_kota_batu.png" }
+  ];
 
   // Handle scroll to section on page load
   useEffect(() => {
@@ -44,29 +60,21 @@ export default function About() {
     };
   }, []);
 
-  // Auto-rotate partner logos with fade animation (3 logos at a time)
+  // Auto-rotate partner logos with fade animation
   useEffect(() => {
     const interval = setInterval(() => {
       if (!isPartnerHovered) {
         setCurrentPartnerIndex((prevIndex) => {
-          const nextIndex = prevIndex + 3;
+          // Mobile: 6 logos per cycle (3x2), Tablet: 4 logos per cycle, Desktop: 6 logos per cycle
+          const logosPerCycle = 6; // All devices now cycle through 6 logos at a time
+          const nextIndex = prevIndex + logosPerCycle;
           return nextIndex >= partnerLogos.length ? 0 : nextIndex;
         });
       }
     }, 2000); // Change every 2 seconds for faster transitions
 
     return () => clearInterval(interval);
-  }, [isPartnerHovered]);
-
-  // Partner logos data
-  const partnerLogos = [
-    { name: "BUMN", src: "/assets/company_logos/logo_bumn.png" },
-    { name: "ELHKPN", src: "/assets/company_logos/logo_elhkpn.png" },
-    { name: "JTE", src: "/assets/company_logos/logo_jte.png" },
-    { name: "KNIBB", src: "/assets/company_logos/logo_knibb.webp" },
-    { name: "PUPR", src: "/assets/company_logos/logo_pupr.png" },
-    { name: "Himpunan", src: "/assets/company_logos/logo-himpunan.png" }
-  ];
+  }, [isPartnerHovered, partnerLogos.length]);
 
   // Timeline data
   const timelineData = {
@@ -143,7 +151,7 @@ export default function About() {
       >
         <div className="absolute inset-0">
           <Image
-            src="/assets/images/perempuan.jpg"
+            src="/assets/images/lengkap_croped.jpg"
             alt="Laboratorium Lingkungan Team"
             fill
             className="object-cover"
@@ -363,16 +371,16 @@ export default function About() {
                       >
                         {/* Timeline Icon */}
                         <motion.div
-                          className="relative z-10 w-16 h-16 bg-white border-4 border-[#61eabc] rounded-full flex items-center justify-center shadow-lg flex-shrink-0"
+                          className="relative z-10 w-16 h-16 bg-white border-4 border-[#61eabc] rounded-full flex items-center justify-center shadow-lg flex-shrink-0 group-hover:border-blue-600"
                           whileHover={{ 
                             scale: 1.1, 
-                            boxShadow: "0 20px 40px rgba(97, 234, 188, 0.4)",
-                            borderColor: "#4ade80"
+                            boxShadow: "0 20px 40px rgba(37, 99, 235, 0.4)",
+                            borderColor: "#2563eb"
                           }}
                           transition={{ duration: 0.3 }}
                         >
                           <svg 
-                            className="w-8 h-8 text-[#61eabc]" 
+                            className="w-8 h-8 text-[#61eabc] group-hover:text-blue-600 transition-colors" 
                             fill="currentColor" 
                             viewBox="0 0 20 20"
                           >
@@ -432,14 +440,14 @@ export default function About() {
                           onMouseLeave={() => setActiveYear(null)}
                           whileHover={{ 
                             scale: 1.2, 
-                            boxShadow: "0 20px 40px rgba(97, 234, 188, 0.4)",
-                            borderColor: "#4ade80"
+                            boxShadow: "0 20px 40px rgba(37, 99, 235, 0.4)",
+                            borderColor: "#2563eb"
                           }}
                           transition={{ duration: 0.3 }}
                         >
                           {/* Calendar Icon */}
                           <svg 
-                            className="w-8 h-8 text-[#61eabc] group-hover:text-green-500 transition-colors" 
+                            className="w-8 h-8 text-[#61eabc] group-hover:text-blue-600 transition-colors" 
                             fill="currentColor" 
                             viewBox="0 0 20 20"
                           >
@@ -599,7 +607,7 @@ export default function About() {
 
               {/* Document Grid */}
               <motion.div 
-                className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 max-w-7xl mx-auto"
                 variants={staggerContainer}
                 transition={{ delay: 0.6 }}
               >
@@ -609,43 +617,86 @@ export default function About() {
                   variants={zoomIn}
                   transition={{ delay: 0.8, duration: 0.6 }}
                   onClick={() => setSelectedDocument('akreditasi')}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.03, y: -8, transition: { duration: 0.1 } }}
+                  whileTap={{ scale: 0.97 }}
                 >
-                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300">
+                  <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-50 hover:shadow-blue-200/30 hover:shadow-3xl transition-all duration-100 group-hover:border-blue-200/50 backdrop-blur-sm">
                     {/* Document Preview */}
-                    <div className="relative h-64 sm:h-80 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
-                      <div className="text-center p-4 sm:p-6">
-                        <div className="w-12 sm:w-16 h-16 sm:h-20 mx-auto mb-3 sm:mb-4 bg-white rounded-lg shadow-md flex items-center justify-center">
-                          <svg className="w-6 sm:w-8 h-8 sm:h-10 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="relative h-72 sm:h-84 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 flex items-center justify-center overflow-hidden">
+                      {/* Background PDF Preview with Opacity */}
+                      <div className="absolute inset-0 opacity-15 flex items-center justify-center">
+                        <div className="w-full h-full flex items-center justify-center">
+                          <iframe
+                            src={`/assets/certificate/akreditasi.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH&zoom=page-width&pagemode=none&statusbar=0&messages=0&navpanes=0`}
+                            className="w-full h-full border-0 pointer-events-none"
+                            style={{ 
+                              transform: 'scale(1.1)',
+                              transformOrigin: 'center center',
+                              filter: 'grayscale(20%)',
+                              animation: 'none'
+                            }}
+                            onLoad={(e) => {
+                              // Disable all interactions and animations
+                              const iframe = e.target as HTMLIFrameElement;
+                              if (iframe.contentDocument) {
+                                const style = iframe.contentDocument.createElement('style');
+                                style.textContent = `
+                                  * { 
+                                    animation: none !important;
+                                    transition: none !important;
+                                    transform: none !important;
+                                  }
+                                `;
+                                iframe.contentDocument.head.appendChild(style);
+                              }
+                            }}
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Elegant overlay with subtle gradients */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-500/20 via-gray-400/10 to-gray-600/20"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent"></div>
+                      
+                      {/* Decorative elements */}
+                      <div className="absolute top-4 left-4 w-20 h-20 bg-gray-500/5 rounded-full blur-2xl"></div>
+                      <div className="absolute bottom-4 right-4 w-16 h-16 bg-gray-600/5 rounded-full blur-xl"></div>
+                      
+                      <div className="text-center p-6 sm:p-8 relative z-10">
+                        <div className="w-14 sm:w-18 h-18 sm:h-22 mx-auto mb-4 sm:mb-5 bg-white/90 rounded-2xl shadow-xl border border-blue-100/50 flex items-center justify-center backdrop-blur-sm group-hover:scale-110 group-hover:shadow-2xl transition-all duration-100">
+                          <svg className="w-7 sm:w-9 h-9 sm:h-11 text-blue-600 group-hover:text-blue-700 transition-colors duration-100" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
                           </svg>
                         </div>
-                        <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">Sertifikat Akreditasi</h3>
-                        <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">KAN LP-1646-IDN</p>
-                        <div className="inline-flex items-center text-blue-600 font-medium group-hover:text-blue-700 transition-colors text-sm">
+                        <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 drop-shadow-sm group-hover:text-blue-800 transition-colors duration-100">Sertifikat Akreditasi</h3>
+                        <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-5 font-medium drop-shadow-sm">KAN LP-1646-IDN</p>
+                        <div className="inline-flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-all duration-100 text-sm bg-white/90 px-4 py-2 rounded-full backdrop-blur-sm shadow-lg border border-blue-100/50 group-hover:shadow-xl group-hover:scale-105">
                           <span>Lihat Dokumen</span>
-                          <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                           </svg>
                         </div>
                       </div>
-                      {/* Preview Badge */}
-                      <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-green-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs font-medium">
+                      {/* Enhanced Badge */}
+                      <div className="absolute top-4 sm:top-5 right-4 sm:right-5 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 sm:px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg border border-blue-500/20 group-hover:scale-110 transition-transform duration-100">
                         PDF
                       </div>
+                      
+                      {/* Floating accent line */}
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-blue-400 to-indigo-500 group-hover:h-2 transition-all duration-100"></div>
                     </div>
                     
-                    {/* Document Info */}
-                    <div className="p-4 sm:p-6 bg-white">
-                      <div className="flex items-center justify-between">
+                    {/* Enhanced Document Info */}
+                    <div className="p-6 sm:p-8 bg-gradient-to-r from-white via-blue-50/30 to-white border-t border-blue-100/50">
+                      <div className="space-y-3">
                         <div>
-                          <p className="text-xs sm:text-sm text-gray-500 mb-1">Tipe Dokumen</p>
-                          <p className="font-semibold text-gray-800 text-sm sm:text-base">Akreditasi Laboratorium</p>
+                          <p className="text-xs text-gray-500 mb-1 font-medium">Tipe Dokumen</p>
+                          <p className="font-bold text-gray-800 text-sm group-hover:text-blue-700 transition-colors duration-100">Akreditasi Laboratorium</p>
                         </div>
-                        <div className="text-right">
-                          <p className="text-xs sm:text-sm text-gray-500 mb-1">Status</p>
-                          <span className="inline-flex items-center px-2 sm:px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <div>
+                          <p className="text-xs text-gray-500 mb-1 font-medium">Status</p>
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 border border-blue-200/50 shadow-sm">
+                            <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2 animate-pulse"></div>
                             Aktif
                           </span>
                         </div>
@@ -660,44 +711,181 @@ export default function About() {
                   variants={zoomIn}
                   transition={{ delay: 1.0, duration: 0.6 }}
                   onClick={() => setSelectedDocument('registrasi_klhk')}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.03, y: -8, transition: { duration: 0.1 } }}
+                  whileTap={{ scale: 0.97 }}
                 >
-                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300">
+                  <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-50 hover:shadow-green-200/30 hover:shadow-3xl transition-all duration-100 group-hover:border-green-200/50 backdrop-blur-sm">
                     {/* Document Preview */}
-                    <div className="relative h-64 sm:h-80 bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center">
-                      <div className="text-center p-4 sm:p-6">
-                        <div className="w-12 sm:w-16 h-16 sm:h-20 mx-auto mb-3 sm:mb-4 bg-white rounded-lg shadow-md flex items-center justify-center">
-                          <svg className="w-6 sm:w-8 h-8 sm:h-10 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="relative h-72 sm:h-84 bg-gradient-to-br from-gray-50 via-white to-green-50/30 flex items-center justify-center overflow-hidden">
+                      {/* Background PDF Preview with Opacity */}
+                      <div className="absolute inset-0 opacity-15 flex items-center justify-center">
+                        <div className="w-full h-full flex items-center justify-center">
+                          <iframe
+                            src={`/assets/certificate/registrasi_klhk.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH&zoom=page-width&pagemode=none&statusbar=0&messages=0&navpanes=0`}
+                            className="w-full h-full border-0 pointer-events-none"
+                            style={{ 
+                              transform: 'scale(1.1)',
+                              transformOrigin: 'center center',
+                              filter: 'grayscale(20%)',
+                              animation: 'none'
+                            }}
+                            onLoad={(e) => {
+                              // Disable all interactions and animations
+                              const iframe = e.target as HTMLIFrameElement;
+                              if (iframe.contentDocument) {
+                                const style = iframe.contentDocument.createElement('style');
+                                style.textContent = `
+                                  * { 
+                                    animation: none !important;
+                                    transition: none !important;
+                                    transform: none !important;
+                                  }
+                                `;
+                                iframe.contentDocument.head.appendChild(style);
+                              }
+                            }}
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Elegant overlay with subtle gradients */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-500/20 via-gray-400/10 to-gray-600/20"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent"></div>
+                      
+                      {/* Decorative elements */}
+                      <div className="absolute top-4 left-4 w-20 h-20 bg-gray-500/5 rounded-full blur-2xl"></div>
+                      <div className="absolute bottom-4 right-4 w-16 h-16 bg-gray-600/5 rounded-full blur-xl"></div>
+                      
+                      <div className="text-center p-6 sm:p-8 relative z-10">
+                        <div className="w-14 sm:w-18 h-18 sm:h-22 mx-auto mb-4 sm:mb-5 bg-white/90 rounded-2xl shadow-xl border border-green-100/50 flex items-center justify-center backdrop-blur-sm group-hover:scale-110 group-hover:shadow-2xl transition-all duration-100">
+                          <svg className="w-7 sm:w-9 h-9 sm:h-11 text-green-600 group-hover:text-green-700 transition-colors duration-100" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
                           </svg>
                         </div>
-                        <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">Registrasi KLHK</h3>
-                        <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">Kementerian Lingkungan Hidup</p>
-                        <div className="inline-flex items-center text-blue-600 font-medium group-hover:text-blue-700 transition-colors text-sm">
+                        <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 drop-shadow-sm group-hover:text-green-800 transition-colors duration-100">Registrasi KLHK</h3>
+                        <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-5 font-medium drop-shadow-sm">Kementerian Lingkungan Hidup</p>
+                        <div className="inline-flex items-center text-green-600 font-semibold group-hover:text-green-700 transition-all duration-100 text-sm bg-white/90 px-4 py-2 rounded-full backdrop-blur-sm shadow-lg border border-green-100/50 group-hover:shadow-xl group-hover:scale-105">
                           <span>Lihat Dokumen</span>
-                          <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                           </svg>
                         </div>
                       </div>
-                      {/* Preview Badge */}
-                      <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-green-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs font-medium">
+                      {/* Enhanced Badge */}
+                      <div className="absolute top-4 sm:top-5 right-4 sm:right-5 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 sm:px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg border border-green-500/20 group-hover:scale-110 transition-transform duration-100">
                         PDF
                       </div>
+                      
+                      {/* Floating accent line */}
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 via-emerald-400 to-green-600 group-hover:h-2 transition-all duration-100"></div>
                     </div>
                     
-                    {/* Document Info */}
-                    <div className="p-4 sm:p-6 bg-white">
-                      <div className="flex items-center justify-between">
+                    {/* Enhanced Document Info */}
+                    <div className="p-6 sm:p-8 bg-gradient-to-r from-white via-green-50/30 to-white border-t border-green-100/50">
+                      <div className="space-y-3">
                         <div>
-                          <p className="text-xs sm:text-sm text-gray-500 mb-1">Tipe Dokumen</p>
-                          <p className="font-semibold text-gray-800 text-sm sm:text-base">Registrasi Laboratorium</p>
+                          <p className="text-xs text-gray-500 mb-1 font-medium">Tipe Dokumen</p>
+                          <p className="font-bold text-gray-800 text-sm group-hover:text-green-700 transition-colors duration-100">Registrasi Laboratorium</p>
                         </div>
-                        <div className="text-right">
-                          <p className="text-xs sm:text-sm text-gray-500 mb-1">Status</p>
-                          <span className="inline-flex items-center px-2 sm:px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <div>
+                          <p className="text-xs text-gray-500 mb-1 font-medium">Status</p>
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border border-green-200/50 shadow-sm">
+                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2 animate-pulse"></div>
                             Terdaftar
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* SKP PJK3 Document */}
+                <motion.div
+                  className="group cursor-pointer"
+                  variants={zoomIn}
+                  transition={{ delay: 1.2, duration: 0.6 }}
+                  onClick={() => setSelectedDocument('skp_pjk3')}
+                  whileHover={{ scale: 1.03, y: -8, transition: { duration: 0.1 } }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-50 hover:shadow-purple-200/30 hover:shadow-3xl transition-all duration-100 group-hover:border-purple-200/50 backdrop-blur-sm">
+                    {/* Document Preview */}
+                    <div className="relative h-72 sm:h-84 bg-gradient-to-br from-gray-50 via-white to-purple-50/30 flex items-center justify-center overflow-hidden">
+                      {/* Background PDF Preview with Opacity */}
+                      <div className="absolute inset-0 opacity-15 flex items-center justify-center">
+                        <div className="w-full h-full flex items-center justify-center">
+                          <iframe
+                            src={`/assets/certificate/skp_pjk3.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH&zoom=page-width&pagemode=none&statusbar=0&messages=0&navpanes=0`}
+                            className="w-full h-full border-0 pointer-events-none"
+                            style={{ 
+                              transform: 'scale(1.1)',
+                              transformOrigin: 'center center',
+                              filter: 'grayscale(20%)',
+                              animation: 'none'
+                            }}
+                            onLoad={(e) => {
+                              // Disable all interactions and animations
+                              const iframe = e.target as HTMLIFrameElement;
+                              if (iframe.contentDocument) {
+                                const style = iframe.contentDocument.createElement('style');
+                                style.textContent = `
+                                  * { 
+                                    animation: none !important;
+                                    transition: none !important;
+                                    transform: none !important;
+                                  }
+                                `;
+                                iframe.contentDocument.head.appendChild(style);
+                              }
+                            }}
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Elegant overlay with subtle gradients */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-500/20 via-gray-400/10 to-gray-600/20"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent"></div>
+                      
+                      {/* Decorative elements */}
+                      <div className="absolute top-4 left-4 w-20 h-20 bg-gray-500/5 rounded-full blur-2xl"></div>
+                      <div className="absolute bottom-4 right-4 w-16 h-16 bg-gray-600/5 rounded-full blur-xl"></div>
+                      
+                      <div className="text-center p-6 sm:p-8 relative z-10">
+                        <div className="w-14 sm:w-18 h-18 sm:h-22 mx-auto mb-4 sm:mb-5 bg-white/90 rounded-2xl shadow-xl border border-purple-100/50 flex items-center justify-center backdrop-blur-sm group-hover:scale-110 group-hover:shadow-2xl transition-all duration-100">
+                          <svg className="w-7 sm:w-9 h-9 sm:h-11 text-purple-600 group-hover:text-purple-700 transition-colors duration-100" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 drop-shadow-sm group-hover:text-purple-800 transition-colors duration-100">SKP PJK3</h3>
+                        <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-5 font-medium drop-shadow-sm">Sertifikat Kompetensi Personel</p>
+                        <div className="inline-flex items-center text-purple-600 font-semibold group-hover:text-purple-700 transition-all duration-100 text-sm bg-white/90 px-4 py-2 rounded-full backdrop-blur-sm shadow-lg border border-purple-100/50 group-hover:shadow-xl group-hover:scale-105">
+                          <span>Lihat Dokumen</span>
+                          <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </div>
+                      {/* Enhanced Badge */}
+                      <div className="absolute top-4 sm:top-5 right-4 sm:right-5 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 sm:px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg border border-purple-500/20 group-hover:scale-110 transition-transform duration-100">
+                        PDF
+                      </div>
+                      
+                      {/* Floating accent line */}
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-violet-400 to-purple-600 group-hover:h-2 transition-all duration-100"></div>
+                    </div>
+                    
+                    {/* Enhanced Document Info */}
+                    <div className="p-6 sm:p-8 bg-gradient-to-r from-white via-purple-50/30 to-white border-t border-purple-100/50">
+                      <div className="space-y-3">
+                        <div>
+                          <p className="text-xs text-gray-500 mb-1 font-medium">Tipe Dokumen</p>
+                          <p className="font-bold text-gray-800 text-sm group-hover:text-purple-700 transition-colors duration-100">Sertifikat Kompetensi</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500 mb-1 font-medium">Status</p>
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-purple-100 to-violet-100 text-purple-800 border border-purple-200/50 shadow-sm">
+                            <div className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2 animate-pulse"></div>
+                            Tersertifikasi
                           </span>
                         </div>
                       </div>
@@ -740,18 +928,18 @@ export default function About() {
                 </p>
               </motion.div>
 
-              {/* Logo Display Container - 3 Logos at once */}
+              {/* Logo Display Container - Responsive */}
               <motion.div 
-                className="relative h-32 sm:h-40 lg:h-48 flex items-center justify-center"
+                className="relative h-32 sm:h-40 md:h-40 lg:h-48 flex items-center justify-center"
                 variants={fadeInUp}
                 transition={{ delay: 0.6, duration: 0.8 }}
                 onMouseEnter={() => setIsPartnerHovered(true)}
                 onMouseLeave={() => setIsPartnerHovered(false)}
               >
-                {/* Current 3 Partner Logos */}
+                {/* Mobile: 6 logos (3x2), Tablet: 6 logos (4+2), Desktop: 6 logos (1x6) */}
                 <motion.div
                   key={currentPartnerIndex}
-                  className="flex items-center justify-center gap-6 sm:gap-8 lg:gap-12"
+                  className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6"
                   initial={{ opacity: 0, scale: 0.8, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.8, y: -20 }}
@@ -761,36 +949,176 @@ export default function About() {
                     opacity: { duration: 0.7 }
                   }}
                 >
-                  {/* Display 3 logos starting from currentPartnerIndex */}
-                  {[0, 1, 2].map((offset) => {
-                    const logoIndex = (currentPartnerIndex + offset) % partnerLogos.length;
-                    const partner = partnerLogos[logoIndex];
+                  {/* Mobile: Show 6 logos in 2 rows (3 top, 3 bottom) */}
+                  <div className="flex flex-col items-center justify-center gap-3 sm:hidden">
+                    {/* Top row - 3 logos */}
+                    <div className="flex items-center justify-center gap-2">
+                      {[0, 1, 2].map((offset) => {
+                        const logoIndex = (currentPartnerIndex + offset) % partnerLogos.length;
+                        const partner = partnerLogos[logoIndex];
+                        
+                        return (
+                          <motion.div
+                            key={`mobile-top-${currentPartnerIndex}-${offset}`}
+                            className="group"
+                            initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+                            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                            transition={{ 
+                              duration: 0.5, 
+                              delay: offset * 0.1,
+                              ease: "easeOut"
+                            }}
+                          >
+                            <div className="w-20 h-16 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center p-2 hover:shadow-xl transition-all duration-500 group-hover:scale-105">
+                              <Image
+                                src={partner.src}
+                                alt={`${partner.name} Logo`}
+                                width={60}
+                                height={40}
+                                className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                                unoptimized
+                              />
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
                     
-                    return (
-                      <motion.div
-                        key={`${currentPartnerIndex}-${offset}`}
-                        className="group"
-                        initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
-                        animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                        transition={{ 
-                          duration: 0.5, 
-                          delay: offset * 0.1,
-                          ease: "easeOut"
-                        }}
-                      >
-                        <div className="w-24 sm:w-32 lg:w-40 h-16 sm:h-24 lg:h-28 bg-white rounded-2xl shadow-xl border border-gray-100 flex items-center justify-center p-3 sm:p-4 lg:p-6 hover:shadow-2xl transition-all duration-500 group-hover:scale-110">
-                          <Image
-                            src={partner.src}
-                            alt={`${partner.name} Logo`}
-                            width={120}
-                            height={80}
-                            className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
-                            unoptimized
-                          />
-                        </div>
-                      </motion.div>
-                    );
-                  })}
+                    {/* Bottom row - 3 logos */}
+                    <div className="flex items-center justify-center gap-2">
+                      {[3, 4, 5].map((offset) => {
+                        const logoIndex = (currentPartnerIndex + offset) % partnerLogos.length;
+                        const partner = partnerLogos[logoIndex];
+                        
+                        return (
+                          <motion.div
+                            key={`mobile-bottom-${currentPartnerIndex}-${offset}`}
+                            className="group"
+                            initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+                            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                            transition={{ 
+                              duration: 0.5, 
+                              delay: (offset - 3) * 0.1 + 0.3, // Delay for bottom row
+                              ease: "easeOut"
+                            }}
+                          >
+                            <div className="w-20 h-16 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center p-2 hover:shadow-xl transition-all duration-500 group-hover:scale-105">
+                              <Image
+                                src={partner.src}
+                                alt={`${partner.name} Logo`}
+                                width={60}
+                                height={40}
+                                className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                                unoptimized
+                              />
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Tablet: Show 6 logos in 2 rows (4 top, 2 bottom) */}
+                  <div className="hidden sm:flex md:hidden flex-col items-center justify-center gap-3">
+                    {/* Top row - 4 logos */}
+                    <div className="flex items-center justify-center gap-3">
+                      {[0, 1, 2, 3].map((offset) => {
+                        const logoIndex = (currentPartnerIndex + offset) % partnerLogos.length;
+                        const partner = partnerLogos[logoIndex];
+                        
+                        return (
+                          <motion.div
+                            key={`tablet-top-${currentPartnerIndex}-${offset}`}
+                            className="group"
+                            initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+                            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                            transition={{ 
+                              duration: 0.5, 
+                              delay: offset * 0.1,
+                              ease: "easeOut"
+                            }}
+                          >
+                            <div className="w-24 h-18 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center p-2.5 hover:shadow-xl transition-all duration-500 group-hover:scale-105">
+                              <Image
+                                src={partner.src}
+                                alt={`${partner.name} Logo`}
+                                width={70}
+                                height={45}
+                                className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                                unoptimized
+                              />
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                    
+                    {/* Bottom row - 2 logos */}
+                    <div className="flex items-center justify-center gap-3">
+                      {[4, 5].map((offset) => {
+                        const logoIndex = (currentPartnerIndex + offset) % partnerLogos.length;
+                        const partner = partnerLogos[logoIndex];
+                        
+                        return (
+                          <motion.div
+                            key={`tablet-bottom-${currentPartnerIndex}-${offset}`}
+                            className="group"
+                            initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+                            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                            transition={{ 
+                              duration: 0.5, 
+                              delay: (offset - 4) * 0.1 + 0.4, // Delay for bottom row
+                              ease: "easeOut"
+                            }}
+                          >
+                            <div className="w-24 h-18 bg-white rounded-xl shadow-lg border border-gray-100 flex items-center justify-center p-2.5 hover:shadow-xl transition-all duration-500 group-hover:scale-105">
+                              <Image
+                                src={partner.src}
+                                alt={`${partner.name} Logo`}
+                                width={70}
+                                height={45}
+                                className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                                unoptimized
+                              />
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Desktop: Show 6 logos */}
+                  <div className="hidden md:flex items-center justify-center gap-4 lg:gap-6">
+                    {[0, 1, 2, 3, 4, 5].map((offset) => {
+                      const logoIndex = (currentPartnerIndex + offset) % partnerLogos.length;
+                      const partner = partnerLogos[logoIndex];
+                      
+                      return (
+                        <motion.div
+                          key={`desktop-${currentPartnerIndex}-${offset}`}
+                          className="group"
+                          initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+                          animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                          transition={{ 
+                            duration: 0.5, 
+                            delay: offset * 0.1,
+                            ease: "easeOut"
+                          }}
+                        >
+                          <div className="w-20 lg:w-28 h-16 lg:h-20 bg-white rounded-2xl shadow-xl border border-gray-100 flex items-center justify-center p-2.5 lg:p-3 hover:shadow-2xl transition-all duration-500 group-hover:scale-110">
+                            <Image
+                              src={partner.src}
+                              alt={`${partner.name} Logo`}
+                              width={80}
+                              height={50}
+                              className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                              unoptimized
+                            />
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
                 </motion.div>
               </motion.div>
             </div>
@@ -819,12 +1147,19 @@ export default function About() {
               <div className="flex items-center justify-between p-3 sm:p-4 border-b border-gray-200 bg-gray-50 flex-shrink-0">
                 <div className="flex-1 min-w-0">
                   <h3 className="text-base sm:text-xl font-bold text-gray-800 truncate">
-                    {selectedDocument === 'akreditasi' ? 'Sertifikat Akreditasi KAN' : 'Registrasi KLHK'}
+                    {selectedDocument === 'akreditasi' 
+                      ? 'Sertifikat Akreditasi KAN' 
+                      : selectedDocument === 'registrasi_klhk' 
+                        ? 'Registrasi KLHK'
+                        : 'SKP PJK3'
+                    }
                   </h3>
                   <p className="text-xs sm:text-sm text-gray-600 mt-1 truncate">
                     {selectedDocument === 'akreditasi' 
                       ? 'Laboratorium Penguji LP-1646-IDN' 
-                      : 'Kementerian Lingkungan Hidup dan Kehutanan'
+                      : selectedDocument === 'registrasi_klhk'
+                        ? 'Kementerian Lingkungan Hidup dan Kehutanan'
+                        : 'Sertifikat Kompetensi Personel Jasa Konstruksi'
                     }
                   </p>
                 </div>
@@ -845,7 +1180,12 @@ export default function About() {
                     <iframe
                       src={`/assets/certificate/${selectedDocument}.pdf#toolbar=0&navpanes=0&scrollbar=1&page=1&view=FitH&zoom=page-width`}
                       className="w-full h-full border-0"
-                      title={selectedDocument === 'akreditasi' ? 'Sertifikat Akreditasi' : 'Registrasi KLHK'}
+                      title={selectedDocument === 'akreditasi' 
+                        ? 'Sertifikat Akreditasi' 
+                        : selectedDocument === 'registrasi_klhk' 
+                          ? 'Registrasi KLHK' 
+                          : 'SKP PJK3'
+                      }
                       style={{ 
                         minHeight: '100%',
                         backgroundColor: '#f3f4f6',
@@ -861,7 +1201,7 @@ export default function About() {
                             iframe.contentDocument.addEventListener('contextmenu', (event) => event.preventDefault());
                             iframe.contentDocument.addEventListener('selectstart', (event) => event.preventDefault());
                           }
-                        } catch (error) {
+                        } catch {
                           // Ignore cross-origin errors
                         }
                       }}

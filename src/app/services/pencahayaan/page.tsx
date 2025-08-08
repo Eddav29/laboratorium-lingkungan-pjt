@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -76,9 +77,11 @@ export default function Pencahayaan() {
               </div>
               
               <div className="lg:pl-8">
-                <img 
+                <Image 
                   src="/api/placeholder/600/400" 
-                  alt="Pengukuran Pencahayaan" 
+                  alt="Pengukuran Pencahayaan"
+                  width={600}
+                  height={400}
                   className="rounded-lg shadow-lg w-full h-80 object-cover"
                 />
               </div>

@@ -5,8 +5,18 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:safe": "NEXT_DISABLE_CSS_OPTIMIZATION=true next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seo:audit": "node -e \"console.log('Open browser console and run: auditPageSEO()')\"",
+    "seo:test": "node scripts/seo-test.js",
+    "docker:build": "docker build -t laboratorium-pjt .",
+    "docker:run": "docker run -d --name laboratorium-pjt-app -p 3000:3000 --env-file .env laboratorium-pjt",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:up-build": "docker-compose up -d --build",
+    "docker:logs": "docker-compose logs -f",
+    "docker:clean": "docker stop laboratorium-pjt-app && docker rm laboratorium-pjt-app && docker rmi laboratorium-pjt"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
@@ -39,6 +49,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "critters": "^0.0.23",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.23.6",
@@ -68,5 +79,8 @@
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.5",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }
