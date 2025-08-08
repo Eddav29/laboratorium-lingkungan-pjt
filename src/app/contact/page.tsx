@@ -6,17 +6,29 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Simple SVG Icons
+// Modern Professional Icons
 const MapPinIcon = () => (
-    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25s-7.5-4.108-7.5-11.25a7.5 7.5 0 1115 0z" />
     </svg>
 );
 
 const ClockIcon = () => (
-    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+);
+
+const EnvelopeIcon = () => (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+    </svg>
+);
+
+const PhoneIcon = () => (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
     </svg>
 );
 
@@ -27,8 +39,20 @@ const WhatsAppIcon = () => (
 );
 
 const BuildingOfficeIcon = () => (
-    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3a.75.75 0 01.75-.75h3.5a.75.75 0 01.75.75v3" />
+    </svg>
+);
+
+const SparklesIcon = () => (
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+    </svg>
+);
+
+const SendIcon = () => (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
     </svg>
 );
 
@@ -117,7 +141,7 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50">
             {/* Header */}
             <Header />
 
@@ -143,7 +167,8 @@ export default function ContactPage() {
                             objectPosition: 'center',
                         }}
                     />
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-[0.5px]"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-blue-900/60 to-indigo-900/70 backdrop-blur-[0.5px]"></div>
+                    <div className="absolute inset-0 bg-black/20"></div>
                 </div>
                 
                 {/* Hero Content */}
@@ -155,19 +180,34 @@ export default function ContactPage() {
                         variants={fadeInUp}
                         transition={{ delay: 0.5, duration: 0.8 }}
                     >
-                        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-                            Hubungi Kami,<br />
-                            <span className="text-blue-300">Solusi Analisis Lingkungan</span>
+                        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-6 leading-tight mt-8">
+                            <span className="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                                Hubungi Kami,
+                            </span>
+                            <br />
+                            <span className="bg-gradient-to-r from-blue-200 to-indigo-200 bg-clip-text text-transparent">
+                                Solusi Analisis Lingkungan
+                            </span>
                         </h1>
-                        <p className="text-base sm:text-lg md:text-xl mb-6 max-w-2xl">
-                            Siap melayani kebutuhan analisis lingkungan Anda dengan standar kualitas terbaik
+                        <p className="text-base sm:text-lg md:text-xl mb-8 max-w-2xl text-blue-100/90 leading-relaxed">
+                            Siap melayani kebutuhan analisis lingkungan Anda dengan standar kualitas terbaik dan teknologi terdepan
                         </p>
+                        <div className="flex flex-wrap gap-4">
+                            <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+                                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                <span className="text-sm font-medium">Terakreditasi</span>
+                            </div>
+                            <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+                                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                                <span className="text-sm font-medium">ISO Certified</span>
+                            </div>
+                        </div>
                     </motion.div>
                 </div>
             </motion.section>
 
             {/* Branch Selection Section */}
-            <section className="py-8 sm:py-12 lg:py-16 bg-white">
+            <section className="py-12 sm:py-16 lg:py-20 bg-white/60 backdrop-blur-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial="hidden"
@@ -175,18 +215,22 @@ export default function ContactPage() {
                         viewport={{ once: true }}
                         variants={fadeInUp}
                         transition={{ duration: 0.6 }}
-                        className="text-center mb-8 sm:mb-12"
+                        className="text-center mb-12 sm:mb-16"
                     >
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full mb-6">
+                            <BuildingOfficeIcon />
+                            <span className="text-sm font-semibold text-blue-800">Jaringan Laboratorium</span>
+                        </div>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-800 via-blue-900 to-indigo-900 bg-clip-text text-transparent mb-6">
                             Cabang Laboratorium Kami
                         </h2>
-                        <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
-                            Pilih cabang laboratorium untuk melihat informasi kontak lengkap
+                        <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                            Pilih cabang laboratorium untuk melihat informasi kontak lengkap dan fasilitas yang tersedia
                         </p>
                     </motion.div>
 
                     {/* Branch Cards */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16 max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-16 sm:mb-20 max-w-6xl mx-auto">
                         {Object.entries(branches).map(([key, branch], index) => (
                             <motion.div
                                 key={key}
@@ -195,33 +239,63 @@ export default function ContactPage() {
                                 viewport={{ once: true }}
                                 variants={slideIn}
                                 transition={{ duration: 0.6, delay: index * 0.15 }}
-                                className={`cursor-pointer transform transition-all duration-300 hover:scale-105 ${
-                                    selectedBranch === key 
-                                        ? 'ring-4 ring-blue-500 shadow-2xl' 
-                                        : 'hover:shadow-xl'
-                                }`}
+                                className="group cursor-pointer transform transition-all duration-500 hover:scale-105 relative"
                                 onClick={() => setSelectedBranch(key as "malang" | "mojokerto" | "solo" | "parapat")}
                             >
-                                <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 h-full">
-                                    <div className="relative h-32 sm:h-36 lg:h-40 overflow-hidden">
+                                {/* Rounded Gradient Border */}
+                                <div className={`absolute inset-0 rounded-3xl opacity-100 transition-all duration-500 ${
+                                    selectedBranch === key 
+                                        ? 'bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 shadow-2xl shadow-blue-500/20' 
+                                        : 'bg-gradient-to-r from-slate-300 via-gray-300 to-slate-300 hover:from-blue-400 hover:via-indigo-400 hover:to-purple-400'
+                                }`}></div>
+                                <div className="absolute inset-[2px] bg-white/80 backdrop-blur-sm rounded-3xl"></div>
+                                
+                                <div className="relative bg-transparent rounded-3xl overflow-hidden h-full">
+                                    {selectedBranch === key && (
+                                        <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center shadow-lg z-10">
+                                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    )}
+                                    <div className="relative h-36 sm:h-40 lg:h-44 overflow-hidden">
                                         <Image
                                             src={branch.image}
                                             alt={branch.name}
                                             fill
-                                            className="object-cover transition-transform duration-300 hover:scale-110"
+                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
                                             unoptimized
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                                        <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 text-white">
-                                            <BuildingOfficeIcon />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                                        <div className="absolute top-3 left-3">
+                                            <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/30">
+                                                <BuildingOfficeIcon />
+                                            </div>
+                                        </div>
+                                        <div className="absolute bottom-3 left-3 text-white">
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                                <span className="text-xs font-medium">Available</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="p-3 sm:p-4 lg:p-5">
-                                        <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2">{branch.name}</h3>
-                                        <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3">{branch.shortAddress}</p>
-                                        <div className="flex items-center text-xs sm:text-sm text-blue-600">
-                                            <MapPinIcon />
-                                            <span className="ml-1 sm:ml-2">Lihat Detail</span>
+                                    <div className="p-5 lg:p-6">
+                                        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                                            {branch.name}
+                                        </h3>
+                                        <p className="text-sm sm:text-base text-slate-600 mb-4 leading-relaxed">
+                                            {branch.shortAddress}
+                                        </p>
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center text-sm text-blue-600 font-medium">
+                                                <MapPinIcon />
+                                                <span className="ml-2">Lihat Detail</span>
+                                            </div>
+                                            <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center group-hover:bg-blue-100 transition-colors duration-300">
+                                                <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -237,14 +311,14 @@ export default function ContactPage() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.5 }}
-                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto"
+                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto"
                         >
                             {/* Address Card */}
                             <motion.div 
-                                className={`group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden ${
+                                className={`group relative rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden ${
                                     selectedBranch !== 'parapat' ? 'cursor-pointer' : ''
                                 }`}
-                                whileHover={{ y: -5 }}
+                                whileHover={{ y: -8, scale: 1.02 }}
                                 onClick={() => {
                                     if (selectedBranch === 'malang') {
                                         window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta+I/@-7.9655562,112.6162775,17z/data=!3m1!4b1!4m6!3m5!1s0x2e788281b93990df:0xd788d8a4e1d290d8!8m2!3d-7.9655562!4d112.6188524!16s%2Fg%2F1hm3y8t5g?authuser=0&entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D', '_blank');
@@ -253,61 +327,65 @@ export default function ContactPage() {
                                     } else if (selectedBranch === 'solo') {
                                         window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta+1+WS+Bengawan+Solo/@-7.562734,110.7642472,918m/data=!3m1!1e3!4m15!1m8!3m7!1s0x2e7a1450e9214cdb:0xc2c8e1c39fe06a0c!2sJl.+Proyek+Bengawan+Solo,+Banaran,+Pabelan,+Kec.+Kartasura,+Kabupaten+Sukoharjo,+Jawa+Tengah+57169!3b1!8m2!3d-7.562336!4d110.7676792!16s%2Fg%2F11bx2czjxq!3m5!1s0x2e7a145a80b90669:0x23a18381da5ee613!8m2!3d-7.5602571!4d110.7687605!16s%2Fg%2F1pzq1l1dc?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D', '_blank');
                                     }
-                                    // Tidak ada action untuk parapat
                                 }}
                             >
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
-                                <div className="flex flex-col items-center text-center">
-                                    <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
-                                        <div className="text-blue-600">
+                                {/* Rounded Gradient Border */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-3xl opacity-100"></div>
+                                <div className="absolute inset-[2px] bg-white rounded-3xl"></div>
+                                
+                                <div className="relative flex flex-col items-center text-center">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+                                        <div className="text-white">
                                             <MapPinIcon />
                                         </div>
                                     </div>
-                                    <h4 className="text-base sm:text-lg font-bold text-gray-800 mb-2 sm:mb-3">
+                                    <h4 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-blue-600 transition-colors duration-300">
                                         Alamat Kantor
                                     </h4>
-                                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                                    <p className="text-sm text-slate-600 leading-relaxed mb-4">
                                         {branches[selectedBranch].fullAddress}
                                     </p>
-                                    <div className="mt-2 sm:mt-3 flex items-center text-xs text-gray-500">
-                                        <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></span>
+                                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-full text-xs font-medium text-blue-700 border border-blue-200">
+                                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                                         {selectedBranch === 'parapat' ? 'Peta akan segera tersedia' : 'Klik untuk buka Google Maps'}
                                     </div>
                                 </div>
-                                <div className="absolute bottom-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-blue-50 rounded-full -mr-8 sm:-mr-10 -mb-8 sm:-mb-10 opacity-20"></div>
                             </motion.div>
 
                             {/* Working Hours Card */}
                             <motion.div 
-                                className="group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden"
-                                whileHover={{ y: -5 }}
+                                className="group relative rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden"
+                                whileHover={{ y: -8, scale: 1.02 }}
                             >
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-emerald-600"></div>
-                                <div className="flex flex-col items-center text-center">
-                                    <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
-                                        <div className="text-emerald-600">
+                                {/* Rounded Gradient Border */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-3xl opacity-100"></div>
+                                <div className="absolute inset-[2px] bg-white rounded-3xl"></div>
+                                
+                                <div className="relative flex flex-col items-center text-center">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+                                        <div className="text-white">
                                             <ClockIcon />
                                         </div>
                                     </div>
-                                    <h4 className="text-base sm:text-lg font-bold text-gray-800 mb-2 sm:mb-3">
-                                        Jam Kerja
+                                    <h4 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-emerald-600 transition-colors duration-300">
+                                        Jam Operasional
                                     </h4>
-                                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                                    <p className="text-sm text-slate-600 leading-relaxed mb-4">
                                         {branches[selectedBranch].workingHours}
                                     </p>
-                                    <div className="mt-2 sm:mt-3 px-2 sm:px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-medium">
+                                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-full text-xs font-medium text-emerald-700 border border-emerald-200">
+                                        <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
                                         Buka Sekarang
                                     </div>
                                 </div>
-                                <div className="absolute bottom-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-emerald-50 rounded-full -mr-8 sm:-mr-10 -mb-8 sm:-mb-10 opacity-20"></div>
                             </motion.div>
 
                             {/* WhatsApp Card */}
                             <motion.div 
-                                className={`group relative bg-white rounded-3xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden ${
+                                className={`group relative rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden ${
                                     selectedBranch !== 'parapat' ? 'cursor-pointer' : ''
                                 }`}
-                                whileHover={{ y: -5 }}
+                                whileHover={{ y: -8, scale: 1.02 }}
                                 onClick={() => {
                                     if (selectedBranch !== 'parapat') {
                                         const phoneNumber = branches[selectedBranch].phone.replace(/\D/g, '');
@@ -316,39 +394,41 @@ export default function ContactPage() {
                                     }
                                 }}
                             >
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-green-600"></div>
-                                <div className="flex flex-col items-center text-center">
-                                    <div className="w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
-                                        <div className="text-green-600">
+                                {/* Rounded Gradient Border */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 rounded-3xl opacity-100"></div>
+                                <div className="absolute inset-[2px] bg-white rounded-3xl"></div>
+                                
+                                <div className="relative flex flex-col items-center text-center">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+                                        <div className="text-white">
                                             <WhatsAppIcon />
                                         </div>
                                     </div>
-                                    <h4 className="text-base sm:text-lg font-bold text-gray-800 mb-2 sm:mb-3">
+                                    <h4 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-green-600 transition-colors duration-300">
                                         WhatsApp
                                     </h4>
                                     {selectedBranch === 'parapat' ? (
                                         <>
-                                            <p className="text-xs sm:text-sm text-gray-600 font-medium mb-2">
+                                            <p className="text-sm text-slate-600 font-medium mb-4">
                                                 Coming Soon
                                             </p>
-                                            <div className="mt-2 sm:mt-3 flex items-center text-xs text-gray-500">
-                                                <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-50 to-slate-50 rounded-full text-xs font-medium text-slate-600 border border-slate-200">
+                                                <div className="w-2 h-2 bg-slate-400 rounded-full animate-pulse"></div>
                                                 WhatsApp akan segera tersedia
                                             </div>
                                         </>
                                     ) : (
                                         <>
-                                            <p className="text-xs sm:text-sm text-green-600 font-medium hover:text-green-800 transition-colors duration-200">
+                                            <p className="text-sm text-green-600 font-semibold hover:text-green-800 transition-colors duration-200 mb-4">
                                                 {branches[selectedBranch].phone}
                                             </p>
-                                            <div className="mt-2 sm:mt-3 flex items-center text-xs text-gray-500">
-                                                <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full text-xs font-medium text-green-700 border border-green-200">
+                                                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                                                 Klik untuk chat WhatsApp
                                             </div>
                                         </>
                                     )}
                                 </div>
-                                <div className="absolute bottom-0 right-0 w-16 sm:w-20 h-16 sm:h-20 bg-green-50 rounded-full -mr-8 sm:-mr-10 -mb-8 sm:-mb-10 opacity-20"></div>
                             </motion.div>
                         </motion.div>
                     </AnimatePresence>
@@ -356,21 +436,35 @@ export default function ContactPage() {
             </section>
 
             {/* Contact Form Section */}
-            <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-slate-50/50 to-blue-50/30 relative overflow-hidden">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                    <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+                    <div className="absolute top-40 right-10 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+                    <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
+                </div>
+                
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
                         variants={fadeInUp}
                         transition={{ duration: 0.6 }}
-                        className="text-center mb-8 sm:mb-12"
+                        className="text-center mb-12 sm:mb-16"
                     >
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">Kirim Pesan</h2>
-                        <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto mb-4 sm:mb-6">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-full mb-6">
+                            <EnvelopeIcon />
+                            <span className="text-sm font-semibold text-indigo-800">Hubungi Kami</span>
+                        </div>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-800 via-indigo-900 to-purple-900 bg-clip-text text-transparent mb-6">
+                            Kirim Pesan
+                        </h2>
+                        <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto mb-6 leading-relaxed">
                             Silakan hubungi kami melalui formulir di bawah ini{selectedBranch !== 'parapat' ? ' atau melalui email di ' : ''}
                             {selectedBranch !== 'parapat' && (
-                                <span className="text-blue-600 font-medium">
+                                <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium ml-1">
+                                    <EnvelopeIcon />
                                     {branches[selectedBranch].email}
                                 </span>
                             )}
@@ -386,88 +480,105 @@ export default function ContactPage() {
                             variants={fadeInUp}
                             transition={{ duration: 0.6, delay: 0.2 }}
                         >
-                            <form 
-                                className="space-y-4 sm:space-y-6 bg-white rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg border border-gray-100"
-                                onSubmit={(e) => {
-                                    e.preventDefault();
+                            <div className="rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl relative overflow-hidden">
+                                {/* Rounded Form Header Decoration */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-3xl opacity-100"></div>
+                                <div className="absolute inset-[2px] bg-white rounded-3xl"></div>
+                                
+                                <div className="relative">
+                                    <div className="flex items-center gap-3 mb-8">
+                                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center">
+                                            <EnvelopeIcon />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-bold text-slate-800">Formulir Kontak</h3>
+                                            <p className="text-sm text-slate-600">Isi form untuk menghubungi kami</p>
+                                        </div>
+                                    </div>
                                     
-                                    // Anti-spam validations
-                                    const currentTime = Date.now();
-                                    
-                                    // 1. Check if honeypot field is filled (bot detection)
-                                    if (honeypot.trim() !== "") {
-                                        console.log("Spam detected: Honeypot field filled");
-                                        return;
-                                    }
-                                    
-                                    // 2. Check minimum time spent on form (too fast = bot)
-                                    const timeSpent = currentTime - formStartTime;
-                                    if (timeSpent < 5000) { // Less than 5 seconds
-                                        alert("Mohon luangkan waktu untuk mengisi formulir dengan benar.");
-                                        return;
-                                    }
-                                    
-                                    // 3. Rate limiting - prevent rapid submissions
-                                    if (currentTime - lastSubmissionTime < 30000) { // 30 seconds cooldown
-                                        alert("Harap tunggu 30 detik sebelum mengirim pesan lagi.");
-                                        return;
-                                    }
-                                    
-                                    // 4. Check submission count per session
-                                    if (submissionCount >= 3) {
-                                        alert("Anda telah mencapai batas maksimum pengiriman pesan. Silakan refresh halaman untuk melanjutkan.");
-                                        return;
-                                    }
-                                    
-                                    // 5. Prevent double submission
-                                    if (isSubmitting) {
-                                        return;
-                                    }
-                                    
-                                    setIsSubmitting(true);
-                                    
-                                    const formData = new FormData(e.target as HTMLFormElement);
-                                    const name = formData.get('name') as string;
-                                    const subject = formData.get('subject') as string;
-                                    const message = formData.get('message') as string;
-                                    
-                                    // 6. Content validation - basic spam detection
-                                    const spamKeywords = ['viagra', 'casino', 'lottery', 'winner', 'congratulations', 'click here', 'free money', 'urgent', 'limited time'];
-                                    const fullText = `${name} ${subject} ${message}`.toLowerCase();
-                                    const hasSpamContent = spamKeywords.some(keyword => fullText.includes(keyword));
-                                    
-                                    if (hasSpamContent) {
-                                        alert("Pesan Anda terdeteksi mengandung konten yang tidak diperbolehkan.");
-                                        setIsSubmitting(false);
-                                        return;
-                                    }
-                                    
-                                    // 7. Check for excessive URLs or special characters
-                                    const urlCount = (message.match(/https?:\/\//g) || []).length;
-                                    if (urlCount > 2) {
-                                        alert("Pesan tidak boleh mengandung lebih dari 2 URL.");
-                                        setIsSubmitting(false);
-                                        return;
-                                    }
-                                    
-                                    // 8. Basic length validation
-                                    if (message.length < 250) {
-                                        alert("Pesan terlalu pendek. Minimal 250 karakter.");
-                                        setIsSubmitting(false);
-                                        return;
-                                    }
-                                    
-                                    if (message.length > 2000) {
-                                        alert("Pesan terlalu panjang. Maksimal 2000 karakter.");
-                                        setIsSubmitting(false);
-                                        return;
-                                    }
-                                    
-                                    // Get recipient email based on selected branch
-                                    const recipientEmail = branches[selectedBranch].email;
-                                    
-                                    // Create email template
-                                    const emailBody = `Halo ${branches[selectedBranch].name},
+                                    <form 
+                                        className="space-y-6"
+                                        onSubmit={(e) => {
+                                            e.preventDefault();
+                                            
+                                            // Anti-spam validations
+                                            const currentTime = Date.now();
+                                            
+                                            // 1. Check if honeypot field is filled (bot detection)
+                                            if (honeypot.trim() !== "") {
+                                                console.log("Spam detected: Honeypot field filled");
+                                                return;
+                                            }
+                                            
+                                            // 2. Check minimum time spent on form (too fast = bot)
+                                            const timeSpent = currentTime - formStartTime;
+                                            if (timeSpent < 5000) { // Less than 5 seconds
+                                                alert("Mohon luangkan waktu untuk mengisi formulir dengan benar.");
+                                                return;
+                                            }
+                                            
+                                            // 3. Rate limiting - prevent rapid submissions
+                                            if (currentTime - lastSubmissionTime < 30000) { // 30 seconds cooldown
+                                                alert("Harap tunggu 30 detik sebelum mengirim pesan lagi.");
+                                                return;
+                                            }
+                                            
+                                            // 4. Check submission count per session
+                                            if (submissionCount >= 3) {
+                                                alert("Anda telah mencapai batas maksimum pengiriman pesan. Silakan refresh halaman untuk melanjutkan.");
+                                                return;
+                                            }
+                                            
+                                            // 5. Prevent double submission
+                                            if (isSubmitting) {
+                                                return;
+                                            }
+                                            
+                                            setIsSubmitting(true);
+                                            
+                                            const formData = new FormData(e.target as HTMLFormElement);
+                                            const name = formData.get('name') as string;
+                                            const subject = formData.get('subject') as string;
+                                            const message = formData.get('message') as string;
+                                            const branch = formData.get('branch') as string;
+                                            
+                                            // 6. Content validation - basic spam detection
+                                            const spamKeywords = ['viagra', 'casino', 'lottery', 'winner', 'congratulations', 'click here', 'free money', 'urgent', 'limited time'];
+                                            const fullText = `${name} ${subject} ${message}`.toLowerCase();
+                                            const hasSpamContent = spamKeywords.some(keyword => fullText.includes(keyword));
+                                            
+                                            if (hasSpamContent) {
+                                                alert("Pesan Anda terdeteksi mengandung konten yang tidak diperbolehkan.");
+                                                setIsSubmitting(false);
+                                                return;
+                                            }
+                                            
+                                            // 7. Check for excessive URLs or special characters
+                                            const urlCount = (message.match(/https?:\/\//g) || []).length;
+                                            if (urlCount > 2) {
+                                                alert("Pesan tidak boleh mengandung lebih dari 2 URL.");
+                                                setIsSubmitting(false);
+                                                return;
+                                            }
+                                            
+                                            // 8. Basic length validation
+                                            if (message.length < 250) {
+                                                alert("Pesan terlalu pendek. Minimal 250 karakter.");
+                                                setIsSubmitting(false);
+                                                return;
+                                            }
+                                            
+                                            if (message.length > 2000) {
+                                                alert("Pesan terlalu panjang. Maksimal 2000 karakter.");
+                                                setIsSubmitting(false);
+                                                return;
+                                            }
+                                            
+                                            // Get recipient email based on selected branch
+                                            const recipientEmail = branches[selectedBranch].email;
+                                            
+                                            // Create email template
+                                            const emailBody = `Halo ${branches[selectedBranch].name},
 
 Saya ${name} ingin menghubungi Anda terkait layanan laboratorium.
 
@@ -477,134 +588,157 @@ Terima kasih atas perhatiannya.
 
 Salam hormat,
 ${name}`;
-                                    
-                                    // Construct Gmail URL
-                                    const gmailUrl = `https://mail.google.com/mail/?view=cm&to=${recipientEmail}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-                                    
-                                    // Update anti-spam tracking
-                                    setLastSubmissionTime(currentTime);
-                                    setSubmissionCount(prev => prev + 1);
-                                    
-                                    // Open Gmail in new tab
-                                    window.open(gmailUrl, '_blank');
-                                    
-                                    // Reset form after successful submission
-                                    setTimeout(() => {
-                                        setIsSubmitting(false);
-                                        (e.target as HTMLFormElement).reset();
-                                        setFormStartTime(Date.now()); // Reset form timing
-                                    }, 1000);
-                                }}
-                            >
-                                <div>
-                                    <label htmlFor="name" className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
-                                        Nama Lengkap
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
-                                        placeholder="Masukkan nama lengkap Anda"
-                                        minLength={2}
-                                        maxLength={100}
-                                        pattern="^[a-zA-Z\s]+$"
-                                        title="Nama hanya boleh mengandung huruf dan spasi"
-                                        required
-                                    />
-                                </div>
-                                
-                                {/* Honeypot field - hidden from users but visible to bots */}
-                                <div style={{ display: 'none' }}>
-                                    <label htmlFor="website">Website (Leave blank):</label>
-                                    <input
-                                        type="text"
-                                        id="website"
-                                        name="website"
-                                        value={honeypot}
-                                        onChange={(e) => setHoneypot(e.target.value)}
-                                        tabIndex={-1}
-                                        autoComplete="off"
-                                    />
-                                </div>
-                                
-                                <div>
-                                    <label htmlFor="subject" className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
-                                        Subjek
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="subject"
-                                        name="subject"
-                                        className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
-                                        placeholder="Subjek pesan Anda"
-                                        minLength={10}
-                                        maxLength={200}
-                                        required
-                                    />
-                                    <div className="text-xs text-gray-500 mt-1">
-                                        Minimal 10 karakter, maksimal 200 karakter
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <label htmlFor="branch" className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
-                                        Cabang Tujuan
-                                    </label>
-                                    <select
-                                        id="branch"
-                                        name="branch"
-                                        value={selectedBranch}
-                                        onChange={(e) => setSelectedBranch(e.target.value as "malang" | "mojokerto" | "solo" | "parapat")}
-                                        className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
+                                            
+                                            // Construct Gmail URL
+                                            const gmailUrl = `https://mail.google.com/mail/?view=cm&to=${recipientEmail}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+                                            
+                                            // Update anti-spam tracking
+                                            setLastSubmissionTime(currentTime);
+                                            setSubmissionCount(prev => prev + 1);
+                                            
+                                            // Open Gmail in new tab
+                                            window.open(gmailUrl, '_blank');
+                                            
+                                            // Reset form after successful submission
+                                            setTimeout(() => {
+                                                setIsSubmitting(false);
+                                                (e.target as HTMLFormElement).reset();
+                                                setFormStartTime(Date.now()); // Reset form timing
+                                            }, 1000);
+                                        }}
                                     >
-                                        <option value="malang">Lab. Malang</option>
-                                        <option value="mojokerto">Lab. Mojokerto</option>
-                                        <option value="solo">Lab. Solo</option>
-                                        <option value="parapat">Lab. Parapat</option>
-                                    </select>
-                                </div>
-                                
-                                <div>
-                                    <label htmlFor="message" className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
-                                        Pesan
-                                    </label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        className="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
-                                        rows={5}
-                                        placeholder="Tulis pesan Anda di sini..."
-                                        minLength={250}
-                                        maxLength={2000}
-                                        required
-                                    />
-                                    <div className="text-xs text-gray-500 mt-1">
-                                        Minimal 250 karakter, maksimal 2000 karakter
-                                    </div>
-                                </div>
-                                
-                                <motion.button
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                    className={`w-full px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold transform transition-all duration-200 focus:ring-4 focus:ring-blue-300 shadow-lg text-sm sm:text-base ${
-                                        isSubmitting 
-                                            ? 'bg-gray-400 text-gray-600 cursor-not-allowed' 
-                                            : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 hover:scale-[1.02]'
-                                    }`}
-                                    whileHover={!isSubmitting ? { scale: 1.02 } : {}}
-                                    whileTap={!isSubmitting ? { scale: 0.98 } : {}}
-                                >
-                                    {isSubmitting ? (
-                                        <div className="flex items-center justify-center gap-2">
-                                            <div className="w-4 h-4 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
-                                            Mengirim...
+                                        <div className="space-y-1">
+                                            <label htmlFor="name" className="block font-semibold text-slate-700 text-sm sm:text-base mb-2">
+                                                Nama Lengkap
+                                            </label>
+                                            <div className="relative">
+                                                <input
+                                                    type="text"
+                                                    id="name"
+                                                    name="name"
+                                                    className="w-full border-2 border-slate-200 rounded-2xl px-4 sm:px-5 py-3 sm:py-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm placeholder-slate-400"
+                                                    placeholder="Masukkan nama lengkap Anda"
+                                                    minLength={2}
+                                                    maxLength={100}
+                                                    pattern="^[a-zA-Z\s]+$"
+                                                    title="Nama hanya boleh mengandung huruf dan spasi"
+                                                    required
+                                                />
+                                            </div>
                                         </div>
-                                    ) : (
-                                        'Kirim Pesan'
-                                    )}
-                                </motion.button>
-                            </form>
+                                        
+                                        {/* Honeypot field - hidden from users but visible to bots */}
+                                        <div style={{ display: 'none' }}>
+                                            <label htmlFor="website">Website (Leave blank):</label>
+                                            <input
+                                                type="text"
+                                                id="website"
+                                                name="website"
+                                                value={honeypot}
+                                                onChange={(e) => setHoneypot(e.target.value)}
+                                                tabIndex={-1}
+                                                autoComplete="off"
+                                            />
+                                        </div>
+                                        
+                                        <div className="space-y-1">
+                                            <label htmlFor="subject" className="block font-semibold text-slate-700 text-sm sm:text-base mb-2">
+                                                Subjek
+                                            </label>
+                                            <div className="relative">
+                                                <input
+                                                    type="text"
+                                                    id="subject"
+                                                    name="subject"
+                                                    className="w-full border-2 border-slate-200 rounded-2xl px-4 sm:px-5 py-3 sm:py-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm placeholder-slate-400"
+                                                    placeholder="Subjek pesan Anda"
+                                                    minLength={10}
+                                                    maxLength={200}
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="text-xs text-slate-500 mt-2 flex items-center gap-1">
+                                                <div className="w-1 h-1 bg-slate-400 rounded-full"></div>
+                                                Minimal 10 karakter, maksimal 200 karakter
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="space-y-1">
+                                            <label htmlFor="branch" className="block font-semibold text-slate-700 text-sm sm:text-base mb-2">
+                                                Cabang Tujuan
+                                            </label>
+                                            <div className="relative">
+                                                <select
+                                                    id="branch"
+                                                    name="branch"
+                                                    value={selectedBranch}
+                                                    onChange={(e) => setSelectedBranch(e.target.value as "malang" | "mojokerto" | "solo" | "parapat")}
+                                                    className="w-full border-2 border-slate-200 rounded-2xl px-4 sm:px-5 py-3 sm:py-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm appearance-none cursor-pointer"
+                                                >
+                                                    <option value="malang">Lab. Malang</option>
+                                                    <option value="mojokerto">Lab. Mojokerto</option>
+                                                    <option value="solo">Lab. Solo</option>
+                                                    <option value="parapat">Lab. Parapat</option>
+                                                </select>
+                                                <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                                                    <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="space-y-1">
+                                            <label htmlFor="message" className="block font-semibold text-slate-700 text-sm sm:text-base mb-2">
+                                                Pesan
+                                            </label>
+                                            <div className="relative">
+                                                <textarea
+                                                    id="message"
+                                                    name="message"
+                                                    className="w-full border-2 border-slate-200 rounded-2xl px-4 sm:px-5 py-3 sm:py-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 text-sm sm:text-base bg-white/80 backdrop-blur-sm placeholder-slate-400 resize-none"
+                                                    rows={6}
+                                                    placeholder="Tulis pesan Anda di sini..."
+                                                    minLength={250}
+                                                    maxLength={2000}
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="text-xs text-slate-500 mt-2 flex items-center gap-1">
+                                                <div className="w-1 h-1 bg-slate-400 rounded-full"></div>
+                                                Minimal 250 karakter, maksimal 2000 karakter
+                                            </div>
+                                        </div>
+                                        
+                                        <motion.button
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            className={`w-full px-6 sm:px-8 py-4 sm:py-5 rounded-2xl font-semibold transform transition-all duration-300 focus:ring-4 focus:ring-blue-300 shadow-lg text-sm sm:text-base relative overflow-hidden group ${
+                                                isSubmitting 
+                                                    ? 'bg-slate-400 text-slate-600 cursor-not-allowed' 
+                                                    : 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 hover:shadow-xl hover:scale-[1.02]'
+                                            }`}
+                                            whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                                            whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                                        >
+                                            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                                            <div className="relative flex items-center justify-center gap-3">
+                                                {isSubmitting ? (
+                                                    <>
+                                                        <div className="w-5 h-5 border-2 border-slate-600 border-t-transparent rounded-full animate-spin"></div>
+                                                        Mengirim Pesan...
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <SendIcon />
+                                                        Kirim Pesan
+                                                    </>
+                                                )}
+                                            </div>
+                                        </motion.button>
+                                    </form>
+                                </div>
+                            </div>
                         </motion.div>
 
                         {/* Map Section */}
@@ -615,82 +749,108 @@ ${name}`;
                             variants={fadeInUp}
                             transition={{ duration: 0.6, delay: 0.4 }}
                         >
-                            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100 h-full">
-                                <div className="mb-4 sm:mb-6">
-                                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                                        Lokasi {branches[selectedBranch].name}
-                                    </h3>
-                                    <p className="text-gray-600 text-xs sm:text-sm">
-                                        {branches[selectedBranch].fullAddress}
-                                    </p>
-                                </div>
+                            <div className="rounded-3xl p-6 sm:p-8 shadow-2xl h-full relative overflow-hidden">
+                                {/* Rounded Map Header Decoration */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-3xl opacity-100"></div>
+                                <div className="absolute inset-[2px] bg-white rounded-3xl"></div>
                                 
-                                <AnimatePresence mode="wait">
-                                    <motion.div
-                                        key={selectedBranch}
-                                        initial={{ opacity: 0, scale: 0.95 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        exit={{ opacity: 0, scale: 0.95 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="w-full h-64 sm:h-80 lg:h-96 rounded-xl overflow-hidden shadow-md"
-                                    >
-                                        {branches[selectedBranch].mapEmbed === "coming-soon" ? (
-                                            <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center rounded-xl">
-                                                <div className="text-center p-6">
-                                                    <div className="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
-                                                        <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                        </svg>
-                                                    </div>
-                                                    <h4 className="text-xl font-bold text-gray-800 mb-2">Coming Soon</h4>
-                                                    <p className="text-gray-600 text-sm">Peta lokasi akan segera tersedia</p>
-                                                </div>
-                                            </div>
-                                        ) : (
-                                            <iframe
-                                                src={branches[selectedBranch].mapEmbed}
-                                                width="100%"
-                                                height="100%"
-                                                style={{ border: 0 }}
-                                                allowFullScreen
-                                                loading="lazy"
-                                                referrerPolicy="no-referrer-when-downgrade"
-                                                className="rounded-xl"
-                                            />
-                                        )}
-                                    </motion.div>
-                                </AnimatePresence>
-                                
-                                <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
-                                    <div className="text-xs sm:text-sm text-gray-600">
-                                        <p className="font-medium">Jam Operasional:</p>
-                                        <p>{branches[selectedBranch].workingHours}</p>
+                                <div className="relative">
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center">
+                                            <MapPinIcon />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-bold text-slate-800">
+                                                Lokasi {branches[selectedBranch].name}
+                                            </h3>
+                                            <p className="text-sm text-slate-600">
+                                                {branches[selectedBranch].shortAddress}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <motion.button
-                                        onClick={() => {
-                                            if (selectedBranch === 'malang') {
-                                                window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta+I/@-7.9655562,112.6162775,17z/data=!3m1!4b1!4m6!3m5!1s0x2e788281b93990df:0xd788d8a4e1d290d8!8m2!3d-7.9655562!4d112.6188524!16s%2Fg%2F1hm3y8t5g?authuser=0&entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D', '_blank');
-                                            } else if (selectedBranch === 'mojokerto') {
-                                                window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta+I/@-7.4459199,112.4652101,918m/data=!3m2!1e3!4b1!4m6!3m5!1s0x2e780dd77cebd423:0x50fbc33142b54443!8m2!3d-7.4459199!4d112.4652101!16s%2Fg%2F11b6qd3128?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D', '_blank');
-                                            } else if (selectedBranch === 'solo') {
-                                                window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta+1+WS+Bengawan+Solo/@-7.562734,110.7642472,918m/data=!3m1!1e3!4m15!1m8!3m7!1s0x2e7a1450e9214cdb:0xc2c8e1c39fe06a0c!2sJl.+Proyek+Bengawan+Solo,+Banaran,+Pabelan,+Kec.+Kartasura,+Kabupaten+Sukoharjo,+Jawa+Tengah+57169!3b1!8m2!3d-7.562336!4d110.7676792!16s%2Fg%2F11bx2czjxq!3m5!1s0x2e7a145a80b90669:0x23a18381da5ee613!8m2!3d-7.5602571!4d110.7687605!16s%2Fg%2F1pzq1l1dc?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D', '_blank');
-                                            } else if (selectedBranch === 'parapat') {
-                                                window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta/@2.6659177,98.9477068,925m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3031ed004d79578f:0xb093f3a92d83ab33!8m2!3d2.6659177!4d98.9477068!16s%2Fg%2F11vkb4ytz1?entry=ttu&g_ep=EgoyMDI1MDcyMS4wIKXMDSoASAFQAw%3D%3D', '_blank');
-                                            }
-                                        }}
-                                        disabled={selectedBranch === 'parapat'}
-                                        className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors duration-200 flex items-center gap-1 sm:gap-2 w-full sm:w-auto justify-center ${
-                                            selectedBranch === 'parapat' 
-                                                ? 'bg-gray-400 text-gray-600 cursor-not-allowed' 
-                                                : 'bg-blue-600 text-white hover:bg-blue-700'
-                                        }`}
-                                        whileHover={selectedBranch !== 'parapat' ? { scale: 1.05 } : {}}
-                                        whileTap={selectedBranch !== 'parapat' ? { scale: 0.95 } : {}}
-                                    >
-                                        <MapPinIcon />
-                                        {selectedBranch === 'parapat' ? 'Segera Hadir' : 'Buka di Google Maps'}
-                                    </motion.button>
+                                    
+                                    <div className="mb-6 p-4 bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl border border-slate-200">
+                                        <p className="text-sm text-slate-700 leading-relaxed">
+                                            {branches[selectedBranch].fullAddress}
+                                        </p>
+                                    </div>
+                                    
+                                    <AnimatePresence mode="wait">
+                                        <motion.div
+                                            key={selectedBranch}
+                                            initial={{ opacity: 0, scale: 0.95 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            exit={{ opacity: 0, scale: 0.95 }}
+                                            transition={{ duration: 0.3 }}
+                                            className="w-full h-72 sm:h-80 lg:h-96 rounded-2xl overflow-hidden shadow-xl border border-white/50"
+                                        >
+                                            {branches[selectedBranch].mapEmbed === "coming-soon" ? (
+                                                <div className="w-full h-full bg-gradient-to-br from-slate-100 via-blue-100 to-indigo-100 flex items-center justify-center rounded-2xl relative overflow-hidden">
+                                                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-500/10"></div>
+                                                    <div className="relative text-center p-8">
+                                                        <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl flex items-center justify-center shadow-xl">
+                                                            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                                                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25s-7.5-4.108-7.5-11.25a7.5 7.5 0 1115 0z" />
+                                                            </svg>
+                                                        </div>
+                                                        <h4 className="text-2xl font-bold text-slate-800 mb-3">Coming Soon</h4>
+                                                        <p className="text-slate-600 text-sm leading-relaxed">Peta lokasi akan segera tersedia untuk memudahkan Anda menemukan kami</p>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <iframe
+                                                    src={branches[selectedBranch].mapEmbed}
+                                                    width="100%"
+                                                    height="100%"
+                                                    style={{ border: 0 }}
+                                                    allowFullScreen
+                                                    loading="lazy"
+                                                    referrerPolicy="no-referrer-when-downgrade"
+                                                    className="rounded-2xl"
+                                                />
+                                            )}
+                                        </motion.div>
+                                    </AnimatePresence>
+                                    
+                                    <div className="mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 p-4 bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl border border-slate-200">
+                                        <div className="flex items-start gap-3">
+                                            <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                                <ClockIcon />
+                                            </div>
+                                            <div>
+                                                <p className="font-semibold text-slate-800 text-sm">Jam Operasional:</p>
+                                                <p className="text-slate-600 text-sm">{branches[selectedBranch].workingHours}</p>
+                                            </div>
+                                        </div>
+                                        <motion.button
+                                            onClick={() => {
+                                                if (selectedBranch === 'malang') {
+                                                    window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta+I/@-7.9655562,112.6162775,17z/data=!3m1!4b1!4m6!3m5!1s0x2e788281b93990df:0xd788d8a4e1d290d8!8m2!3d-7.9655562!4d112.6188524!16s%2Fg%2F1hm3y8t5g?authuser=0&entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D', '_blank');
+                                                } else if (selectedBranch === 'mojokerto') {
+                                                    window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta+I/@-7.4459199,112.4652101,918m/data=!3m2!1e3!4b1!4m6!3m5!1s0x2e780dd77cebd423:0x50fbc33142b54443!8m2!3d-7.4459199!4d112.4652101!16s%2Fg%2F11b6qd3128?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D', '_blank');
+                                                } else if (selectedBranch === 'solo') {
+                                                    window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta+1+WS+Bengawan+Solo/@-7.562734,110.7642472,918m/data=!3m1!1e3!4m15!1m8!3m7!1s0x2e7a1450e9214cdb:0xc2c8e1c39fe06a0c!2sJl.+Proyek+Bengawan+Solo,+Banaran,+Pabelan,+Kec.+Kartasura,+Kabupaten+Sukoharjo,+Jawa+Tengah+57169!3b1!8m2!3d-7.562336!4d110.7676792!16s%2Fg%2F11bx2czjxq!3m5!1s0x2e7a145a80b90669:0x23a18381da5ee613!8m2!3d-7.5602571!4d110.7687605!16s%2Fg%2F1pzq1l1dc?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D', '_blank');
+                                                } else if (selectedBranch === 'parapat') {
+                                                    window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta/@2.6659177,98.9477068,925m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3031ed004d79578f:0xb093f3a92d83ab33!8m2!3d2.6659177!4d98.9477068!16s%2Fg%2F11vkb4ytz1?entry=ttu&g_ep=EgoyMDI1MDcyMS4wIKXMDSoASAFQAw%3D%3D', '_blank');
+                                                }
+                                            }}
+                                            disabled={selectedBranch === 'parapat'}
+                                            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg text-sm w-full sm:w-auto justify-center relative overflow-hidden group ${
+                                                selectedBranch === 'parapat' 
+                                                    ? 'bg-slate-400 text-slate-600 cursor-not-allowed' 
+                                                    : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl'
+                                            }`}
+                                            whileHover={selectedBranch !== 'parapat' ? { scale: 1.05 } : {}}
+                                            whileTap={selectedBranch !== 'parapat' ? { scale: 0.95 } : {}}
+                                        >
+                                            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                                            <div className="relative flex items-center gap-2">
+                                                <MapPinIcon />
+                                                {selectedBranch === 'parapat' ? 'Segera Hadir' : 'Buka di Google Maps'}
+                                            </div>
+                                        </motion.button>
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
