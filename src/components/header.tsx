@@ -203,9 +203,11 @@ const Header = () => {
                     </Link>
                   )}
                 </li>
-                ))}
-              </ul>
-            </div>          {/* Contact Button - Right (Desktop) */}
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Button - Right (Desktop) */}
           <div className="hidden md:flex flex-shrink-0">
             <Link href={whatsappLink} target="_blank" rel="noopener noreferrer">
               <Button

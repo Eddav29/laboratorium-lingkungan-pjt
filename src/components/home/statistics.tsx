@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
+import Image from "next/image";
 
 const Statistics = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,12 +15,12 @@ const Statistics = () => {
   
   const sectionRef = useRef(null);
 
-  const finalCounts = {
+  const finalCounts = useMemo(() => ({
     samples: 10000,
     clients: 500,
     years: 24,
     satisfaction: 99
-  };
+  }), []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -67,7 +68,7 @@ const Statistics = () => {
     return () => {
       counters.forEach(counter => clearInterval(counter));
     };
-  }, [isVisible]);
+  }, [isVisible, finalCounts]);
 
   const handleVideoPlay = () => {
     setIsVideoPlaying(true);
@@ -141,9 +142,11 @@ const Statistics = () => {
             {!isVideoPlaying ? (
               // Custom Thumbnail
               <>
-                <img
+                <Image
                   src="/assets/images/background_video.png"
                   alt="Video Thumbnail"
+                  width={800}
+                  height={450}
                   className="w-full h-full object-cover cursor-pointer"
                   onClick={handleVideoPlay}
                 />

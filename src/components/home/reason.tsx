@@ -1,4 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
+import Image from 'next/image';
 
 const Reason = () => {
   const features = [
@@ -62,9 +63,11 @@ const Reason = () => {
           {/* Right Content - Image */}
           <div className="lg:pl-8">
             <div className="relative">
-              <img
+              <Image
                 src="/assets/images/lab_cropped.png"
                 alt="Laboratory Professional"
+                width={600}
+                height={400}
                 className="rounded-2xl shadow-2xl"
               />
               <div className="absolute inset-0 bg-blue-600 opacity-10 rounded-2xl"></div>
