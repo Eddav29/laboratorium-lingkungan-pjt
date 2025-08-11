@@ -11,6 +11,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -19,12 +20,16 @@ const Header = () => {
       setIsScrolled(scrollPosition > 50);
       // Close dropdown when scrolling
       setIsDropdownOpen(false);
+      setIsMobileDropdownOpen(false);
     };
 
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
       if (!target.closest('.dropdown-container')) {
         setIsDropdownOpen(false);
+      }
+      if (!target.closest('.mobile-dropdown-container')) {
+        setIsMobileDropdownOpen(false);
       }
     };
 
@@ -33,6 +38,7 @@ const Header = () => {
       if (window.innerWidth >= 768) {
         setIsMobileMenuOpen(false);
         setIsDropdownOpen(false);
+        setIsMobileDropdownOpen(false);
       }
     };
 
@@ -83,6 +89,14 @@ const Header = () => {
     setIsDropdownOpen(false);
   };
 
+  const toggleMobileDropdown = () => {
+    setIsMobileDropdownOpen(!isMobileDropdownOpen);
+  };
+
+  const closeMobileDropdown = () => {
+    setIsMobileDropdownOpen(false);
+  };
+
   const getIcon = (iconType: string) => {
     switch (iconType) {
       case "building":
@@ -111,20 +125,24 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-lg" : "bg-transparent"
+        isMobileMenuOpen
+          ? "bg-white/95 backdrop-blur-lg shadow-xl border-b border-gray-200/50"
+          : isScrolled 
+            ? "bg-white shadow-lg border-b border-gray-200" 
+            : "bg-transparent"
       }`}
     >
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo - Left */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 z-10">
             <Link href="/" className="flex items-center">
               <Image
                 src="/assets/logo/logo.png"
                 alt="Laboratorium Lingkungan PJT"
                 width={60}
                 height={60}
-                className="h-12 w-auto"
+                className="h-12 w-auto drop-shadow-sm"
                 priority
               />
             </Link>
@@ -233,13 +251,27 @@ const Header = () => {
 
           {/* Mobile menu button */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 ${
-              isScrolled ? "text-gray-500" : "text-white hover:bg-gray-700"
+            onClick={() => {
+              setIsMobileMenuOpen(!isMobileMenuOpen);
+              // Close mobile dropdown when closing mobile menu
+              if (isMobileMenuOpen) {
+                setIsMobileDropdownOpen(false);
+              }
+            }}
+            className={`md:hidden inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 z-10 ${
+              isMobileMenuOpen
+                ? "text-gray-900 bg-gray-100/50 hover:bg-gray-200/70 focus:ring-gray-400/50 shadow-sm"
+                : isScrolled 
+                  ? "text-gray-700 hover:bg-white/50 focus:ring-gray-200/50" 
+                  : "text-white hover:bg-white/10 focus:ring-white/20"
             }`}
           >
             <span className="sr-only">Open main menu</span>
-            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {isMobileMenuOpen ? (
+              <X size={22} className="drop-shadow-sm" />
+            ) : (
+              <Menu size={22} className="drop-shadow-sm" />
+            )}
           </button>
 
           {/* Mobile Navigation */}
@@ -247,44 +279,57 @@ const Header = () => {
             <>
               {/* Backdrop */}
               <div 
-                className="fixed inset-0 bg-black bg-opacity-25 z-[90] md:hidden"
-                onClick={() => setIsMobileMenuOpen(false)}
+                className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[90] md:hidden"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsMobileDropdownOpen(false);
+                }}
               />
               
               {/* Mobile Menu */}
-              <div className="absolute top-full left-0 right-0 md:hidden bg-white border-t border-gray-200 shadow-xl z-[95] max-h-[calc(100vh-80px)] overflow-y-auto">
+              <div className={`absolute top-full left-0 right-0 md:hidden shadow-2xl z-[95] max-h-[calc(100vh-80px)] overflow-y-auto transition-all duration-300 ${
+                isScrolled 
+                  ? "bg-white/95 backdrop-blur-lg border-t border-gray-200/50" 
+                  : "bg-white/90 backdrop-blur-lg border-t border-white/30"
+              }`}>
                 <div className="container mx-auto px-4 py-4">
                   <ul className="flex flex-col space-y-2">
                     {navigationItems.map((item) => (
                       <li key={item.href}>
                         {item.hasDropdown ? (
-                          <div>
+                          <div className="mobile-dropdown-container">
                             <button
-                              onClick={toggleDropdown}
-                              className={`flex items-center justify-between w-full py-3 px-4 text-gray-900 rounded-lg hover:bg-gray-100 font-medium transition-colors duration-200 ${
-                                isActiveRoute(item.href) ? "bg-blue-50 text-blue-700" : ""
+                              onClick={toggleMobileDropdown}
+                              className={`flex items-center justify-between w-full py-3 px-4 rounded-lg font-medium transition-colors duration-200 ${
+                                isScrolled
+                                  ? `text-gray-900 hover:bg-white/70 ${isActiveRoute(item.href) ? "bg-blue-50/90 text-blue-700" : ""}`
+                                  : `text-gray-800 hover:bg-white/20 ${isActiveRoute(item.href) ? "bg-blue-500/40 text-blue-700" : ""}`
                               }`}
                             >
                               {item.label}
                               <ChevronDown
                                 size={16}
                                 className={`transition-transform duration-200 ${
-                                  isDropdownOpen ? "rotate-180" : ""
+                                  isMobileDropdownOpen ? "rotate-180" : ""
                                 }`}
                               />
                             </button>
-                            {isDropdownOpen && (
-                              <ul className="mt-2 ml-4 space-y-1 border-l-2 border-blue-200 pl-4">
+                            {isMobileDropdownOpen && (
+                              <ul className={`mt-2 ml-4 space-y-1 border-l-2 pl-4 ${
+                                isScrolled ? "border-blue-200" : "border-blue-400/50"
+                              }`}>
                                 {item.dropdownItems?.map((dropdownItem) => (
                                   <li key={dropdownItem.href}>
                                     <Link
                                       href={dropdownItem.href}
                                       onClick={() => {
-                                        closeDropdown();
+                                        closeMobileDropdown();
                                         setIsMobileMenuOpen(false);
                                       }}
-                                      className={`flex items-center py-2 px-3 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200 ${
-                                        pathname === dropdownItem.href ? "bg-blue-50 text-blue-600" : ""
+                                      className={`flex items-center py-2 px-3 rounded-lg transition-colors duration-200 ${
+                                        isScrolled
+                                          ? `text-gray-700 hover:bg-blue-50/70 hover:text-blue-600 ${pathname === dropdownItem.href ? "bg-blue-50/90 text-blue-600" : ""}`
+                                          : `text-gray-600 hover:bg-white/20 hover:text-gray-700 ${pathname === dropdownItem.href ? "bg-blue-500/40 text-blue-700" : ""}`
                                       }`}
                                     >
                                       {getIcon(dropdownItem.icon)}
@@ -299,8 +344,10 @@ const Header = () => {
                           <Link
                             href={item.href}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className={`block py-3 px-4 text-gray-900 rounded-lg hover:bg-gray-100 font-medium transition-colors duration-200 ${
-                              isActiveRoute(item.href) ? "bg-blue-50 text-blue-700" : ""
+                            className={`block py-3 px-4 rounded-lg font-medium transition-colors duration-200 ${
+                              isScrolled
+                                ? `text-gray-900 hover:bg-white/70 ${isActiveRoute(item.href) ? "bg-blue-50/90 text-blue-700" : ""}`
+                                : `text-gray-800 hover:bg-white/20 ${isActiveRoute(item.href) ? "bg-blue-500/40 text-blue-700" : ""}`
                             }`}
                           >
                             {item.label}
@@ -308,14 +355,16 @@ const Header = () => {
                         )}
                       </li>
                     ))}
-                    <li className="pt-4 border-t border-gray-200">
+                    <li className={`pt-4 border-t ${
+                      isScrolled ? "border-gray-300/50" : "border-gray-400/30"
+                    }`}>
                       <Link
                         href={whatsappLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg group py-3">
+                        <Button className="w-full bg-blue-600/90 hover:bg-blue-700 text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg group py-3 backdrop-blur-sm">
                           <span className="flex items-center justify-center">
                             <svg 
                               className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:rotate-12" 
