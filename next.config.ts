@@ -22,9 +22,9 @@ const nextConfig: NextConfig = {
     esmExternals: true,
   },
   
-  // Alternative CSS optimization without critters
-  swcMinify: true,
-  optimizeFonts: true,
+  // // Alternative CSS optimization without critters
+  // swcMinify: true,
+  // optimizeFonts: true,
   
   typescript: {
     // Allow production builds to pass even if there are type errors
