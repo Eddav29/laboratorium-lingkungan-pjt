@@ -34,7 +34,7 @@ const Services = () => {
               </div>
             </Link>
 
-            <Link href="/services/udara" className="block group h-full">
+            <Link href="/services/udara-ambient" className="block group h-full">
               <div className="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform group-hover:scale-105 border border-green-200 h-full flex flex-col">
                 <div className="text-green-600 text-5xl mb-6 text-center">🌬️</div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-4 text-center">
@@ -47,15 +47,14 @@ const Services = () => {
               </div>
             </Link>
 
-            <Link href="/services/lainnya" className="block group h-full">
+            <Link href="/services" className="block group h-full">
               <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform group-hover:scale-105 border border-purple-200 h-full flex flex-col">
                 <div className="text-purple-600 text-5xl mb-6 text-center">🔬</div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-4 text-center">
                   Layanan Lainnya
                 </h3>
                 <p className="text-gray-600 mb-6 text-center leading-relaxed flex-1">
-                  Analisis tanah, limbah B3, mikrobiologi, dan konsultasi
-                  lingkungan terintegrasi
+                  Kebisingan, pencahayaan, mikrobiologi, udara lingkungan kerja, dan layanan analisis lingkungan lainnya
                 </p>
               </div>
             </Link>
