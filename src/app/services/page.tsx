@@ -154,17 +154,18 @@ export default function Services() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 auto-rows-fr">
             {services.map((service, index) => (
-              <Link href={service.link} key={index}>
-                <Card 
-                  className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 bg-white hover:bg-blue-600 border border-gray-200 overflow-hidden cursor-pointer h-full ${
-                    index === 6 ? 'md:col-start-2 lg:col-start-2' : ''
-                  }`}
-                >
-                  <CardContent className="p-8 relative h-full">
+              <div key={index} className={`${index === 6 ? 'md:col-span-2 md:flex md:justify-center lg:col-span-1 lg:col-start-2' : ''}`}>
+                <Link href={service.link} className="block w-full h-full">
+                  <Card 
+                    className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 bg-white hover:bg-blue-600 border border-gray-200 overflow-hidden cursor-pointer h-full ${
+                      index === 6 ? 'md:max-w-sm lg:max-w-none' : ''
+                    }`}
+                  >
+                  <CardContent className="p-8 relative h-full flex flex-col">
                     {/* Konten utama - hilang saat hover */}
-                    <div className="transition-opacity duration-300 group-hover:opacity-0">
+                    <div className="transition-opacity duration-300 group-hover:opacity-0 flex flex-col flex-1">
                       <div className="text-4xl mb-4">
                         {service.icon}
                       </div>
@@ -172,7 +173,7 @@ export default function Services() {
                       <h3 className="text-xl font-semibold mb-3 text-gray-900">
                         {service.title}
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-gray-600 flex-1">
                         {service.description}
                       </p>
                     </div>
@@ -199,6 +200,7 @@ export default function Services() {
                   </CardContent>
                 </Card>
               </Link>
+            </div>
             ))}
           </div>
         </div>
