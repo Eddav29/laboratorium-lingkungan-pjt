@@ -137,7 +137,7 @@ export default function About() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
       <Header />
 
@@ -198,8 +198,8 @@ export default function About() {
           variants={fadeInUp}
           transition={{ duration: 0.8 }}
         >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl mx-auto text-center">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full text-center">
               <motion.h2 
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-600 mb-6 sm:mb-8"
                 variants={fadeInUp}
@@ -235,8 +235,8 @@ export default function About() {
           viewport={{ once: false, amount: 0.3 }}
           variants={staggerContainer}
         >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full">
               <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
                 {/* Left Side - Image */}
                 <motion.div 
@@ -323,15 +323,16 @@ export default function About() {
         {/* Journey Timeline Section */}
         <motion.section 
           id="journey"
-          className="py-8 sm:py-12 lg:py-16 bg-gray-50"
+          className="py-8 sm:py-12 lg:py-16 pb-32 lg:pb-48 bg-gray-50 overflow-visible relative"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
           variants={fadeInUp}
           transition={{ duration: 0.8 }}
+          style={{ zIndex: 10 }}
         >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl mx-auto">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full overflow-visible">
               <motion.h2 
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-600 mb-4 sm:mb-6 text-center"
                 variants={fadeInUp}
@@ -412,7 +413,7 @@ export default function About() {
 
               {/* Desktop Timeline - Horizontal */}
               <motion.div 
-                className="hidden lg:block relative max-w-6xl mx-auto"
+                className="hidden lg:block relative w-full max-w-7xl mx-auto overflow-visible"
                 variants={staggerContainer}
                 transition={{ delay: 0.6 }}
               >
@@ -420,7 +421,7 @@ export default function About() {
                 <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-1 bg-gradient-to-r from-[#61eabc] via-[#61eabc] to-[#61eabc] rounded-full shadow-lg"></div>
                 
                 {/* Timeline Items */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 w-full overflow-visible">
                   {Object.entries(timelineData).map(([year, data], index) => {
                     const isTop = index % 2 === 0;
                     
@@ -470,11 +471,15 @@ export default function About() {
                         {/* Description Rectangle - appears on hover */}
                         {activeYear === year && (
                           <motion.div
-                            className={`absolute z-20 w-72 bg-white rounded-xl shadow-2xl border border-gray-100 p-6 ${
+                            className={`absolute z-50 w-72 bg-white rounded-xl shadow-2xl border border-gray-100 p-6 ${
                               isTop 
                                 ? 'top-20 mt-4' 
                                 : 'bottom-20 mb-4'
                             }`}
+                            style={{
+                              maxWidth: '90vw',
+                              zIndex: 9999
+                            }}
                             initial={{ 
                               opacity: 0, 
                               y: isTop ? -20 : 20,
@@ -535,8 +540,8 @@ export default function About() {
           variants={fadeInUp}
           transition={{ duration: 0.8 }}
         >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl mx-auto">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full">
               <motion.h2 
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-600 mb-6 sm:mb-8 text-center"
                 variants={fadeInUp}
@@ -584,8 +589,8 @@ export default function About() {
           variants={fadeInUp}
           transition={{ duration: 0.8 }}
         >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl mx-auto">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full">
               <motion.h2 
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-600 mb-6 sm:mb-8 text-center"
                 variants={fadeInUp}
@@ -907,8 +912,8 @@ export default function About() {
           variants={fadeInUp}
           transition={{ duration: 0.8 }}
         >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl mx-auto">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full">
               <motion.h2 
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-600 mb-6 sm:mb-8 text-center"
                 variants={fadeInUp}

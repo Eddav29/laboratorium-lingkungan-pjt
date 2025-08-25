@@ -232,7 +232,7 @@ export default function Portofolio() {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800/80 to-blue-900/50"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+  <div className="w-full max-w-7xl mx-auto px-4 relative z-10">
           <div className="max-w-4xl">
             <motion.div 
               className="mb-6"
@@ -298,7 +298,7 @@ export default function Portofolio() {
 
       {/* Filter Section */}
       <section className="py-8 bg-gray-50">
-        <div className="container mx-auto px-4">
+  <div className="w-full max-w-7xl mx-auto px-4">
           <motion.div 
             className="flex flex-wrap items-center justify-between gap-4"
             initial={{ opacity: 0, y: 20 }}
@@ -331,7 +331,7 @@ export default function Portofolio() {
 
       {/* Portfolio Grid */}
       <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4">
+  <div className="w-full max-w-7xl mx-auto px-4">
           {isLoading ? (
             <div className="flex justify-center items-center min-h-[400px]">
               <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
@@ -441,7 +441,7 @@ export default function Portofolio() {
 
       {/* Statistics Section */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+  <div className="w-full max-w-7xl mx-auto px-4">
           <motion.div 
             className="max-w-7xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
@@ -522,7 +522,7 @@ export default function Portofolio() {
 
       {/* Call to Action */}
     <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-800">
-        <div className="container mx-auto px-4">
+  <div className="w-full max-w-7xl mx-auto px-4">
             <motion.div 
                 className="max-w-5xl mx-auto text-center text-white"
                 initial={{ opacity: 0, y: 30 }}
