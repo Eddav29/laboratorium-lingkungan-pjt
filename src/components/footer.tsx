@@ -3,10 +3,10 @@ import React from 'react';
 export default function Footer() {
   return (
     <footer className="bg-slate-900 text-white">
-      <div className="container mx-auto px-12 py-16 max-w-6xl">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="w-full flex justify-center px-4 py-16">
+        <div className="w-full max-w-5xl flex flex-col md:flex-row md:justify-center md:items-start gap-12 md:gap-16 text-center md:text-left">
           {/* Info Kontak */}
-          <div className="space-y-4">
+          <div className="flex-1 min-w-[220px] space-y-4">
             <h3 className="text-lg font-bold text-white mb-4">Info Kontak</h3>
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
@@ -62,61 +62,95 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* About Us */}
-          <div className="space-y-4">
+          {/* Tentang Kami */}
+          <div className="flex-1 min-w-[220px] space-y-4">
             <h3 className="text-lg font-bold text-white mb-4">Tentang Kami</h3>
             <div className="space-y-2">
               <a 
                 href="/about#company-info" 
-                className="block text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
               >
-                Tentang Kami
+                Profil Kami
               </a>
               <a 
                 href="/about#vision-duties" 
-                className="block text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
               >
                 Visi dan Tanggung Jawab
               </a>
               <a 
                 href="/about#journey" 
-                className="block text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
               >
                 Perjalanan Kami
               </a>
               <a 
                 href="/about#team" 
-                className="block text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
               >
                 Tim Kami
               </a>
               <a 
                 href="/about#certification" 
-                className="block text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
               >
                 Sertifikasi dan Registrasi
               </a>
               <a 
                 href="/about#partners" 
-                className="block text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
               >
                 Partner Kami
               </a>
             </div>
           </div>
 
-          {/* Perizinan Operasional */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-bold text-white mb-4">Perizinan Operasional</h3>
-            <div className="space-y-3">
-              <div className="bg-slate-800 p-3 rounded-lg border-l-4 border-blue-500">
-                <p className="text-blue-400 text-xs font-semibold uppercase tracking-wide mb-2">
-                  PERMEN LHK NO 23/2020
-                </p>
-                <p className="text-gray-300 text-xs leading-relaxed">
-                  Laboratorium Lingkungan terakreditasi untuk pengujian parameter lingkungan sesuai standar nasional
-                </p>
-              </div>
+          {/* Layanan */}
+          <div className="flex-1 min-w-[220px] space-y-4">
+            <h3 className="text-lg font-bold text-white mb-4">Layanan</h3>
+            <div className="space-y-2">
+              <a
+                href="/services/air"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+              >
+                Pengambilan Sampel Air (Uji Fisika, Kimia, Mikrobiologi)
+              </a>
+              <a
+                href="/services/udara-ambient"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+              >
+                Pengambilan Sampel Udara Ambient
+              </a>
+              <a
+                href="/services/udara-emisi"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+              >
+                Pengambilan Sampel Udara Emisi
+              </a>
+              <a
+                href="/services/kebisingan"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+              >
+                Pengambilan Sampel Kebisingan
+              </a>
+              <a
+                href="/services/udara-lingkungan-kerja"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+              >
+                Pengambilan Sampel Udara Lingkungan Kerja
+              </a>
+              <a
+                href="/services/mikrobiologi"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+              >
+                Pengambilan Sampel Mikrobiologi
+              </a>
+              <a
+                href="/services/pencahayaan"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+              >
+                Pengambilan Sampel Pencahayaan
+              </a>
             </div>
           </div>
         </div>
