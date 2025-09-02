@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -48,12 +48,29 @@ export default function ContactPage() {
     // State for selected branch
     const [selectedBranch, setSelectedBranch] = useState<"malang" | "mojokerto" | "solo" | "parapat">("malang");
     
+    // Ref for scroll target
+    const contactInfoRef = useRef<HTMLDivElement>(null);
+    
     // Anti-spam states
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [lastSubmissionTime, setLastSubmissionTime] = useState<number>(0);
     const [submissionCount, setSubmissionCount] = useState(0);
     const [honeypot, setHoneypot] = useState("");
     const [formStartTime, setFormStartTime] = useState<number>(0);
+    
+    // Function to scroll to contact info section
+    const scrollToContactInfo = () => {
+        if (contactInfoRef.current) {
+            const yOffset = -150; // Offset untuk memberikan ruang di atas (lebih besar)
+            const element = contactInfoRef.current;
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            
+            window.scrollTo({
+                top: y,
+                behavior: 'smooth'
+            });
+        }
+    };
     
     // Initialize form start time when component mounts
     React.useEffect(() => {
@@ -173,7 +190,12 @@ export default function ContactPage() {
                                 Hubungi Kami,
                             </span>
                             <br />
-                            <span className="bg-gradient-to-r from-blue-200 to-indigo-200 bg-clip-text text-transparent">
+                            <span style={{
+                                background: 'linear-gradient(to right, #61eabc, #1f6ff4)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                backgroundClip: 'text'
+                            }}>
                                 Solusi Analisis Lingkungan
                             </span>
                         </h1>
@@ -205,11 +227,18 @@ export default function ContactPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-12 sm:mb-16"
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full mb-6">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style={{
+                            background: 'linear-gradient(to right, rgba(97, 234, 188, 0.2), rgba(31, 111, 244, 0.2))'
+                        }}>
                             <BuildingOfficeIcon />
-                            <span className="text-sm font-semibold text-blue-800">Jaringan Laboratorium</span>
+                            <span className="text-sm font-semibold" style={{ color: '#1f6ff4' }}>Jaringan Laboratorium</span>
                         </div>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-800 via-blue-900 to-indigo-900 bg-clip-text text-transparent mb-6">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6" style={{
+                            background: 'linear-gradient(to right, #61eabc, #1f6ff4)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text'
+                        }}>
                             Cabang Laboratorium Kami
                         </h2>
                         <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
@@ -227,20 +256,44 @@ export default function ContactPage() {
                                 viewport={{ once: true }}
                                 variants={slideIn}
                                 transition={{ duration: 0.6, delay: index * 0.15 }}
-                                className="group cursor-pointer transform transition-all duration-500 hover:scale-105 relative"
-                                onClick={() => setSelectedBranch(key as "malang" | "mojokerto" | "solo" | "parapat")}
+                                className="group cursor-pointer transform transition-all duration-200 hover:scale-105 relative"
+                                onClick={() => {
+                                    setSelectedBranch(key as "malang" | "mojokerto" | "solo" | "parapat");
+                                    // Small delay to allow state update before scrolling
+                                    setTimeout(() => {
+                                        scrollToContactInfo();
+                                    }, 100);
+                                }}
                             >
                                 {/* Rounded Gradient Border */}
-                                <div className={`absolute inset-0 rounded-3xl opacity-100 transition-all duration-500 ${
-                                    selectedBranch === key 
-                                        ? 'bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 shadow-2xl shadow-blue-500/20' 
-                                        : 'bg-gradient-to-r from-slate-300 via-gray-300 to-slate-300 hover:from-blue-400 hover:via-indigo-400 hover:to-purple-400'
-                                }`}></div>
+                                <div 
+                                    className={`absolute inset-0 rounded-3xl opacity-100 transition-all duration-200 ${
+                                        selectedBranch === key 
+                                            ? 'shadow-2xl shadow-blue-500/20' 
+                                            : 'bg-gradient-to-r from-slate-300 via-gray-300 to-slate-300 hover:opacity-0'
+                                    }`} 
+                                    style={{
+                                        background: selectedBranch === key 
+                                            ? 'linear-gradient(to right, #61eabc, #1f6ff4)' 
+                                            : undefined
+                                    }}>
+                                </div>
+                                {/* Hover Gradient */}
+                                <div 
+                                    className={`absolute inset-0 rounded-3xl opacity-0 transition-all duration-200 hover:opacity-100 ${
+                                        selectedBranch === key ? 'hidden' : ''
+                                    }`}
+                                    style={{
+                                        background: 'linear-gradient(to right, rgba(97, 234, 188, 0.6), rgba(31, 111, 244, 0.6))'
+                                    }}>
+                                </div>
                                 <div className="absolute inset-[2px] bg-white/80 backdrop-blur-sm rounded-3xl"></div>
                                 
                                 <div className="relative bg-transparent rounded-3xl overflow-hidden h-full">
                                     {selectedBranch === key && (
-                                        <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center shadow-lg z-10">
+                                        <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center shadow-lg z-10" style={{
+                                            background: 'linear-gradient(to right, #61eabc, #1f6ff4)'
+                                        }}>
                                             <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                             </svg>
@@ -251,7 +304,7 @@ export default function ContactPage() {
                                             src={branch.image}
                                             alt={branch.name}
                                             fill
-                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                            className="object-cover transition-transform duration-200 group-hover:scale-110"
                                             unoptimized
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
@@ -268,7 +321,7 @@ export default function ContactPage() {
                                         </div>
                                     </div>
                                     <div className="p-5 lg:p-6">
-                                        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                                        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors duration-200">
                                             {branch.name}
                                         </h3>
                                         <p className="text-sm sm:text-base text-slate-600 mb-4 leading-relaxed">
@@ -279,7 +332,7 @@ export default function ContactPage() {
                                                 <MapPinIcon />
                                                 <span className="ml-2">Lihat Detail</span>
                                             </div>
-                                            <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center group-hover:bg-blue-100 transition-colors duration-300">
+                                            <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center group-hover:bg-blue-100 transition-colors duration-200">
                                                 <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                                 </svg>
@@ -294,6 +347,7 @@ export default function ContactPage() {
                     {/* Contact Information Cards */}
                     <AnimatePresence mode="wait">
                         <motion.div
+                            ref={contactInfoRef}
                             key={selectedBranch}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -303,10 +357,11 @@ export default function ContactPage() {
                         >
                             {/* Address Card */}
                             <motion.div 
-                                className={`group relative rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden ${
+                                className={`group relative rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-150 overflow-hidden ${
                                     selectedBranch !== 'parapat' ? 'cursor-pointer' : ''
                                 }`}
                                 whileHover={{ y: -8, scale: 1.02 }}
+                                transition={{ duration: 0.15 }}
                                 onClick={() => {
                                     if (selectedBranch === 'malang') {
                                         window.open('https://www.google.com/maps/place/Perum+Jasa+Tirta+I/@-7.9655562,112.6162775,17z/data=!3m1!4b1!4m6!3m5!1s0x2e788281b93990df:0xd788d8a4e1d290d8!8m2!3d-7.9655562!4d112.6188524!16s%2Fg%2F1hm3y8t5g?authuser=0&entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D', '_blank');
@@ -318,23 +373,31 @@ export default function ContactPage() {
                                 }}
                             >
                                 {/* Rounded Gradient Border */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-3xl opacity-100"></div>
+                                <div className="absolute inset-0 rounded-3xl opacity-100" style={{
+                                    background: 'linear-gradient(to right, #61eabc, #1f6ff4)'
+                                }}></div>
                                 <div className="absolute inset-[2px] bg-white rounded-3xl"></div>
                                 
                                 <div className="relative flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+                                    <div className="w-16 h-16 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-150 shadow-lg" style={{
+                                        background: 'linear-gradient(to bottom right, #61eabc, #1f6ff4)'
+                                    }}>
                                         <div className="text-white">
                                             <MapPinIcon />
                                         </div>
                                     </div>
-                                    <h4 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                                    <h4 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-blue-600 transition-colors duration-150">
                                         Alamat Kantor
                                     </h4>
                                     <p className="text-sm text-slate-600 leading-relaxed mb-4">
                                         {branches[selectedBranch].fullAddress}
                                     </p>
-                                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-full text-xs font-medium text-blue-700 border border-blue-200">
-                                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium border" style={{
+                                        background: 'linear-gradient(to right, rgba(97, 234, 188, 0.1), rgba(31, 111, 244, 0.1))',
+                                        color: '#1f6ff4',
+                                        borderColor: '#61eabc'
+                                    }}>
+                                        <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#1f6ff4' }}></div>
                                         {selectedBranch === 'parapat' ? 'Peta akan segera tersedia' : 'Klik untuk buka Google Maps'}
                                     </div>
                                 </div>
@@ -342,20 +405,21 @@ export default function ContactPage() {
 
                             {/* Working Hours Card */}
                             <motion.div 
-                                className="group relative rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden"
+                                className="group relative rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-150 overflow-hidden"
                                 whileHover={{ y: -8, scale: 1.02 }}
+                                transition={{ duration: 0.15 }}
                             >
                                 {/* Rounded Gradient Border */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-3xl opacity-100"></div>
                                 <div className="absolute inset-[2px] bg-white rounded-3xl"></div>
                                 
                                 <div className="relative flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-150 shadow-lg">
                                         <div className="text-white">
                                             <ClockIcon />
                                         </div>
                                     </div>
-                                    <h4 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-emerald-600 transition-colors duration-300">
+                                    <h4 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-emerald-600 transition-colors duration-150">
                                         Jam Operasional
                                     </h4>
                                     <p className="text-sm text-slate-600 leading-relaxed mb-4">
@@ -370,10 +434,11 @@ export default function ContactPage() {
 
                             {/* WhatsApp Card */}
                             <motion.div 
-                                className={`group relative rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden ${
+                                className={`group relative rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-150 overflow-hidden ${
                                     selectedBranch !== 'parapat' ? 'cursor-pointer' : ''
                                 }`}
                                 whileHover={{ y: -8, scale: 1.02 }}
+                                transition={{ duration: 0.15 }}
                                 onClick={() => {
                                     if (selectedBranch !== 'parapat') {
                                         const phoneNumber = branches[selectedBranch].phone.replace(/\D/g, '');
@@ -387,12 +452,12 @@ export default function ContactPage() {
                                 <div className="absolute inset-[2px] bg-white rounded-3xl"></div>
                                 
                                 <div className="relative flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-150 shadow-lg">
                                         <div className="text-white">
                                             <WhatsAppIcon />
                                         </div>
                                     </div>
-                                    <h4 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-green-600 transition-colors duration-300">
+                                    <h4 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-green-600 transition-colors duration-150">
                                         WhatsApp
                                     </h4>
                                     {selectedBranch === 'parapat' ? (
@@ -427,9 +492,15 @@ export default function ContactPage() {
             <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-slate-50/50 to-blue-50/30 relative overflow-hidden">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-                    <div className="absolute top-40 right-10 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
-                    <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
+                    <div className="absolute top-20 left-10 w-72 h-72 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style={{
+                        background: '#61eabc'
+                    }}></div>
+                    <div className="absolute top-40 right-10 w-72 h-72 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000" style={{
+                        background: '#1f6ff4'
+                    }}></div>
+                    <div className="absolute bottom-20 left-1/2 w-72 h-72 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000" style={{
+                        background: 'linear-gradient(45deg, #61eabc, #1f6ff4)'
+                    }}></div>
                 </div>
                 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -441,11 +512,18 @@ export default function ContactPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-12 sm:mb-16"
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-full mb-6">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style={{
+                            background: 'linear-gradient(to right, rgba(97, 234, 188, 0.2), rgba(31, 111, 244, 0.2))'
+                        }}>
                             <EnvelopeIcon />
-                            <span className="text-sm font-semibold text-indigo-800">Hubungi Kami</span>
+                            <span className="text-sm font-semibold" style={{ color: '#1f6ff4' }}>Hubungi Kami</span>
                         </div>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-800 via-indigo-900 to-purple-900 bg-clip-text text-transparent mb-6">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6" style={{
+                            background: 'linear-gradient(to right, #61eabc, #1f6ff4)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text'
+                        }}>
                             Kirim Pesan
                         </h2>
                         <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto mb-6 leading-relaxed">
@@ -470,12 +548,16 @@ export default function ContactPage() {
                         >
                             <div className="rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl relative overflow-hidden">
                                 {/* Rounded Form Header Decoration */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-3xl opacity-100"></div>
+                                <div className="absolute inset-0 rounded-3xl opacity-100" style={{
+                                    background: 'linear-gradient(to right, #61eabc, #1f6ff4)'
+                                }}></div>
                                 <div className="absolute inset-[2px] bg-white rounded-3xl"></div>
                                 
                                 <div className="relative">
                                     <div className="flex items-center gap-3 mb-8">
-                                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center">
+                                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{
+                                            background: 'linear-gradient(to bottom right, #61eabc, #1f6ff4)'
+                                        }}>
                                             <EnvelopeIcon />
                                         </div>
                                         <div>
@@ -700,15 +782,19 @@ ${name}`;
                                         <motion.button
                                             type="submit"
                                             disabled={isSubmitting}
-                                            className={`w-full px-6 sm:px-8 py-4 sm:py-5 rounded-2xl font-semibold transform transition-all duration-300 focus:ring-4 focus:ring-blue-300 shadow-lg text-sm sm:text-base relative overflow-hidden group ${
+                                            className={`w-full px-6 sm:px-8 py-4 sm:py-5 rounded-2xl font-semibold transform transition-all duration-200 focus:ring-4 focus:ring-blue-300 shadow-lg text-sm sm:text-base relative overflow-hidden group ${
                                                 isSubmitting 
                                                     ? 'bg-slate-400 text-slate-600 cursor-not-allowed' 
-                                                    : 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 hover:shadow-xl hover:scale-[1.02]'
+                                                    : 'text-white hover:shadow-xl hover:scale-[1.02]'
                                             }`}
+                                            style={!isSubmitting ? {
+                                                background: 'linear-gradient(to right, #61eabc, #1f6ff4)'
+                                            } : undefined}
                                             whileHover={!isSubmitting ? { scale: 1.02 } : {}}
                                             whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                                            transition={{ duration: 0.2 }}
                                         >
-                                            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                                            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-300"></div>
                                             <div className="relative flex items-center justify-center gap-3">
                                                 {isSubmitting ? (
                                                     <>
@@ -772,10 +858,16 @@ ${name}`;
                                             className="w-full h-72 sm:h-80 lg:h-96 rounded-2xl overflow-hidden shadow-xl border border-white/50"
                                         >
                                             {branches[selectedBranch].mapEmbed === "coming-soon" ? (
-                                                <div className="w-full h-full bg-gradient-to-br from-slate-100 via-blue-100 to-indigo-100 flex items-center justify-center rounded-2xl relative overflow-hidden">
-                                                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-500/10"></div>
+                                                <div className="w-full h-full flex items-center justify-center rounded-2xl relative overflow-hidden" style={{
+                                                    background: 'linear-gradient(to bottom right, rgba(97, 234, 188, 0.1), rgba(31, 111, 244, 0.1))'
+                                                }}>
+                                                    <div className="absolute inset-0" style={{
+                                                        background: 'linear-gradient(to bottom right, rgba(97, 234, 188, 0.1), rgba(31, 111, 244, 0.1))'
+                                                    }}></div>
                                                     <div className="relative text-center p-8">
-                                                        <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl flex items-center justify-center shadow-xl">
+                                                        <div className="w-20 h-20 mx-auto mb-6 rounded-3xl flex items-center justify-center shadow-xl" style={{
+                                                            background: 'linear-gradient(to bottom right, #61eabc, #1f6ff4)'
+                                                        }}>
                                                             <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25s-7.5-4.108-7.5-11.25a7.5 7.5 0 1115 0z" />
@@ -823,15 +915,19 @@ ${name}`;
                                                 }
                                             }}
                                             disabled={selectedBranch === 'parapat'}
-                                            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg text-sm w-full sm:w-auto justify-center relative overflow-hidden group ${
+                                            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-lg text-sm w-full sm:w-auto justify-center relative overflow-hidden group ${
                                                 selectedBranch === 'parapat' 
                                                     ? 'bg-slate-400 text-slate-600 cursor-not-allowed' 
-                                                    : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl'
+                                                    : 'text-white hover:shadow-xl'
                                             }`}
+                                            style={selectedBranch !== 'parapat' ? {
+                                                background: 'linear-gradient(to right, #61eabc, #1f6ff4)'
+                                            } : undefined}
                                             whileHover={selectedBranch !== 'parapat' ? { scale: 1.05 } : {}}
                                             whileTap={selectedBranch !== 'parapat' ? { scale: 0.95 } : {}}
+                                            transition={{ duration: 0.2 }}
                                         >
-                                            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                                            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-300"></div>
                                             <div className="relative flex items-center gap-2">
                                                 <MapPinIcon />
                                                 {selectedBranch === 'parapat' ? 'Segera Hadir' : 'Buka di Google Maps'}

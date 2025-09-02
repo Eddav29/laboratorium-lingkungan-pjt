@@ -110,19 +110,20 @@ export default function Competence() {
         <motion.section 
           className="py-20 bg-gradient-to-br from-gray-50 via-blue-50/30 to-white relative overflow-hidden"
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          animate="visible"
           variants={staggerContainer}
+          transition={{ duration: 0.8 }}
         >
           {/* Background decorative elements */}
           <div className="absolute top-20 right-10 w-32 h-32 bg-blue-100/40 rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 left-10 w-24 h-24 bg-indigo-100/50 rounded-full blur-2xl"></div>
           
-          <div className="container mx-auto px-4">
-            <div className="max-w-7xl mx-auto">
+          <div className="w-full max-w-7xl mx-auto px-4 relative z-10">
+            <div className="w-full">
               <motion.div 
                 className="text-center mb-16"
                 variants={fadeInUp}
+                transition={{ delay: 0.8, duration: 0.8 }}
               >
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6">
                   <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
@@ -141,7 +142,13 @@ export default function Competence() {
                 </p>
               </motion.div>
 
-              <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <motion.div 
+                className="grid lg:grid-cols-2 gap-16 items-center w-full"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={staggerContainer}
+              >
                 {/* Image with enhanced styling */}
                 <motion.div 
                   className="relative order-2 lg:order-1"
@@ -263,22 +270,29 @@ export default function Competence() {
                     </div>
                   </motion.div>
                 </motion.div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </motion.section>
 
         {/* Kompetensi Bidang Non-Air */}
         <motion.section 
-          className="py-20 bg-gradient-to-br from-gray-50 via-purple-50/30 to-white relative overflow-hidden"
+          className="py-20 relative overflow-hidden"
+          style={{
+            background: 'linear-gradient(135deg, #f8fafc 0%, rgba(97, 234, 188, 0.05) 50%, #ffffff 100%)'
+          }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
           variants={staggerContainer}
         >
           {/* Background decorative elements */}
-          <div className="absolute top-20 left-10 w-32 h-32 bg-purple-100/40 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-24 h-24 bg-indigo-100/50 rounded-full blur-2xl"></div>
+          <div className="absolute top-20 left-10 w-32 h-32 rounded-full blur-3xl" style={{
+            background: 'linear-gradient(135deg, rgba(97, 234, 188, 0.2), rgba(31, 111, 244, 0.2))'
+          }}></div>
+          <div className="absolute bottom-20 right-10 w-24 h-24 rounded-full blur-2xl" style={{
+            background: 'linear-gradient(135deg, rgba(31, 111, 244, 0.3), rgba(97, 234, 188, 0.1))'
+          }}></div>
           
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
@@ -286,20 +300,41 @@ export default function Competence() {
                 className="text-center mb-16"
                 variants={fadeInUp}
               >
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold mb-6">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6" style={{
+                  backgroundColor: 'rgba(97, 234, 188, 0.1)',
+                  color: '#1f6ff4'
+                }}>
+                  <div className="w-2 h-2 rounded-full animate-pulse" style={{
+                    background: 'linear-gradient(135deg, #61eabc, #1f6ff4)'
+                  }}></div>
                   Environmental Excellence
                 </div>
                 <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 mb-6">
-                  Kompetensi Bidang <span className="text-purple-600">Non-Air</span>
+                  Kompetensi Bidang <span style={{
+                    background: 'linear-gradient(135deg, #61eabc, #1f6ff4)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                  }}>Non-Air</span>
                 </h2>
                 <div className="flex justify-center items-center gap-4 mb-8">
-                  <div className="w-12 h-1 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full"></div>
-                  <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-                  <div className="w-12 h-1 bg-gradient-to-r from-purple-600 to-purple-400 rounded-full"></div>
+                  <div className="w-12 h-1 rounded-full" style={{
+                    background: 'linear-gradient(135deg, #61eabc, #1f6ff4)'
+                  }}></div>
+                  <div className="w-3 h-3 rounded-full" style={{
+                    background: 'linear-gradient(135deg, #61eabc, #1f6ff4)'
+                  }}></div>
+                  <div className="w-12 h-1 rounded-full" style={{
+                    background: 'linear-gradient(135deg, #1f6ff4, #61eabc)'
+                  }}></div>
                 </div>
                 <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                  Solusi komprehensif untuk <span className="font-bold text-purple-600">monitoring lingkungan</span> udara, tanah, dan kebisingan dengan teknologi terdepan
+                  Solusi komprehensif untuk <span className="font-bold" style={{
+                    background: 'linear-gradient(135deg, #61eabc, #1f6ff4)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                  }}>monitoring lingkungan</span> udara, tanah, dan kebisingan dengan teknologi terdepan
                 </p>
               </motion.div>
 
@@ -321,7 +356,9 @@ export default function Competence() {
                         objectPosition: 'center',
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-purple-900/60 via-purple-600/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" style={{
+                      background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(31,111,244,0.1) 50%, transparent 100%)'
+                    }}></div>
                     
                     {/* Floating stats card */}
                     <motion.div 
@@ -332,17 +369,17 @@ export default function Competence() {
                     >
                       <div className="flex justify-center items-center text-center gap-6">
                         <div className="flex-1">
-                          <div className="text-sm font-bold text-purple-600">8+</div>
+                          <div className="text-sm font-bold" style={{color: '#1f6ff4'}}>8+</div>
                           <div className="text-xs text-gray-600">Bidang</div>
                         </div>
                         <div className="w-px h-4 bg-gray-200"></div>
                         <div className="flex-1">
-                          <div className="text-sm font-bold text-purple-600">24/7</div>
+                          <div className="text-sm font-bold" style={{color: '#1f6ff4'}}>24/7</div>
                           <div className="text-xs text-gray-600">Service</div>
                         </div>
                         <div className="w-px h-4 bg-gray-200"></div>
                         <div className="flex-1">
-                          <div className="text-sm font-bold text-purple-600">ISO</div>
+                          <div className="text-sm font-bold" style={{color: '#1f6ff4'}}>ISO</div>
                           <div className="text-xs text-gray-600">Certified</div>
                         </div>
                       </div>
@@ -350,8 +387,12 @@ export default function Competence() {
                   </div>
                   
                   {/* Decorative elements */}
-                  <div className="absolute -top-4 -left-4 w-8 h-8 bg-purple-400 rounded-full opacity-70"></div>
-                  <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-indigo-500 rounded-full opacity-60"></div>
+                  <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full opacity-70" style={{
+                    background: 'linear-gradient(135deg, #61eabc, #1f6ff4)'
+                  }}></div>
+                  <div className="absolute -bottom-2 -right-2 w-6 h-6 rounded-full opacity-60" style={{
+                    background: 'linear-gradient(135deg, #1f6ff4, #61eabc)'
+                  }}></div>
                 </motion.div>
 
                 {/* Content with enhanced styling */}
@@ -361,42 +402,48 @@ export default function Competence() {
                   transition={{ duration: 0.8, delay: 0.3 }}
                 >
                   <div className="space-y-6">
-                    <div className="group flex items-start space-x-4 p-4 rounded-2xl hover:bg-purple-50/50 transition-all duration-300 cursor-pointer">
-                      <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-purple-200 transition-all duration-300">
-                        <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="group flex items-start space-x-4 p-4 rounded-2xl transition-all duration-300 cursor-pointer hover:bg-gradient-to-r hover:from-[rgba(97,234,188,0.05)] hover:to-[rgba(31,111,244,0.05)]">
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center mt-1 flex-shrink-0 transition-all duration-300" style={{
+                        backgroundColor: 'rgba(97, 234, 188, 0.1)'
+                      }}>
+                        <svg className="w-4 h-4" style={{color: '#1f6ff4'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-purple-700 transition-colors">Monitoring Udara Ambient</h3>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-blue-700 transition-colors">Monitoring Udara Ambient</h3>
                         <p className="text-gray-600 leading-relaxed">
                           Pemantauan kualitas udara ambient untuk mendeteksi polutan seperti PM2.5, PM10, SO2, NO2, CO, dan Ozon dengan teknologi real-time.
                         </p>
                       </div>
                     </div>
 
-                    <div className="group flex items-start space-x-4 p-4 rounded-2xl hover:bg-purple-50/50 transition-all duration-300 cursor-pointer">
-                      <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-purple-200 transition-all duration-300">
-                        <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="group flex items-start space-x-4 p-4 rounded-2xl transition-all duration-300 cursor-pointer hover:bg-gradient-to-r hover:from-[rgba(97,234,188,0.05)] hover:to-[rgba(31,111,244,0.05)]">
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center mt-1 flex-shrink-0 transition-all duration-300" style={{
+                        backgroundColor: 'rgba(97, 234, 188, 0.1)'
+                      }}>
+                        <svg className="w-4 h-4" style={{color: '#1f6ff4'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-purple-700 transition-colors">Analisis Lingkungan Kerja</h3>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-blue-700 transition-colors">Analisis Lingkungan Kerja</h3>
                         <p className="text-gray-600 leading-relaxed">
                           Evaluasi kondisi lingkungan kerja termasuk kualitas udara, kebisingan, pencahayaan, dan faktor ergonomi untuk K3 optimal.
                         </p>
                       </div>
                     </div>
 
-                    <div className="group flex items-start space-x-4 p-4 rounded-2xl hover:bg-purple-50/50 transition-all duration-300 cursor-pointer">
-                      <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mt-1 flex-shrink-0 group-hover:bg-purple-200 transition-all duration-300">
-                        <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="group flex items-start space-x-4 p-4 rounded-2xl transition-all duration-300 cursor-pointer hover:bg-gradient-to-r hover:from-[rgba(97,234,188,0.05)] hover:to-[rgba(31,111,244,0.05)]">
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center mt-1 flex-shrink-0 transition-all duration-300" style={{
+                        backgroundColor: 'rgba(97, 234, 188, 0.1)'
+                      }}>
+                        <svg className="w-4 h-4" style={{color: '#1f6ff4'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-purple-700 transition-colors">Sampling & Instrumentasi</h3>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-blue-700 transition-colors">Sampling & Instrumentasi</h3>
                         <p className="text-gray-600 leading-relaxed">
                           Penggunaan peralatan sampling dan instrumentasi canggih untuk pengukuran real-time dan sampling manual dengan akurasi tinggi.
                         </p>
@@ -405,19 +452,30 @@ export default function Competence() {
                   </div>
 
                   <motion.div 
-                    className="relative bg-gradient-to-br from-purple-50 to-indigo-50 p-8 rounded-3xl border border-purple-100 shadow-lg"
+                    className="relative p-8 rounded-3xl shadow-lg"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(97, 234, 188, 0.08) 0%, rgba(31, 111, 244, 0.08) 100%)',
+                      border: '1px solid rgba(97, 234, 188, 0.2)'
+                    }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.8 }}
                   >
-                    <div className="absolute top-4 right-4 w-20 h-20 bg-purple-200/30 rounded-full blur-xl"></div>
-                    <h4 className="font-bold text-purple-800 mb-4 text-lg flex items-center gap-2">
-                      <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                    <div className="absolute top-4 right-4 w-20 h-20 rounded-full blur-xl" style={{
+                      background: 'linear-gradient(135deg, rgba(97, 234, 188, 0.3), rgba(31, 111, 244, 0.2))'
+                    }}></div>
+                    <h4 className="font-bold mb-4 text-lg flex items-center gap-2" style={{color: '#1f6ff4'}}>
+                      <span className="w-2 h-2 rounded-full" style={{
+                        background: 'linear-gradient(135deg, #61eabc, #1f6ff4)'
+                      }}></span>
                       Parameter Monitoring
                     </h4>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
                       {['PM2.5', 'PM10', 'SO2', 'NO2', 'CO', 'O3', 'H2S', 'NH3', 'Kebisingan', 'Getaran', 'Pencahayaan', 'Iklim Kerja'].map((param, idx) => (
-                        <span key={idx} className="px-3 py-1 bg-white/70 text-purple-700 rounded-full text-center font-medium border border-purple-200/50">
+                        <span key={idx} className="px-3 py-1 bg-white/70 rounded-full text-center font-medium" style={{
+                          color: '#1f6ff4',
+                          border: '1px solid rgba(97, 234, 188, 0.3)'
+                        }}>
                           {param}
                         </span>
                       ))}
