@@ -64,41 +64,41 @@ export default function Footer() {
 
           {/* Tentang Kami */}
           <div className="flex-1 min-w-[220px] space-y-4">
-            <h3 className="text-lg font-bold text-white mb-4">Tentang Kami</h3>
-            <div className="space-y-2">
+            <h3 className="text-lg font-bold text-white mb-6">Tentang Kami</h3>
+            <div className="space-y-3">
               <a 
                 href="/about#company-info" 
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm"
               >
                 Profil Kami
               </a>
               <a 
                 href="/about#vision-duties" 
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm"
               >
                 Visi dan Tanggung Jawab
               </a>
               <a 
                 href="/about#journey" 
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm"
               >
                 Perjalanan Kami
               </a>
               <a 
                 href="/about#team" 
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm"
               >
                 Tim Kami
               </a>
               <a 
                 href="/about#certification" 
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm"
               >
                 Sertifikasi dan Registrasi
               </a>
               <a 
                 href="/about#partners" 
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm"
               >
                 Partner Kami
               </a>
@@ -107,47 +107,47 @@ export default function Footer() {
 
           {/* Layanan */}
           <div className="flex-1 min-w-[220px] space-y-4">
-            <h3 className="text-lg font-bold text-white mb-4">Layanan</h3>
-            <div className="space-y-2">
+            <h3 className="text-lg font-bold text-white mb-6">Layanan</h3>
+            <div className="space-y-3">
               <a
                 href="/services/air"
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm leading-relaxed"
               >
                 Pengambilan Sampel Air (Uji Fisika, Kimia, Mikrobiologi)
               </a>
               <a
                 href="/services/udara-ambient"
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm leading-relaxed"
               >
                 Pengambilan Sampel Udara Ambient
               </a>
               <a
                 href="/services/udara-emisi"
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm leading-relaxed"
               >
                 Pengambilan Sampel Udara Emisi
               </a>
               <a
                 href="/services/kebisingan"
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm leading-relaxed"
               >
                 Pengambilan Sampel Kebisingan
               </a>
               <a
                 href="/services/udara-lingkungan-kerja"
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm leading-relaxed"
               >
                 Pengambilan Sampel Udara Lingkungan Kerja
               </a>
               <a
                 href="/services/mikrobiologi"
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm leading-relaxed"
               >
                 Pengambilan Sampel Mikrobiologi
               </a>
               <a
                 href="/services/pencahayaan"
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm leading-relaxed"
               >
                 Pengambilan Sampel Pencahayaan
               </a>
