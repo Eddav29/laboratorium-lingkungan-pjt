@@ -183,11 +183,11 @@ export default function ContactPage() {
                         <div className="flex flex-wrap gap-4">
                             <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
                                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                                <span className="text-sm font-medium">Terakreditasi</span>
+                                <span className="text-sm font-medium">Terakreditasi KAN</span>
                             </div>
                             <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
                                 <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                                <span className="text-sm font-medium">ISO Certified</span>
+                                <span className="text-sm font-medium">Tersertifikasi ISO</span>
                             </div>
                         </div>
                     </motion.div>
@@ -412,7 +412,7 @@ export default function ContactPage() {
                                             </p>
                                             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full text-xs font-medium text-green-700 border border-green-200">
                                                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                                                Klik untuk chat WhatsApp
+                                                Klik untuk Chat WhatsApp
                                             </div>
                                         </>
                                     )}
