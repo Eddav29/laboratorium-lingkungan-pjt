@@ -103,7 +103,8 @@ export default function PeralatanPage() {
             <div className="absolute top-1/3 right-1/3 w-16 h-16 bg-white rounded-full opacity-30"></div>
           </div>
           
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4 py-4">
+            <div className="max-w-6xl mx-auto relative z-10">
             <motion.div
               className="text-center mb-12"
               initial={{ opacity: 0, y: 30 }}
@@ -259,12 +260,14 @@ export default function PeralatanPage() {
                 </div>
               </div>
             </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Gallery Equipment Section */}
         <section className="py-20 bg-white">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 py-4">
+            <div className="max-w-6xl mx-auto">
             <motion.div
               className="text-center mb-12"
               initial={{ opacity: 0, y: 30 }}
@@ -338,6 +341,7 @@ export default function PeralatanPage() {
                 Hubungi Kami
               </button>
             </motion.div>
+            </div>
           </div>
         </section>
       </div>
