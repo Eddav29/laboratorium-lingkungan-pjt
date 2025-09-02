@@ -105,7 +105,7 @@ const Hero = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 2.4, duration: 0.6 }}
                     >
-                        <Link href="/profile">
+                        <Link href="/about">
                             <motion.div
                                 whileHover={{ scale: 1.05, y: -2 }}
                                 whileTap={{ scale: 0.95 }}
@@ -119,7 +119,7 @@ const Hero = () => {
                                 </Button>
                             </motion.div>
                         </Link>
-                        <Link href="/water-services">
+                        <Link href="/services">
                             <motion.div
                                 whileHover={{ scale: 1.05, y: -2 }}
                                 whileTap={{ scale: 0.95 }}
