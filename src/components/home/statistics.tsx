@@ -116,18 +116,20 @@ const Statistics = () => {
           
           {/* Bottom Section - Dark Background Area with Statistics */}
           <div className="h-3/5 bg-gray-800 flex items-center justify-center pt-16">
-            <div ref={sectionRef} className="container mx-auto px-4">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                {stats.map((stat, index) => (
-                  <div key={index} className="text-center">
-                    <div className={`text-4xl md:text-5xl font-bold mb-2 ${stat.color} drop-shadow-lg`}>
-                      {stat.number}
+            <div ref={sectionRef} className="container mx-auto px-4 py-16">
+              <div className="max-w-6xl mx-auto">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                  {stats.map((stat, index) => (
+                    <div key={index} className="text-center">
+                      <div className={`text-4xl md:text-5xl font-bold mb-2 ${stat.color} drop-shadow-lg`}>
+                        {stat.number}
+                      </div>
+                      <div className="text-gray-300 text-sm md:text-base">
+                        {stat.label}
+                      </div>
                     </div>
-                    <div className="text-gray-300 text-sm md:text-base">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
