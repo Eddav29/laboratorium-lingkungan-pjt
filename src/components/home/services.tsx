@@ -6,12 +6,12 @@ const Services = () => {
   return (
 
     
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-8 bg-white">
        {/* Main Content */}
-      <div id="services" className="container mx-auto px-4 py-16">
+      <div id="services" className="container mx-auto px-4 py-4">
         <div className="max-w-6xl mx-auto">
 
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Apa Yang Dapat Kami Lakukan
             </h2>
@@ -20,7 +20,7 @@ const Services = () => {
             </p>
           </div>
           {/* Service Categories */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="grid md:grid-cols-3 gap-8">
             <Link href="/services/air" className="block group h-full">
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform group-hover:scale-105 border border-blue-200 h-full flex flex-col">
                 <div className="text-blue-600 text-5xl mb-6 text-center">💧</div>
@@ -57,24 +57,6 @@ const Services = () => {
                   Kebisingan, pencahayaan, mikrobiologi, udara lingkungan kerja, dan layanan analisis lingkungan lainnya
                 </p>
               </div>
-            </Link>
-          </div>
-
-          <div className="text-center">
-            <Link href="/services">
-              <Button 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg mr-4"
-              >
-                Lihat Selengkapnya
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button 
-                variant="outline"
-                className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-3 rounded-lg"
-              >
-                Hubungi Kami
-              </Button>
             </Link>
           </div>
           
