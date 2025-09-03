@@ -68,37 +68,37 @@ export default function Footer() {
             <div className="space-y-2 max-w-[250px] md:mx-0">
               <a 
                 href="/about#company-info" 
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm"
               >
                 Profil Kami
               </a>
               <a 
                 href="/about#vision-duties" 
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm"
               >
                 Visi dan Tanggung Jawab
               </a>
               <a 
                 href="/about#journey" 
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm"
               >
                 Perjalanan Kami
               </a>
               <a 
                 href="/about#team" 
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm"
               >
                 Tim Kami
               </a>
               <a 
                 href="/about#certification" 
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm"
               >
                 Sertifikasi dan Registrasi
               </a>
               <a 
                 href="/about#partners" 
-                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-xs"
+                className="block text-gray-300 hover:text-blue-400 hover:translate-x-1 transition-all duration-300 text-sm"
               >
                 Partner Kami
               </a>

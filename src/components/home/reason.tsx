@@ -22,8 +22,9 @@ const Reason = () => {
 
   return (
     <section id="reason" className="pt-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 py-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div>
             <div className="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-4">
@@ -62,15 +63,17 @@ const Reason = () => {
 
           {/* Right Content - Image */}
           <div className="lg:pl-8">
-            <div className="relative">
+            <div className="relative group">
               <Image
                 src="/assets/images/lab_cropped.png"
                 alt="Laboratory Professional"
                 width={600}
                 height={400}
-                className="rounded-2xl shadow-2xl"
+                className="rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-300"
               />
-              <div className="absolute inset-0 bg-blue-600 opacity-10 rounded-2xl"></div>
+              <div className="absolute inset-0 bg-blue-600 opacity-5 rounded-2xl group-hover:opacity-10 transition-opacity duration-300"></div>
+              {/* Decorative shadow background */}
+              <div className="absolute -inset-2 bg-gradient-to-r from-blue-200/20 to-blue-300/20 rounded-3xl -z-10 blur-lg opacity-60"></div>
             </div>
           </div>
         </div>
@@ -142,6 +145,7 @@ const Reason = () => {
               </CardContent>
             </Card>
           </div>
+        </div>
         </div>
       </div>
     </section>

@@ -11,6 +11,75 @@ export default function About() {
   const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
   const [currentPartnerIndex, setCurrentPartnerIndex] = useState(0);
   const [isPartnerHovered, setIsPartnerHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Handle document click - mobile vs desktop
+  const handleDocumentClick = (documentName: string) => {
+    if (isMobile) {
+      // Mobile: Open PDF directly in browser
+      window.open(`/assets/certificate/${documentName}.pdf`, '_blank');
+    } else {
+      // Desktop: Show modal
+      setSelectedDocument(documentName);
+    }
+  };
+
+  // Body scroll lock when modal is open (desktop only)
+  useEffect(() => {
+    if (selectedDocument) {
+      // Check mobile at the time of execution instead of using state
+      const currentlyMobile = window.innerWidth <= 768;
+      
+      if (!currentlyMobile) {
+        // Store original overflow value and scroll position
+        const originalOverflow = document.body.style.overflow;
+        const originalPosition = document.body.style.position;
+        const originalTop = document.body.style.top;
+        const scrollY = window.scrollY;
+        
+        // Lock scroll and maintain position
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.overflow = 'hidden';
+        document.body.style.width = '100%';
+        
+        // Prevent background interaction
+        const handleKeyDown = (e: KeyboardEvent) => {
+          if (e.key === 'Escape') {
+            setSelectedDocument(null);
+          }
+        };
+        
+        document.addEventListener('keydown', handleKeyDown);
+        
+        // Cleanup function
+        return () => {
+          // Restore original styles
+          document.body.style.position = originalPosition;
+          document.body.style.top = originalTop;
+          document.body.style.overflow = originalOverflow;
+          document.body.style.width = '';
+          
+          // Restore scroll position
+          window.scrollTo(0, scrollY);
+          
+          document.removeEventListener('keydown', handleKeyDown);
+        };
+      }
+    }
+  }, [selectedDocument]);
 
   // Partner logos data
   const partnerLogos = [
@@ -620,12 +689,17 @@ export default function About() {
                 <motion.div
                   className="group cursor-pointer"
                   variants={zoomIn}
-                  transition={{ delay: 0.8, duration: 0.6 }}
-                  onClick={() => setSelectedDocument('akreditasi')}
-                  whileHover={{ scale: 1.03, y: -8, transition: { duration: 0.1 } }}
+                  onClick={() => handleDocumentClick('akreditasi')}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -12,
+                    transition: { duration: 0.03, ease: "easeOut" }
+                  }}
                   whileTap={{ scale: 0.97 }}
+                  initial={{ scale: 1, y: 0 }}
+                  style={{ transition: "all 0.03s ease-in-out" }}
                 >
-                  <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-50 hover:shadow-blue-200/30 hover:shadow-3xl transition-all duration-100 group-hover:border-blue-200/50 backdrop-blur-sm">
+                  <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-50 hover:shadow-blue-200/30 hover:shadow-3xl transition-all duration-[30ms] group-hover:border-blue-200/50 backdrop-blur-sm">
                     {/* Document Preview */}
                     <div className="relative h-72 sm:h-84 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 flex items-center justify-center overflow-hidden">
                       {/* Background PDF Preview with Opacity */}
@@ -714,12 +788,17 @@ export default function About() {
                 <motion.div
                   className="group cursor-pointer"
                   variants={zoomIn}
-                  transition={{ delay: 1.0, duration: 0.6 }}
-                  onClick={() => setSelectedDocument('registrasi_klhk')}
-                  whileHover={{ scale: 1.03, y: -8, transition: { duration: 0.1 } }}
+                  onClick={() => handleDocumentClick('registrasi_klhk')}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -12,
+                    transition: { duration: 0.03, ease: "easeOut" }
+                  }}
                   whileTap={{ scale: 0.97 }}
+                  initial={{ scale: 1, y: 0 }}
+                  style={{ transition: "all 0.03s ease-in-out" }}
                 >
-                  <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-50 hover:shadow-green-200/30 hover:shadow-3xl transition-all duration-100 group-hover:border-green-200/50 backdrop-blur-sm">
+                  <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-50 hover:shadow-green-200/30 hover:shadow-3xl transition-all duration-[30ms] group-hover:border-green-200/50 backdrop-blur-sm">
                     {/* Document Preview */}
                     <div className="relative h-72 sm:h-84 bg-gradient-to-br from-gray-50 via-white to-green-50/30 flex items-center justify-center overflow-hidden">
                       {/* Background PDF Preview with Opacity */}
@@ -808,12 +887,17 @@ export default function About() {
                 <motion.div
                   className="group cursor-pointer"
                   variants={zoomIn}
-                  transition={{ delay: 1.2, duration: 0.6 }}
-                  onClick={() => setSelectedDocument('skp_pjk3')}
-                  whileHover={{ scale: 1.03, y: -8, transition: { duration: 0.1 } }}
+                  onClick={() => handleDocumentClick('skp_pjk3')}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -12,
+                    transition: { duration: 0.03, ease: "easeOut" }
+                  }}
                   whileTap={{ scale: 0.97 }}
+                  initial={{ scale: 1, y: 0 }}
+                  style={{ transition: "all 0.03s ease-in-out" }}
                 >
-                  <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-50 hover:shadow-purple-200/30 hover:shadow-3xl transition-all duration-100 group-hover:border-purple-200/50 backdrop-blur-sm">
+                  <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-50 hover:shadow-purple-200/30 hover:shadow-3xl transition-all duration-[30ms] group-hover:border-purple-200/50 backdrop-blur-sm">
                     {/* Document Preview */}
                     <div className="relative h-72 sm:h-84 bg-gradient-to-br from-gray-50 via-white to-purple-50/30 flex items-center justify-center overflow-hidden">
                       {/* Background PDF Preview with Opacity */}
@@ -1130,17 +1214,18 @@ export default function About() {
           </div>
         </motion.section>
 
-        {/* PDF Modal Viewer */}
+        {/* PDF Modal Viewer - Desktop Only */}
         {selectedDocument && (
-          <motion.div
-            className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-1 sm:p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => setSelectedDocument(null)}
-          >
+          <div style={{ display: typeof window !== 'undefined' && window.innerWidth <= 768 ? 'none' : 'block' }}>
             <motion.div
+              className="fixed inset-0 bg-black bg-opacity-90 z-[9999] flex items-center justify-center p-1 sm:p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setSelectedDocument(null)}
+            >
+              <motion.div
               className="relative bg-white rounded-lg sm:rounded-2xl shadow-2xl w-full h-full sm:w-[95vw] sm:h-[95vh] sm:max-w-6xl overflow-hidden flex flex-col"
               initial={{ scale: 0.8, y: 50 }}
               animate={{ scale: 1, y: 0 }}
@@ -1236,6 +1321,7 @@ export default function About() {
               </div>
             </motion.div>
           </motion.div>
+          </div>
         )}
       </div>
 

@@ -97,7 +97,8 @@ export default function Services() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 pt-20">
         <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="relative container mx-auto px-4 py-20">
+        <div className="relative container mx-auto px-4 py-4">
+          <div className="max-w-6xl mx-auto py-16">
           {/* Breadcrumb */}
           <div className="mb-8">
             <SEOBreadcrumb className="text-blue-100" />
@@ -125,6 +126,7 @@ export default function Services() {
               </Link>
             </div>
           </div>
+          </div>
         </div>
 
         {/* Decorative elements */}
@@ -144,7 +146,8 @@ export default function Services() {
 
       {/* Main Content */}
       <section id="services" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 py-4">
+          <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Layanan Kami
@@ -202,6 +205,7 @@ export default function Services() {
               </Link>
             </div>
             ))}
+          </div>
           </div>
         </div>
       </section>

@@ -232,7 +232,7 @@ export default function Portofolio() {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800/80 to-blue-900/50"></div>
         </div>
 
-  <div className="w-full max-w-7xl mx-auto px-4 relative z-10">
+        <div className="w-full max-w-7xl mx-auto px-4 relative z-10">
           <div className="max-w-4xl">
             <motion.div 
               className="mb-6"
@@ -298,7 +298,7 @@ export default function Portofolio() {
 
       {/* Filter Section */}
       <section className="py-8 bg-gray-50">
-  <div className="w-full max-w-7xl mx-auto px-4">
+        <div className="w-full max-w-7xl mx-auto px-4">
           <motion.div 
             className="flex flex-wrap items-center justify-between gap-4"
             initial={{ opacity: 0, y: 20 }}
@@ -331,7 +331,7 @@ export default function Portofolio() {
 
       {/* Portfolio Grid */}
       <section className="py-12 bg-gray-50">
-  <div className="w-full max-w-7xl mx-auto px-4">
+      <div className="w-full max-w-7xl mx-auto px-4">
           {isLoading ? (
             <div className="flex justify-center items-center min-h-[400px]">
               <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
@@ -441,7 +441,7 @@ export default function Portofolio() {
 
       {/* Statistics Section */}
       <section className="py-16 bg-white">
-  <div className="w-full max-w-7xl mx-auto px-4">
+        <div className="w-full max-w-7xl mx-auto px-4">
           <motion.div 
             className="max-w-7xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
@@ -568,7 +568,7 @@ export default function Portofolio() {
             onClick={() => setSelectedProject(null)}
           >
             <motion.div 
-              className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
+              className="bg-white rounded-2xl w-full max-w-3xl max-h-[80vh] overflow-hidden"
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
@@ -577,7 +577,7 @@ export default function Portofolio() {
             >
               {/* Modal Header - Project Title */}
               <div className="relative">
-                <div className="h-64 relative">
+                <div className="h-48 relative">
                   <Image
                     src={selectedProject.image}
                     alt={selectedProject.title}
@@ -587,8 +587,8 @@ export default function Portofolio() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 </div>
                 
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="mb-3">
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <div className="mb-2">
                     <Badge className={`
                       ${selectedProject.category === 'air' ? 'bg-blue-500' : ''}
                       ${selectedProject.category === 'udara' ? 'bg-green-500' : ''}
@@ -599,36 +599,41 @@ export default function Portofolio() {
                       {categories.find(c => c.id === selectedProject.category)?.label}
                     </Badge>
                   </div>
-                  <h2 className="text-2xl font-bold text-white">{selectedProject.title}</h2>
+                  <h2 className="text-xl font-bold text-white">{selectedProject.title}</h2>
                 </div>
                 
                 {/* Close Button */}
                 <button 
-                  className="absolute top-4 right-4 p-2 bg-black/30 rounded-full text-white hover:bg-black/50 transition-colors"
-                  onClick={() => setSelectedProject(null)}
+                  type="button"
+                  className="absolute top-4 right-4 p-2 bg-black/50 rounded-full text-white hover:bg-black/70 transition-colors focus:outline-none"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedProject(null);
+                  }}
+                  aria-label="Close modal"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
               
               {/* Modal Content - Scrollable */}
-              <div className="p-6 overflow-y-auto max-h-[calc(90vh-16rem)]">
-                <div className="grid md:grid-cols-3 gap-6">
+              <div className="p-5 overflow-y-auto max-h-[calc(80vh-12rem)]">
+                <div className="grid md:grid-cols-3 gap-5">
                   {/* Left Column - Project Details */}
                   <div className="md:col-span-2">
-                    <h3 className="text-lg font-bold text-gray-800 mb-4">Deskripsi Proyek</h3>
-                    <p className="text-gray-700 mb-6">
+                    <h3 className="text-base font-bold text-gray-800 mb-3">Deskripsi Proyek</h3>
+                    <p className="text-gray-700 mb-5 text-sm">
                       {selectedProject.description}
                     </p>
                     
-                    <h3 className="text-lg font-bold text-gray-800 mb-4">Hasil Proyek</h3>
-                    <ul className="space-y-2 mb-6">
+                    <h3 className="text-base font-bold text-gray-800 mb-3">Hasil Proyek</h3>
+                    <ul className="space-y-1.5 mb-5">
                       {selectedProject.results.map((result: string, index: number) => (
-                        <li key={index} className="flex items-start">
-                          <div className="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mt-0.5 mr-3">
-                            <svg className="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <li key={index} className="flex items-start text-sm">
+                          <div className="flex-shrink-0 w-4 h-4 bg-blue-100 rounded-full flex items-center justify-center mt-0.5 mr-2">
+                            <svg className="w-2.5 h-2.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                           </div>
@@ -638,13 +643,13 @@ export default function Portofolio() {
                     </ul>
                     
                     {/* Tags */}
-                    <div className="mb-6">
-                      <h3 className="text-lg font-bold text-gray-800 mb-4">Tags</h3>
-                      <div className="flex flex-wrap gap-2">
+                    <div className="mb-5">
+                      <h3 className="text-base font-bold text-gray-800 mb-3">Tags</h3>
+                      <div className="flex flex-wrap gap-1.5">
                         {selectedProject.tags.map((tag: string, index: number) => (
                           <span 
                             key={index}
-                            className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                            className="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs"
                           >
                             {tag}
                           </span>
@@ -654,31 +659,31 @@ export default function Portofolio() {
                   </div>
                   
                   {/* Right Column - Project Info */}
-                  <div className="bg-gray-50 p-4 rounded-xl">
-                    <h3 className="text-lg font-bold text-gray-800 mb-4">Informasi Proyek</h3>
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h3 className="text-base font-bold text-gray-800 mb-3">Informasi Proyek</h3>
                     
-                    <div className="space-y-4">
+                    <div className="space-y-3 text-sm">
                       <div>
-                        <h4 className="text-sm text-gray-500 mb-1">Klien</h4>
+                        <h4 className="text-xs text-gray-500 mb-0.5">Klien</h4>
                         <p className="font-medium text-gray-800">{selectedProject.client}</p>
                       </div>
                       
                       <div>
-                        <h4 className="text-sm text-gray-500 mb-1">Lokasi</h4>
+                        <h4 className="text-xs text-gray-500 mb-0.5">Lokasi</h4>
                         <p className="font-medium text-gray-800">{selectedProject.location}</p>
                       </div>
                       
                       <div>
-                        <h4 className="text-sm text-gray-500 mb-1">Tahun</h4>
+                        <h4 className="text-xs text-gray-500 mb-0.5">Tahun</h4>
                         <p className="font-medium text-gray-800">{selectedProject.date}</p>
                       </div>
                       
                       <div>
-                        <h4 className="text-sm text-gray-500 mb-1">Tim Proyek</h4>
+                        <h4 className="text-xs text-gray-500 mb-0.5">Tim Proyek</h4>
                         <p className="font-medium text-gray-800">{selectedProject.team} orang</p>
                       </div>
                       
-                      <div className="pt-4 border-t border-gray-200">
+                      <div className="pt-3 border-t border-gray-200">
                         {(() => {
                             const waNumber = "6281230738591";
                             return (
@@ -688,9 +693,9 @@ export default function Portofolio() {
                                     rel="noopener noreferrer"
                                     className="block w-full"
                                 >
-                                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center">
+                                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center text-xs py-1">
                                         <span>Hubungi untuk Proyek Serupa</span>
-                                        <ArrowRight className="ml-2" size={16} />
+                                        <ArrowRight className="ml-1" size={14} />
                                     </Button>
                                 </a>
                             );
@@ -701,11 +706,11 @@ export default function Portofolio() {
                 </div>
                 
                 {/* Project Gallery */}
-                <div className="mt-8">
-                  <h3 className="text-lg font-bold text-gray-800 mb-4">Galeri Proyek</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="mt-5">
+                  <h3 className="text-base font-bold text-gray-800 mb-3">Galeri Proyek</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     {selectedProject.gallery.map((image: string, index: number) => (
-                      <div key={index} className="relative h-48 rounded-lg overflow-hidden">
+                      <div key={index} className="relative h-32 rounded-md overflow-hidden">
                         <Image
                           src={image}
                           alt={`${selectedProject.title} - Gallery ${index + 1}`}
