@@ -1,0 +1,8 @@
+name = "laboratorium-lingkungan-pjt"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+compatibility_flags = ["nodejs_compat"]
+
+[env.preview]
+compatibility_flags = ["nodejs_compat"]
