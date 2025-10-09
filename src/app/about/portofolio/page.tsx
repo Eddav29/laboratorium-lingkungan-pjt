@@ -22,6 +22,7 @@ interface ProjectType {
   tags: string[];
   results: string[];
   gallery: string[];
+  methodology: string[];
 }
 
 export default function Portofolio() {
@@ -38,146 +39,298 @@ export default function Portofolio() {
 
   // Kategori portofolio
   const categories = [
-    { id: "semua", label: "Semua Proyek" },
-    { id: "air", label: "Pengujian Air" },
-    { id: "udara", label: "Pengujian Udara" },
-    { id: "limbah", label: "Pengelolaan Limbah" },
-    { id: "konsultasi", label: "Konsultasi Lingkungan" },
+    { id: "semua", label: "Semua Kategori" },
+    { id: "air", label: "Air" },
+    { id: "limbah", label: "Limbah" },
+    { id: "udara", label: "Udara & Emisi" },
+    { id: "lingkungan_kerja", label: "Lingkungan Kerja" },
   ];
 
   // Data portofolio proyek
   const portfolioProjects = [
     {
       id: 1,
-      title: "Evaluasi Kualitas Air Sungai Brantas",
-      description: "Program pemantauan dan evaluasi kualitas air sungai Brantas untuk mendukung pengelolaan sumber daya air berkelanjutan.",
+      title: "Analisis Kualitas Air Sungai",
+      description: "Pemantauan dan analisis parameter fisika, kimia dan biologi air sungai untuk evaluasi status mutu air dan indeks pencemaran.",
       category: "air",
       image: "/assets/images/portfolio/sungai.webp",
-      client: "Pemerintah Provinsi Jawa Timur",
-      date: "2023",
+      client: "Sampling Internal",
+      date: "2025",
       location: "Jawa Timur",
-      team: 12,
-      tags: ["Pengujian Air", "Sungai", "Lingkungan"],
+      team: 8,
+      tags: ["Air Sungai", "Kualitas Air", "BOD", "COD", "TSS"],
       results: [
-        "Pemantauan 45 titik sampel sepanjang sungai",
-        "Analisis 22 parameter kualitas air",
-        "Identifikasi 3 area kritis pencemaran",
-        "Rekomendasi strategi pengendalian pencemaran",
+        "Pengujian 25+ parameter fisika, kimia dan biologi",
+        "Analisis metode gravimetri, volumetri, dan spektrofotometri",
+        "Evaluasi indeks pencemaran air berdasarkan Kepmen LH",
+        "Identifikasi sumber pencemar potensial",
+      ],
+      methodology: [
+        "SNI 6989.57:2008 - Metode pengambilan contoh air permukaan",
+        "SNI 6989.72:2009 - Pengujian BOD",
+        "SNI 6989.2:2009 - Pengujian pH",
+        "SNI 6989.3:2019 - Pengujian padatan tersuspensi total (TSS)",
       ],
       gallery: [
         "/assets/images/portfolio/sungai.webp",
-        "/assets/images/portfolio/sungai.webp",
-        "/assets/images/portfolio/sungai.webp",
+         "/assets/images/portfolio/sungai.webp",
+         "/assets/images/portfolio/sungai.webp",
       ],
     },
     {
       id: 2,
-      title: "Pemantauan Kualitas Udara Kawasan Industri",
-      description: "Pengujian kualitas udara ambien dan emisi di kawasan industri untuk memastikan kepatuhan terhadap standar lingkungan nasional.",
-      category: "udara",
-      image: "/assets/images/portfolio/udara.webp",
-      client: "PT Industri Kimia Nusantara",
-      date: "2022",
-      location: "Gresik, Jawa Timur",
-      team: 8,
-      tags: ["Kualitas Udara", "Industri", "Emisi"],
+      title: "Monitoring Kualitas Air Waduk",
+      description: "Pemantauan rutin parameter kualitas air waduk untuk mengevaluasi kondisi ekosistem perairan dan potensi pemanfaatan.",
+      category: "air",
+      image: "/assets/images/portfolio/sungai.webp",
+      client: "Sampling Internal",
+      date: "2025",
+      location: "Jawa Timur",
+      team: 7,
+      tags: ["Air Waduk", "Kualitas Air", "Limnologi", "Stratifikasi"],
       results: [
-        "Pengukuran 6 parameter kualitas udara ambien",
-        "Analisis emisi pada 12 cerobong industri",
-        "Pemetaan dispersi polutan",
-        "Laporan kepatuhan lingkungan",
+        "Pengambilan sampel pada berbagai kedalaman waduk",
+        "Analisis stratifikasi suhu dan oksigen terlarut",
+        "Pemantauan parameter eutrofikasi (N, P)",
+        "Evaluasi kondisi ekologi perairan waduk",
+      ],
+      methodology: [
+        "SNI 6989.57:2008 - Metode pengambilan contoh air permukaan",
+        "SNI 6989.59:2008 - Metode pengambilan contoh air limbah",
+        "SNI 06-2412-1991 - Metode pengambilan contoh kualitas air",
+        "SNI 6989.72:2009 - Pengujian BOD",
       ],
       gallery: [
-        "/assets/images/portfolio/udara.webp",
-        "/assets/images/portfolio/udara.webp",
-        "/assets/images/portfolio/udara.webp",
+        "/assets/images/portfolio/sungai.webp",
+        "/assets/images/portfolio/sungai.webp",
+        "/assets/images/portfolio/sungai.webp",
       ],
     },
     {
       id: 3,
-      title: "Audit Pengelolaan Limbah Cair Industri Tekstil",
-      description: "Evaluasi menyeluruh sistem pengolahan limbah cair industri tekstil untuk optimalisasi proses dan kepatuhan lingkungan.",
+      title: "Pengujian Air Limbah Industri",
+      description: "Analisis komprehensif air limbah industri untuk evaluasi kepatuhan baku mutu dan efektivitas pengolahan.",
       category: "limbah",
-      image: "/assets/images/portfolio/proyek.webp",
-      client: "PT Tekstil Jaya Makmur",
+      image: "/assets/images/portfolio/sungai.webp",
+      client: "Sampling Internal",
       date: "2022",
-      location: "Bandung, Jawa Barat",
+      location: "Jawa Timur",
       team: 6,
-      tags: ["Limbah Cair", "Industri Tekstil", "IPAL"],
+      tags: ["Air Limbah", "Industri", "IPAL", "Baku Mutu"],
       results: [
-        "Evaluasi efisiensi IPAL eksisting",
-        "Identifikasi 5 titik optimalisasi proses",
-        "Peningkatan efisiensi pengolahan sebesar 35%",
-        "Rekomendasi teknologi pengolahan limbah terbaru",
+        "Pengujian parameter spesifik limbah industri",
+        "Analisis logam berat dengan AAS/ICP",
+        "Evaluasi kepatuhan terhadap baku mutu",
+        "Rekomendasi optimalisasi sistem pengolahan",
+      ],
+      methodology: [
+        "SNI 6989.59:2008 - Metode pengambilan contoh air limbah",
+        "SNI 6989.2:2009 - Pengujian pH",
+        "SNI 6989.73:2009 - Pengujian COD",
+        "SNI 6989.3:2019 - Pengujian padatan tersuspensi total (TSS)",
       ],
       gallery: [
-        "/assets/images/portfolio/udara.webp",
-        "/assets/images/portfolio/udara.webp",
-        "/assets/images/portfolio/udara.webp",
+        "/assets/images/portfolio/sungai.webp",
+        "/assets/images/portfolio/sungai.webp",
+        "/assets/images/portfolio/sungai.webp",
       ],
     },
     {
       id: 4,
-      title: "Konsultasi AMDAL Pembangunan Bendungan",
-      description: "Penyusunan dokumen AMDAL untuk proyek pembangunan bendungan baru, termasuk analisis dampak lingkungan dan sosial.",
-      category: "konsultasi",
-      image: "/assets/images/portfolio/proyek.webp",
-      client: "Kementerian Pekerjaan Umum dan Perumahan Rakyat",
-      date: "2021",
-      location: "Madiun, Jawa Timur",
-      team: 15,
-      tags: ["AMDAL", "Bendungan", "Analisis Dampak"],
+      title: "Analisis Air Limbah Rumah Sakit",
+      description: "Pengujian khusus untuk air limbah rumah sakit dengan parameter biologis dan kimia sesuai regulasi.",
+      category: "limbah",
+      image: "/assets/images/portfolio/sungai.webp",
+      client: "Sampling Internal",
+      date: "2025",
+      location: "Jawa Timur",
+      team: 5,
+      tags: ["Limbah Medis", "Rumah Sakit", "Mikrobiologi", "Desinfeksi"],
       results: [
-        "Penyusunan dokumen AMDAL komprehensif",
-        "Konsultasi publik dengan 12 desa terdampak",
-        "Analisis 18 parameter lingkungan",
-        "Perencanaan mitigasi dampak lingkungan",
+        "Pengujian parameter mikrobiologi patogen",
+        "Analisis residu antibiotik dan disinfektan",
+        "Evaluasi efektivitas sistem pengolahan limbah medis",
+        "Verifikasi kepatuhan terhadap Permen LHK",
+      ],
+      methodology: [
+        "SNI 6989.59:2008 - Metode pengambilan contoh air limbah",
+        "SNI 6989.7:2019 - Pengujian BOD",
+        "SNI 6989.11:2019 - Pengujian pH",
+        "SNI 6989.80:2011 - Pengujian total coliform dan faecal coliform",
       ],
       gallery: [
-        "/assets/images/portfolio/proyek.webp",
-        "/assets/images/portfolio/proyek.webp",
-        "/assets/images/portfolio/proyek.webp",
+        "/assets/images/portfolio/rs-1.webp",
+        "/assets/images/portfolio/rs-2.webp",
+        "/assets/images/portfolio/rs-3.webp",
       ],
     },
     {
       id: 5,
-      title: "Pemantauan Kualitas Air Waduk Sutami",
-      description: "Program pemantauan berkala kualitas air Waduk Sutami untuk pengelolaan sumber daya air dan ekosistem akuatik.",
-      category: "air",
-      image: "/assets/images/portfolio/sutami.webp",
-      client: "Perum Jasa Tirta I",
-      date: "2023",
-      location: "Malang, Jawa Timur",
-      team: 10,
-      tags: ["Waduk", "Kualitas Air", "Ekosistem"],
+      title: "Pemantauan Air Limbah Hotel",
+      description: "Analisis kualitas air limbah dari kegiatan perhotelan untuk memastikan kepatuhan terhadap standar lingkungan.",
+      category: "limbah",
+      image: "/assets/images/portfolio/udara.webp",
+      client: "Sampling Internal",
+      date: "2022",
+      location: "Jawa Timur",
+      team: 4,
+      tags: ["Air Limbah", "Hotel", "IPAL Domestik", "Deterjen"],
       results: [
-        "Pemantauan 30 titik sampel di seluruh waduk",
-        "Analisis 15 parameter fisika-kimia air",
-        "Pemantauan komunitas plankton dan bentik",
-        "Penyusunan indeks kualitas air waduk",
+        "Pengujian parameter BOD, COD, TSS, pH, dan minyak-lemak",
+        "Analisis kandungan deterjen dan surfaktan",
+        "Evaluasi efisiensi pengolahan limbah domestik hotel",
+        "Rekomendasi optimalisasi sistem pengolahan",
+      ],
+      methodology: [
+        "SNI 6989.59:2008 - Metode pengambilan contoh air limbah",
+        "SNI 6989.72:2009 - Pengujian BOD",
+        "SNI 6989.73:2009 - Pengujian COD",
+        "SNI 06-6989.51-2005 - Pengujian kadar surfaktan anionik",
       ],
       gallery: [
-        "/assets/images/portfolio/sutami.webp",
-        "/assets/images/portfolio/sutami.webp",
-        "/assets/images/portfolio/sutami.webp",
+        "/assets/images/portfolio/udara.webp",
+        "/assets/images/portfolio/udara.webp",
+        "/assets/images/portfolio/udara.webp",
       ],
     },
     {
       id: 6,
-      title: "Konsultasi Efisiensi Energi dan Pengelolaan Lingkungan",
-      description: "Layanan konsultasi untuk optimalisasi efisiensi energi dan pengelolaan lingkungan di kawasan industri terpadu.",
-      category: "konsultasi",
+      title: "Pengujian Air Limbah Domestik",
+      description: "Analisis air limbah dari permukiman dan area komersial untuk mengevaluasi beban pencemaran dan efektivitas pengolahan.",
+      category: "limbah",
       image: "/assets/images/portfolio/udara.webp",
-      client: "PT Kawasan Industri Jababeka",
-      date: "2022",
-      location: "Bekasi, Jawa Barat",
-      team: 8,
-      tags: ["Efisiensi Energi", "Industri", "Manajemen Lingkungan"],
+      client: "Sampling Internal",
+      date: "2025",
+      location: "Jawa Timur",
+      team: 5,
+      tags: ["Limbah Domestik", "Septik Tank", "IPAL Komunal"],
       results: [
-        "Audit energi pada 15 fasilitas industri",
-        "Identifikasi potensi penghematan energi 28%",
-        "Optimalisasi sistem pengelolaan limbah terpadu",
-        "Implementasi sistem monitoring lingkungan real-time",
+        "Pengujian parameter BOD, COD, TSS, pH, dan total koliform",
+        "Evaluasi kinerja IPAL komunal dan septik tank",
+        "Analisis beban pencemaran limbah domestik",
+        "Rekomendasi teknologi pengolahan yang sesuai",
+      ],
+      methodology: [
+        "SNI 6989.59:2008 - Metode pengambilan contoh air limbah",
+        "SNI 6989.72:2009 - Pengujian BOD",
+        "SNI 6989.3:2019 - Pengujian padatan tersuspensi total (TSS)",
+        "SNI 6989.80:2011 - Pengujian total coliform",
+      ],
+      gallery: [
+        "/assets/images/portfolio/udara.webp",
+        "/assets/images/portfolio/udara.webp",
+        "/assets/images/portfolio/udara.webp",
+      ],
+    },
+    {
+      id: 7,
+      title: "Analisis Air Minum Dalam Kemasan",
+      description: "Pengujian kualitas air minum dalam kemasan sesuai dengan standar SNI dan persyaratan kesehatan.",
+      category: "air",
+      image: "/assets/images/portfolio/udara.webp",
+      client: "Sampling Internal",
+      date: "2025",
+      location: "Jawa Timur",
+      team: 6,
+      tags: ["AMDK", "Air Minum", "Mikrobiologi", "SNI"],
+      results: [
+        "Pengujian parameter fisika, kimia dan mikrobiologi",
+        "Analisis kandungan mineral dan logam berat",
+        "Pengujian cemaran mikroba patogen",
+        "Verifikasi kesesuaian dengan standar BPOM dan SNI",
+      ],
+      methodology: [
+        "SNI 01-3553-2015 - Persyaratan air minum dalam kemasan",
+        "SNI 6989.72:2009 - Pengujian BOD",
+        "SNI 06-6989.31-2005 - Pengujian kadar fosfat",
+        "SNI 01-2897-2008 - Metode uji cemaran mikroba dalam pangan",
+      ],
+      gallery: [
+        "/assets/images/portfolio/udara.webp",
+        "/assets/images/portfolio/udara.webp",
+        "/assets/images/portfolio/udara.webp",
+      ],
+    },
+    {
+      id: 8,
+      title: "Monitoring Kualitas Udara Ambient",
+      description: "Pemantauan kualitas udara ambient untuk mengevaluasi tingkat pencemaran udara dan potensi dampaknya.",
+      category: "udara",
+      image: "/assets/images/portfolio/udara.webp",
+      client: "Sampling Internal",
+      date: "2025",
+      location: "Jawa Timur",
+      team: 7,
+      tags: ["Udara Ambient", "PM2.5", "PM10", "Gas Pencemar"],
+      results: [
+        "Pengukuran parameter PM10, PM2.5, SO2, NO2, CO, dan O3",
+        "Analisis menggunakan HVAS, MPAS, dan impinger",
+        "Evaluasi indeks kualitas udara (ISPU)",
+        "Pemetaan dispersi pencemar udara",
+      ],
+      methodology: [
+        "SNI 19-7119.6-2005 - Penentuan lokasi pengambilan contoh uji pemantauan kualitas udara ambien",
+        "SNI 19-7119.3-2005 - Cara uji partikel tersuspensi total menggunakan peralatan HVAS",
+        "SNI 7119.7:2017 - Cara uji kadar sulfur dioksida dengan metode pararosanilin menggunakan spektrofotometer",
+        "SNI 7119.2:2017 - Cara uji kadar nitrogen dioksida dengan metode Griess Saltzman",
+      ],
+      gallery: [
+        "/assets/images/portfolio/udara.webp",
+        "/assets/images/portfolio/udara.webp",
+        "/assets/images/portfolio/udara.webp",
+      ],
+    },
+    {
+      id: 9,
+      title: "Pengujian Emisi Sumber Tidak Bergerak",
+      description: "Analisis emisi udara dari cerobong industri untuk evaluasi kepatuhan terhadap baku mutu dan efisiensi pengendalian emisi.",
+      category: "udara",
+      image: "/assets/images/portfolio/udara.webp",
+      client: "Sampling Internal",
+      date: "2022",
+      location: "Jawa Timur",
+      team: 8,
+      tags: ["Emisi", "Cerobong", "Stack Sampling", "Baku Mutu"],
+      results: [
+        "Sampling isokinetik pada cerobong industri",
+        "Pengukuran parameter partikulat dan gas (SO2, NOx, dll)",
+        "Analisis opasitas dan debu total",
+        "Evaluasi efisiensi alat pengendali pencemaran udara",
+      ],
+      methodology: [
+        "SNI 19-7117.2-2005 - Emisi gas buang - Cara uji kadar partikel",
+        "SNI 19-7117.3.1-2005 - Emisi gas buang - Cara uji kadar SO2",
+        "SNI 19-7117.3.2-2005 - Emisi gas buang - Cara uji kadar NOx",
+        "SNI 19-7117.12-2005 - Emisi gas buang - Cara uji opasitas",
+      ],
+      gallery: [
+        "/assets/images/portfolio/udara.webp",
+        "/assets/images/portfolio/udara.webp",
+        "/assets/images/portfolio/udara.webp",
+      ],
+    },
+    {
+      id: 10,
+      title: "Pengujian Kualitas Lingkungan Kerja",
+      description: "Pemantauan parameter lingkungan kerja untuk memastikan keselamatan dan kesehatan kerja (K3) karyawan.",
+      category: "lingkungan_kerja",
+      image: "/assets/images/portfolio/udara.webp",
+      client: "Sampling Internal",
+      date: "2025",
+      location: "Jawa Timur",
+      team: 5,
+      tags: ["K3", "Iklim Kerja", "Kebisingan", "Pencahayaan"],
+      results: [
+        "Pengukuran kebisingan, pencahayaan dan getaran",
+        "Analisis paparan debu dan bahan kimia di udara kerja",
+        "Evaluasi iklim kerja (suhu, kelembaban, kecepatan angin)",
+        "Rekomendasi pengendalian risiko K3",
+      ],
+      methodology: [
+        "SNI 7231:2009 - Metoda pengukuran intensitas penerangan di tempat kerja",
+        "SNI 7232:2009 - Metoda pengukuran iklim kerja (suhu dan kelembaban)",
+        "SNI 7234:2009 - Metoda pengukuran kebisingan di tempat kerja",
+        "SNI 7235:2009 - Metoda pengukuran intensitas getaran di tempat kerja",
       ],
       gallery: [
         "/assets/images/portfolio/udara.webp",
@@ -241,7 +394,7 @@ export default function Portofolio() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <Badge className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 text-sm">
-                Portofolio Bisnis Strategis
+                Laboratorium Terakreditasi KAN
               </Badge>
             </motion.div>
             
@@ -251,7 +404,7 @@ export default function Portofolio() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Proyek & Layanan <span className="text-blue-300">Unggulan Kami</span>
+              Kompetensi <span className="text-blue-300">Pengujian Kami</span>
             </motion.h1>
             
             <motion.p 
@@ -260,8 +413,8 @@ export default function Portofolio() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Laboratorium Lingkungan Perum Jasa Tirta I telah menyelesaikan berbagai proyek lingkungan 
-              dengan hasil yang terukur dan berkelanjutan. Berikut beberapa portofolio proyek kami.
+              Laboratorium Lingkungan PJT I memiliki kompetensi lengkap dalam pengujian berbagai jenis sampel
+              lingkungan dengan metode terakreditasi dan personel yang berpengalaman.
             </motion.p>
             
             <motion.div 
@@ -422,7 +575,7 @@ export default function Portofolio() {
                         {/* View Details Button */}
                         <div className="flex items-center justify-between pt-2 border-t border-gray-100">
                           <span className="text-sm text-gray-500">
-                            Klien: {project.client.length > 20 ? `${project.client.substring(0, 20)}...` : project.client}
+                            Jenis: {project.title.includes("Air") ? "Air" : project.category === "limbah" ? "Limbah" : project.category === "udara" ? "Udara/Emisi" : "Lingkungan Kerja"}
                           </span>
                           <span className="inline-flex items-center text-blue-600 text-sm font-medium group-hover:text-blue-700 transition-colors">
                             <span>Detail</span>
@@ -451,11 +604,11 @@ export default function Portofolio() {
           >
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Dampak dan Pencapaian
+                Kemampuan dan Akreditasi
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Kami berkomitmen untuk memberikan layanan berkualitas tinggi dengan hasil yang terukur 
-                dan berkontribusi pada pelestarian lingkungan hidup.
+                Laboratorium kami terakreditasi KAN dengan pengalaman bertahun-tahun dalam pengujian berbagai parameter lingkungan
+                menggunakan metode standar nasional dan internasional.
               </p>
             </div>
             
@@ -470,8 +623,8 @@ export default function Portofolio() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                   </svg>
                 </div>
-                <h3 className="text-4xl font-bold text-blue-600 mb-2">120+</h3>
-                <p className="text-gray-700">Proyek Selesai</p>
+                <h3 className="text-4xl font-bold text-blue-600 mb-2">100+</h3>
+                <p className="text-gray-700">Parameter Uji</p>
               </motion.div>
               
               <motion.div 
@@ -481,11 +634,11 @@ export default function Portofolio() {
               >
                 <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
-                <h3 className="text-4xl font-bold text-green-600 mb-2">50+</h3>
-                <p className="text-gray-700">Klien Puas</p>
+                <h3 className="text-4xl font-bold text-green-600 mb-2">60+</h3>
+                <p className="text-gray-700">Metode Terakreditasi</p>
               </motion.div>
               
               <motion.div 
@@ -495,11 +648,11 @@ export default function Portofolio() {
               >
                 <div className="w-16 h-16 bg-amber-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                   </svg>
                 </div>
-                <h3 className="text-4xl font-bold text-amber-600 mb-2">20+</h3>
-                <p className="text-gray-700">Kota Terjangkau</p>
+                <h3 className="text-4xl font-bold text-amber-600 mb-2">10+</h3>
+                <p className="text-gray-700">Jenis Sampling</p>
               </motion.div>
               
               <motion.div 
@@ -509,11 +662,11 @@ export default function Portofolio() {
               >
                 <div className="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                 </div>
-                <h3 className="text-4xl font-bold text-purple-600 mb-2">24+</h3>
-                <p className="text-gray-700">Tahun Pengalaman</p>
+                <h3 className="text-4xl font-bold text-purple-600 mb-2">15+</h3>
+                <p className="text-gray-700">Tenaga Ahli</p>
               </motion.div>
             </div>
           </motion.div>
@@ -531,11 +684,11 @@ export default function Portofolio() {
                 transition={{ duration: 0.8 }}
             >
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                    Siap Bekerja Sama Dengan Kami?
+                    Butuh Pengujian Sampel Lingkungan?
                 </h2>
                 <p className="text-lg text-blue-100 mb-8 max-w-3xl mx-auto">
-                    Laboratorium Lingkungan Perum Jasa Tirta I siap membantu Anda dengan berbagai layanan 
-                    analisis lingkungan berkualitas tinggi. Hubungi kami untuk konsultasi kebutuhan proyek Anda.
+                    Laboratorium Lingkungan PJT I siap membantu Anda dengan layanan pengujian sampel lingkungan
+                    berstandar nasional dan internasional dengan hasil terakreditasi KAN.
                 </p>
                 {(() => {
                     const waNumber = "6281230738591";
@@ -656,6 +809,21 @@ export default function Portofolio() {
                         ))}
                       </div>
                     </div>
+                    
+                    {/* Methodology */}
+                    <div className="mb-5">
+                      <h3 className="text-base font-bold text-gray-800 mb-3">Metodologi Pengujian</h3>
+                      <ul className="space-y-1.5">
+                        {selectedProject.methodology?.map((method: string, index: number) => (
+                          <li key={index} className="flex items-start text-xs text-gray-700">
+                            <div className="flex-shrink-0 w-3 h-3 bg-gray-100 rounded-full flex items-center justify-center mt-0.5 mr-2">
+                              <div className="w-1.5 h-1.5 bg-gray-500 rounded-full"></div>
+                            </div>
+                            <span>{method}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                   
                   {/* Right Column - Project Info */}
@@ -664,7 +832,7 @@ export default function Portofolio() {
                     
                     <div className="space-y-3 text-sm">
                       <div>
-                        <h4 className="text-xs text-gray-500 mb-0.5">Klien</h4>
+                        <h4 className="text-xs text-gray-500 mb-0.5">Jenis Sampling</h4>
                         <p className="font-medium text-gray-800">{selectedProject.client}</p>
                       </div>
                       
@@ -694,7 +862,7 @@ export default function Portofolio() {
                                     className="block w-full"
                                 >
                                     <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center text-xs py-1">
-                                        <span>Hubungi untuk Proyek Serupa</span>
+                                        <span>Konsultasi Pengujian Serupa</span>
                                         <ArrowRight className="ml-1" size={14} />
                                     </Button>
                                 </a>
